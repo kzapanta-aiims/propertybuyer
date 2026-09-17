@@ -1245,3 +1245,764 @@ body[data-poc="true"] .poc-toggle {
 
 /* ============================= end POC ONLY ============================== */
 
+
+/* ==========================================================================
+   Portfolio review page
+   Built 17 September 2026 from Paper "PORTFOLIO REVIEW - 1440 -- v2" in file
+   01M26QSHXNKJ3CA52AQ4GRSW2F, page "Client Approval".
+
+   EVERY RULE IN THIS BLOCK IS SCOPED UNDER .pr-page. landing.css is shared by
+   the four client-reviewed segment pages, and this page needs a smaller H1, a
+   second outline button and a set of components none of them carry. Scoping
+   rather than widening the shared classes is what keeps a fifth page off the
+   other four. Nothing above this line was edited to build it.
+   ========================================================================== */
+
+/* --- Hero ------------------------------------------------------------------
+   The H1 is 44, not the family's 52. The client H1 is a 68 character sentence
+   and Proyale renders capitals, so 52 needs lines under 17 characters and
+   breaks the sentence badly. 44 is the DESIGN.md type/display ceiling, so the
+   artboard agrees with the rules layer and disagrees with the four shipped
+   pages. tools/check.mjs asserts 52 at 768 and above, so this page needs a
+   per-page branch there before it can be checked. */
+
+.pr-page .pr-hero { position: relative; overflow: clip; }
+.pr-page .pr-hero::before {
+  content: "";
+  position: absolute;
+  left: 50%; top: 50%;
+  translate: -50% -50%;
+  width: 100%;
+  min-width: 1440px;
+  height: 100%;
+  min-height: 960px;
+  background: url("../img/texture-wall-3.webp") center / cover;
+  mix-blend-mode: soft-light;
+  opacity: 0.3;
+  pointer-events: none;
+}
+.pr-page .pr-hero .wrap {
+  position: relative;
+  z-index: 1;
+  display: block;
+  padding-top: 72px;
+  padding-bottom: 72px;
+}
+.pr-page .pr-hero h1 { font-size: var(--type-display); line-height: 1.14; }
+
+.pr-page .pr-hero__grid { display: flex; align-items: center; gap: var(--gap-lg); }
+.pr-page .pr-hero__copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-xl);
+  flex: 1;
+  min-width: 0;
+}
+.pr-page .pr-hero__copy > .pill { align-self: flex-start; }
+.pr-page .pr-hero__lower { display: flex; align-items: flex-start; gap: var(--gap-xl); }
+.pr-page .pr-hero__pitch {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--gap);
+  max-width: 300px;
+}
+.pr-page .pr-hero__pitch .hero__subhead { letter-spacing: var(--tracking-heading); }
+.pr-page .pr-hero__pitch .hero-body { max-width: none; }
+
+/* Decorative value chart. Frosted panel over the teal, the same white-over-
+   brand treatment the hero avatar cards use. */
+.pr-page .pr-chart {
+  position: relative;
+  flex-shrink: 0;
+  width: 269px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-sm);
+  padding: var(--gap);
+  border-radius: var(--radius-card);
+  background: var(--bg-frost-subtle);
+  border-top: 1px solid var(--bg-frost);
+  border-right: 1px solid var(--bg-frost);
+  box-shadow: 5px 20px 20px color-mix(in oklab, black, transparent 80%);
+  backdrop-filter: blur(10px);
+  /* Holds the five lighting streaks to the card. backdrop-filter already
+     opens a stacking context, so their color-dodge blends against the card
+     and the teal behind it and stops there. */
+  overflow: clip;
+}
+
+/* The artboard's "lighting 1" and "lighting 2" rectangles, five of them, all
+   the same 464.687px-wide bar rotated 335.77deg and slid to a different
+   place, each with its own blur and white alpha. Transcribed rather than
+   eyeballed: the widths, rotations, translations and blurs are the artboard's
+   numbers, and the alphas are its hex alphas expressed against an existing
+   token so no colour is chosen by hand here (#FFFFFF14 is white at 7.84%,
+   which is transparent 92.16%, and so on). */
+.pr-page .pr-chart__glare {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 464.687px;
+  transform-origin: 0 0;
+  rotate: 335.77deg;
+  mix-blend-mode: color-dodge;
+  pointer-events: none;
+}
+.pr-page .pr-chart__glare--1 {
+  height: 126.266px;
+  translate: -67.806px 238.89px;
+  filter: blur(16px);
+  background: color-mix(in oklab, var(--text-on-brand), transparent 92.16%);
+}
+.pr-page .pr-chart__glare--2 {
+  height: 43.798px;
+  translate: -75.493px 221.809px;
+  filter: blur(8px);
+  background: color-mix(in oklab, var(--text-on-brand), transparent 80%);
+}
+.pr-page .pr-chart__glare--3 {
+  height: 126.266px;
+  translate: -142px 51.5px;
+  filter: blur(16px);
+  background: color-mix(in oklab, var(--text-on-brand), transparent 94.9%);
+}
+.pr-page .pr-chart__glare--4 {
+  height: 82.422px;
+  translate: -133.003px 71.491px;
+  filter: blur(10px);
+  background: color-mix(in oklab, var(--text-on-brand), transparent 96.86%);
+}
+.pr-page .pr-chart__glare--5 {
+  height: 23.641px;
+  translate: -121px 113px;
+  filter: blur(5px);
+  opacity: 0.4;
+  background: color-mix(in oklab, var(--text-on-brand), transparent 69.8%);
+}
+.pr-page .pr-chart__head { display: flex; align-items: center; gap: var(--gap-sm); }
+.pr-page .pr-chart__head span {
+  font-size: var(--type-micro);
+  line-height: 16px;
+  color: var(--text-on-brand);
+}
+.pr-page .pr-chart__plot {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  gap: 15px;
+  height: 102px;
+}
+.pr-page .pr-chart__bar {
+  width: 17px;
+  flex-shrink: 0;
+  border-radius: var(--radius-avatar-inner) var(--radius-avatar-inner) 0 0;
+  background: var(--bg-info-subtle);
+  box-shadow: inset -1px 1px 1px var(--bg-frost-subtle);
+}
+.pr-page .pr-chart__bar--1 { height: 17px; opacity: 0.5; }
+.pr-page .pr-chart__bar--2 { height: 55px; }
+.pr-page .pr-chart__bar--3,
+.pr-page .pr-chart__bar--4,
+.pr-page .pr-chart__bar--5,
+.pr-page .pr-chart__bar--6 { height: 43px; }
+.pr-page .pr-chart__bar--now { position: relative; height: 73px; background: var(--action-primary); }
+.pr-page .pr-chart__bar--now em {
+  position: absolute;
+  left: 50%;
+  translate: -50% 0;
+  bottom: calc(100% + 6px);
+  font-style: normal;
+  font-size: 11px;
+  line-height: 1.5;
+  /* The artboard sets this 9px in text/on-brand-muted, which measures 2.8:1
+     over the frosted panel. DESIGN.md makes contrast non-negotiable and asks
+     for extra care below 16px, so it ships at 11 in text/on-brand. It is the
+     one value the chart states, so it is also the one that should be read. */
+  color: var(--text-on-brand);
+}
+.pr-page .pr-chart__axis { display: flex; gap: 15px; }
+.pr-page .pr-chart__axis span {
+  width: 17px;
+  flex-shrink: 0;
+  text-align: center;
+  font-size: 11px;
+  font-weight: var(--weight-body);
+  line-height: 1;
+  color: var(--text-on-brand-muted);
+}
+
+/* --- Sample scorecard, the life-size specimen of the free page ------------- */
+
+.pr-page .pr-doc {
+  flex-shrink: 0;
+  width: 460px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-gutter);
+  padding: 32px;
+  border-radius: var(--radius-card);
+  background: var(--bg-surface);
+  box-shadow: var(--shadow-cta-panel);
+  color: var(--text-body);
+}
+.pr-page .pr-doc__head { display: flex; align-items: center; justify-content: space-between; }
+.pr-page .pr-doc__flag { color: var(--text-muted); letter-spacing: var(--tracking-caps); }
+.pr-page .pr-doc__title { display: flex; flex-direction: column; gap: var(--gap-xs); margin: 0; }
+.pr-page .pr-doc__name {
+  font-size: var(--type-h3-card);
+  font-weight: var(--weight-semibold);
+  line-height: 1.25;
+  letter-spacing: var(--tracking-heading);
+  color: var(--text-heading);
+}
+.pr-page .pr-doc__addr {
+  font-size: var(--type-small);
+  font-weight: var(--weight-body);
+  color: var(--text-muted);
+}
+.pr-page .pr-doc__rule { border: 0; border-top: 1px solid var(--border-default); margin: 0; }
+.pr-page .pr-doc__rows { display: flex; flex-direction: column; margin: 0; }
+.pr-page .pr-doc__row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding-block: 12px;
+  border-bottom: 1px solid var(--border-default);
+}
+.pr-page .pr-doc__row:last-child { border-bottom: 0; padding-bottom: 4px; }
+.pr-page .pr-doc__row dt {
+  font-size: var(--type-small);
+  font-weight: var(--weight-body);
+  line-height: 1.6;
+  color: var(--text-body);
+}
+.pr-page .pr-doc__row dd {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-align: right;
+  font-size: var(--type-small);
+  font-weight: var(--weight-semibold);
+  line-height: 1.6;
+  color: var(--text-heading);
+}
+
+/* The rating dot. This page is the first product use of the semantic ramp
+   DESIGN.md flags as invented, and it appears only on specimens labelled
+   Sample. See portfolioReviewRagColours in shared/segments.json. */
+.pr-page .pr-rag { width: 10px; height: 10px; flex-shrink: 0; border-radius: var(--radius-pill); }
+.pr-page .pr-rag--green { background: var(--text-success); }
+.pr-page .pr-rag--amber { background: var(--text-warning); }
+.pr-page .pr-rag--red { background: var(--text-error); }
+
+.pr-page .pr-doc__locked {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-sm);
+  padding: var(--space-gutter);
+  border-radius: var(--radius-card);
+  background: var(--bg-surface-alt);
+  border: 1px solid var(--border-default);
+}
+.pr-page .pr-doc__locked .redacted { align-self: flex-start; }
+.pr-page .pr-doc__lockline {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: var(--type-small);
+  font-weight: var(--weight-semibold);
+  line-height: 1.4;
+  color: var(--text-heading);
+}
+.pr-page .pr-doc__lockline svg { flex-shrink: 0; }
+
+/* --- Awards band and the independence claim, both on white ---------------- */
+
+/* Deep teal, not white. The artboard sets bg/brand-deep here and 40px of
+   band padding, which makes this the one dark band between the hero and the
+   closer. .hero-awards__label is already text/on-brand, so it needs no
+   override, and the badge drop shadows are built for a dark ground. */
+.pr-page .pr-proofline { background: var(--bg-brand-deep); padding-block: 40px; }
+
+.pr-page .pr-claim { background: var(--bg-page); padding-block: 48px; }
+.pr-page .pr-claim .wrap {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--gap-xl);
+  padding-bottom: 48px;
+  border-bottom: 1px solid var(--border-muted);
+}
+.pr-page .pr-claim__lead {
+  flex-shrink: 0;
+  max-width: 450px;
+  font-size: var(--type-h3-card);
+  font-weight: var(--weight-semibold);
+  line-height: 1.4;
+  letter-spacing: var(--tracking-heading);
+  color: var(--text-heading);
+}
+.pr-page .pr-claim__note { max-width: 400px; color: var(--text-muted); }
+
+/* --- How it works, three photograph cards --------------------------------- */
+
+.pr-page .pr-steps { background: var(--bg-page); }
+.pr-page .pr-steps .wrap { display: flex; flex-direction: column; gap: 48px; }
+.pr-page .pr-steps__head { display: flex; flex-direction: column; gap: 16px; max-width: 500px; }
+.pr-page .pr-steps__grid { display: flex; gap: var(--gap); }
+.pr-page .pr-step { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: var(--space-gutter); }
+.pr-page .pr-step__img {
+  height: 260px;
+  overflow: clip;
+  border-radius: var(--radius-card);
+  background: var(--bg-photo-fallback);
+}
+.pr-page .pr-step__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: scale 600ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.pr-page .pr-step:hover .pr-step__img img { scale: 1.04; }
+.pr-page .pr-step h3 { font-size: var(--type-h3-card); }
+.pr-page .pr-step p { color: var(--text-body); }
+.pr-page .pr-step h3 + p { margin-top: -12px; }
+
+/* --- The honest rating band ------------------------------------------------ */
+
+.pr-page .pr-rating { background: var(--bg-surface-alt); position: relative; overflow: clip; }
+/* Fills the band rather than sitting in a fixed 900px strip at the top. The
+   artboard draws a 900px rectangle in a 1670px frame and the cut shows there
+   too; in the build the band runs to 2469px at 390 and the edge was obvious,
+   so the design lead called it to fill on 17 Sep 2026.
+
+   Stretched to 100% 100% rather than covered. The texture is a soft light
+   wash, mean 229 and standard deviation 14 across 1440x900, with no grain and
+   no repeating pattern, so stretching produces no artefact, keeps the
+   composition the artboard chose (light from the top right, floor line at the
+   base) and cannot cut at any height. Cover would scale by height on a tall
+   band and crop away all but a tenth of the image's width at 390. */
+.pr-page .pr-rating::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("../img/texture-wall-1.webp") center / 100% 100%;
+  mix-blend-mode: multiply;
+  opacity: 0.8;
+  pointer-events: none;
+}
+.pr-page .pr-rating .wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 120px;
+}
+.pr-page .pr-rating__head { display: flex; align-items: center; gap: var(--gap-xl); }
+.pr-page .pr-rating__intro { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: var(--gap-lg); }
+.pr-page .pr-rating__intro p { color: var(--text-body); max-width: 520px; }
+/* The photograph fills the frame. The artboard's 16px of padding is not a
+   border: the image rectangle inside it is absolutely positioned and larger
+   than the frame, so it overflows the padding on every side and the white
+   never shows. Reproducing the padding with an in-flow image put a white
+   inset around the photograph that the design does not have. The crop the
+   artboard shows is already baked into review-scorecard.webp by
+   tools/import-review-images.mjs, so a plain cover is faithful. */
+.pr-page .pr-rating__photo {
+  flex-shrink: 0;
+  width: 548px;
+  height: 493px;
+  overflow: clip;
+  background: var(--bg-photo-fallback);
+}
+.pr-page .pr-rating__photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pr-page .pr-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-sm);
+  align-self: flex-start;
+}
+
+.pr-page .pr-split { display: flex; align-items: flex-start; gap: var(--gap-xl); }
+.pr-page .pr-col { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: var(--gap); }
+/* Both flags are fixed at the same height so the two columns share a lane.
+   .pill--light carries its own 36px, .pill--dark does not, and without this
+   the headings under them sat four pixels apart.
+
+   16px Geist Medium, not the shared .pill default of 13px Regular. That is
+   the artboard's setting for these two and it is the same treatment
+   .pill--light.pill--step already carries in base.css, so this page is
+   matching an existing house variant rather than inventing a size. */
+.pr-page .pr-col__flag {
+  align-self: flex-start;
+  height: 36px;
+  font-size: var(--type-body);
+  font-weight: var(--weight-medium);
+}
+.pr-page .pr-col__head { display: flex; flex-direction: column; gap: var(--gap-xs); }
+.pr-page .pr-col__head h3 { font-size: var(--type-h3-card); color: var(--bg-prestige); }
+.pr-page .pr-list { display: flex; flex-direction: column; gap: 14px; margin-top: 16px; }
+.pr-page .pr-list__item { display: flex; align-items: flex-start; gap: var(--gap-sm); }
+.pr-page .pr-list__item > svg { flex-shrink: 0; margin-top: 4px; }
+.pr-page .pr-list__item span {
+  display: flex;
+  flex-direction: column;
+  color: var(--text-body);
+  line-height: 1.6;
+}
+.pr-page .pr-list__item strong { font-weight: var(--weight-semibold); }
+
+.pr-page .pr-panel { background: var(--bg-brand); color: var(--text-on-brand); box-shadow: var(--shadow-cta-panel); }
+.pr-page .pr-panel__lines { display: flex; align-items: center; gap: var(--gap-lg); flex: 1; min-width: 0; }
+.pr-page .pr-panel__lines svg { flex-shrink: 0; }
+.pr-page .pr-panel__lines p {
+  font-size: var(--type-h3-card);
+  font-weight: var(--weight-body);
+  line-height: 1.55;
+  letter-spacing: var(--tracking-body);
+  color: var(--text-on-brand);
+}
+.pr-page .pr-panel__lines strong { font-weight: var(--weight-semibold); }
+/* .btn-note is text/muted, which is a light-band colour. This panel is the
+   one place on the page where it sits on teal, where it measures about 2:1.
+   The artboard reaches for bg/info-subtle here, but that is a background
+   token, and the family already has a text token for exactly this job:
+   .stats-cta and .closer__note both use text/on-brand-muted on teal. Same
+   intent as the artboard, on the right token, at about 7.4:1. */
+.pr-page .pr-panel .btn-note { color: var(--text-on-brand-muted); }
+
+/* --- Published prices ------------------------------------------------------ */
+
+.pr-page .pr-pricing { background: var(--bg-page); }
+.pr-page .pr-pricing .wrap { display: flex; flex-direction: column; gap: 48px; }
+.pr-page .pr-pricing__head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  max-width: var(--measure-intro);
+}
+.pr-page .pr-tiers { display: flex; align-items: stretch; gap: var(--gap); }
+.pr-page .pr-tier {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--gap-lg);
+  padding: var(--gap);
+  background: var(--bg-surface);
+}
+.pr-page .pr-tier__top { display: flex; flex-direction: column; align-items: flex-start; gap: var(--gap); }
+.pr-page .pr-tier__flag { align-self: flex-start; }
+.pr-page .pr-tier h3 { font-size: var(--type-h3-card); }
+.pr-page .pr-tier__price {
+  font-size: var(--type-h2);
+  font-weight: var(--weight-semibold);
+  line-height: 1.1;
+  letter-spacing: var(--tracking-display);
+  color: var(--text-body);
+  margin-bottom: -12px;
+}
+.pr-page .pr-tier__terms {
+  font-size: var(--type-small);
+  font-weight: var(--weight-regular);
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+.pr-page .pr-ticks { display: flex; flex-direction: column; gap: var(--gap-sm); }
+.pr-page .pr-ticks li {
+  position: relative;
+  padding-left: 30px;
+  color: var(--text-body);
+  line-height: 1.6;
+}
+.pr-page .pr-ticks li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 8px;
+  width: 15px;
+  height: 8px;
+  border-left: 2px solid var(--border-brand);
+  border-bottom: 2px solid var(--border-brand);
+  rotate: -45deg;
+}
+
+/* Outline on a light band. .btn--outline is white on teal and is wrong here. */
+.pr-page .btn--outline-teal {
+  background: transparent;
+  color: var(--text-heading);
+  border: 1px solid var(--border-brand);
+}
+.pr-page .btn--outline-teal:hover { background: var(--bg-info-subtle); }
+
+.pr-page .pr-rules { display: flex; align-items: stretch; gap: var(--space-gutter); }
+.pr-page .pr-rule {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-sm);
+  padding: var(--space-gutter);
+  border-radius: var(--radius-card);
+  background: var(--bg-info-subtle);
+  color: var(--text-info);
+}
+/* 16px Geist Medium, matching the eyebrow flags above. The artboard sets
+   these SemiBold; the design lead called both to Medium on 17 Sep 2026.
+   Scoped through .pr-rule so it outweighs the 13px body rule below, which
+   also matches this element as `.pr-rule p`. */
+.pr-page .pr-rule .pr-rule__title {
+  font-size: var(--type-body);
+  font-weight: var(--weight-medium);
+  line-height: 1.25;
+}
+.pr-page .pr-rule p { font-size: var(--type-micro); line-height: 1.55; color: var(--text-info); }
+
+/* --- What each level includes ---------------------------------------------- */
+
+.pr-page .pr-compare { background: var(--bg-info-subtle); }
+.pr-page .pr-compare .wrap { display: flex; flex-direction: column; gap: var(--gap-xl); }
+/* The wrapper deliberately has no overflow at this width. A scroll container
+   becomes the containing block for anything sticky inside it, so giving this
+   overflow-x here would stop the header row ever sticking to the page. It
+   only becomes scrollable below 1024, where the table is wider than the
+   column, and the header does not stick there. */
+.pr-page .pr-table {
+  width: 100%;
+  /* separate, not collapse: a collapsed border belongs to the table rather
+     than the cell, and does not travel with a sticky row. Spacing is zero and
+     every border is a cell border-bottom, so nothing doubles up and the
+     rendering is identical to the collapsed version. */
+  border-collapse: separate;
+  border-spacing: 0;
+  text-align: left;
+}
+/* The three column headers stay put while the twelve rows scroll under them,
+   so a row read half way down the table is still attached to its price. */
+.pr-page .pr-table thead th,
+.pr-page .pr-table thead td {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--bg-info-subtle);
+  padding-top: var(--gap);
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-default);
+}
+.pr-page .pr-table thead td { width: 38%; }
+.pr-page .pr-table thead th {
+  width: 20.7%;
+  text-align: center;
+  vertical-align: bottom;
+}
+.pr-page .pr-table__flag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 8px var(--space-gutter);
+  border-radius: var(--radius-pill);
+  font-family: var(--family-text);
+  font-size: var(--type-button);
+  font-weight: var(--weight-semibold);
+  line-height: 1.25;
+  filter: var(--shadow-pill-light);
+}
+.pr-page .pr-table__flag--free { background: var(--bg-success-subtle); color: var(--text-heading); }
+.pr-page .pr-table__flag--mid {
+  background: var(--bg-success-subtle);
+  color: var(--text-heading);
+  border: 1px solid var(--border-brand);
+}
+.pr-page .pr-table__flag--top {
+  background: var(--grad-pill-dark);
+  color: var(--text-on-brand);
+  font-weight: var(--weight-medium);
+}
+.pr-page .pr-table__price {
+  display: block;
+  margin-top: var(--gap-sm);
+  font-size: var(--type-small);
+  font-weight: var(--weight-body);
+  color: var(--text-muted);
+}
+.pr-page .pr-table tbody th {
+  font-family: var(--family-text);
+  font-size: var(--type-body);
+  font-weight: var(--weight-regular);
+  letter-spacing: var(--tracking-body);
+  line-height: 1.5;
+  color: var(--text-body);
+}
+.pr-page .pr-table tbody th,
+.pr-page .pr-table tbody td {
+  padding-block: 16px;
+  border-bottom: 1px solid var(--border-default);
+}
+.pr-page .pr-table tbody td {
+  text-align: center;
+  font-weight: var(--weight-body);
+  line-height: 1.5;
+  color: var(--text-body);
+}
+.pr-page .pr-yes {
+  display: inline-block;
+  width: 15px;
+  height: 8px;
+  border-left: 2px solid var(--border-brand);
+  border-bottom: 2px solid var(--border-brand);
+  rotate: -45deg;
+  translate: 0 -3px;
+}
+.pr-page .pr-no { display: inline-block; width: 14px; height: 1px; background: var(--text-muted); }
+.pr-page .pr-compare__action { align-self: center; }
+
+/* --- The record behind the verdict ----------------------------------------- */
+
+.pr-page .pr-proof { background: var(--bg-surface-alt); position: relative; overflow: clip; }
+/* Fills the band, same reasoning as .pr-rating::before above. */
+.pr-page .pr-proof::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("../img/texture-wall-1.webp") center / 100% 100%;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+.pr-page .pr-proof .wrap { position: relative; display: flex; flex-direction: column; gap: var(--gap-lg); }
+.pr-page .pr-proof__head { display: flex; flex-direction: column; gap: var(--space-gutter); }
+.pr-page .pr-proof__head .muted { max-width: var(--measure-intro); }
+
+/* --- Common questions ------------------------------------------------------ */
+
+.pr-page .pr-faq { background: var(--bg-page); }
+.pr-page .pr-faq .wrap { align-items: flex-start; }
+.pr-page .pr-faq__head {
+  width: 360px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-gutter);
+}
+.pr-page .pr-faq__head h2 { width: auto; padding-bottom: 0; }
+
+/* --- The capture ----------------------------------------------------------- */
+
+.pr-page .pr-closer { background: var(--bg-brand); }
+.pr-page .pr-closer .wrap { display: flex; align-items: flex-start; gap: var(--gap-xl); }
+.pr-page .pr-closer__copy { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 32px; }
+.pr-page .pr-closer h2 { color: var(--text-on-brand); }
+.pr-page .pr-closer__body { color: var(--text-on-brand-muted); max-width: 480px; }
+.pr-page .pr-closer__note {
+  font-size: var(--type-small);
+  color: var(--text-on-brand-muted);
+  max-width: 480px;
+}
+.pr-page .pr-next { max-width: 480px; }
+.pr-page .pr-next h3 { color: var(--text-on-brand); padding-bottom: 16px; }
+.pr-page .pr-next__list { display: flex; flex-direction: column; }
+.pr-page .pr-next__list li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-gutter);
+  padding-block: 14px;
+  border-top: 1px solid var(--border-on-brand);
+  color: var(--text-on-brand);
+  line-height: 1.5;
+}
+.pr-page .pr-next__list li:last-child { border-bottom: 1px solid var(--border-on-brand); }
+.pr-page .pr-next__n {
+  width: 20px;
+  flex-shrink: 0;
+  font-size: var(--type-h3-card);
+  font-weight: var(--weight-semibold);
+  line-height: 1.5;
+}
+
+.pr-page .pr-form { width: 520px; flex-shrink: 0; padding: var(--gap-lg); gap: var(--gap); }
+/* The family lead card centres its title under a centred brandmark. This
+   card has no mark and the artboard sets the title and its sub left. */
+.pr-page .pr-form__head { display: flex; flex-direction: column; gap: 6px; }
+.pr-page .pr-form .lead-card__title { text-align: left; padding: 0; line-height: 1.25; }
+.pr-page .pr-form__sub {
+  font-size: var(--type-small);
+  font-weight: var(--weight-body);
+  color: var(--text-muted);
+}
+.pr-page .pr-form__pair { display: flex; gap: 16px; }
+.pr-page .pr-form__pair .field { flex: 1; min-width: 0; }
+.pr-page .pr-form .field { padding-bottom: 0; gap: 8px; }
+.pr-page .pr-form__consent {
+  font-size: var(--type-micro);
+  font-weight: var(--weight-body);
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+/* --- 1023 and below --------------------------------------------------------- */
+
+@media (max-width: 1023px) {
+  .pr-page .pr-hero__grid { flex-direction: column; align-items: stretch; }
+  .pr-page .pr-doc { width: auto; }
+  .pr-page .pr-rating__head { flex-direction: column; align-items: stretch; }
+  .pr-page .pr-rating__photo { width: auto; height: 380px; }
+  .pr-page .pr-rating .wrap { gap: var(--gap-xl); }
+  .pr-page .pr-split { flex-direction: column; gap: var(--gap-lg); }
+  .pr-page .pr-steps__grid { flex-direction: column; }
+  .pr-page .pr-step__img { height: 300px; }
+  .pr-page .pr-tiers { flex-direction: column; }
+  .pr-page .pr-rules { flex-direction: column; }
+  .pr-page .pr-faq .wrap { flex-direction: column; gap: var(--gap-lg); }
+  .pr-page .pr-faq__head { width: auto; }
+  .pr-page .pr-closer .wrap { flex-direction: column; }
+  .pr-page .pr-form { width: auto; align-self: stretch; }
+  .pr-page .pr-claim .wrap { flex-direction: column; gap: var(--gap); }
+  .pr-page .pr-claim__lead,
+  .pr-page .pr-claim__note { max-width: none; }
+  /* Below 1024 the table is wider than the column, so the wrapper scrolls it
+     sideways. That makes the wrapper a scroll container, which is also the
+     containing block for the sticky header, so the header stops sticking to
+     the page here. Accepted: horizontal comparison is the thing that matters
+     at this width and it is what the scroll buys. */
+  .pr-page .pr-table__scroll { overflow-x: auto; }
+  .pr-page .pr-table { min-width: 720px; }
+}
+
+/* --- 767 and below ---------------------------------------------------------- */
+
+@media (max-width: 767px) {
+  /* The 390 artboard centres the hero column and keeps the H1 at
+     type/display, which is 34 in the mobile token mode. It does not drop to
+     type/h2, so the base rule above already carries the right size. */
+  .pr-page .pr-hero .wrap { padding-top: 40px; padding-bottom: 64px; }
+  .pr-page .pr-hero__copy { align-items: center; gap: 32px; }
+  .pr-page .pr-hero h1 { text-align: center; }
+  .pr-page .pr-hero__lower { flex-direction: column; align-items: center; gap: 32px; align-self: stretch; }
+  .pr-page .pr-hero__pitch { max-width: none; align-self: stretch; }
+  .pr-page .pr-hero__pitch .btn { width: 100%; }
+  .pr-page .pr-chart { align-self: center; }
+  .pr-page .pr-doc { padding: var(--gap); }
+  .pr-page .pr-doc__row { flex-direction: column; gap: 2px; }
+  .pr-page .pr-doc__row dd { text-align: left; }
+  .pr-page .pr-proofline .hero-awards { flex-direction: column; align-items: flex-start; gap: var(--gap); }
+  .pr-page .pr-proofline .hero-awards__label { width: auto; }
+  .pr-page .pr-rating__photo { height: 260px; }
+  .pr-page .pr-cta,
+  .pr-page .pr-compare__action { align-self: stretch; }
+  .pr-page .pr-cta .btn,
+  .pr-page .pr-compare__action .btn { width: 100%; }
+  .pr-page .pr-panel { flex-direction: column; align-items: flex-start; gap: var(--gap); }
+  .pr-page .pr-panel__lines { flex-direction: column; align-items: flex-start; gap: var(--gap-sm); }
+  .pr-page .pr-panel .auction-cta__action { align-self: stretch; }
+  .pr-page .pr-panel .auction-cta__action .btn { width: 100%; }
+  .pr-page .pr-tier .btn { width: 100%; }
+  .pr-page .pr-form { padding: var(--gap); }
+  .pr-page .pr-form__pair { flex-direction: column; gap: var(--gap); }
+  .pr-page .pr-closer .wrap { gap: var(--gap-lg); }
+}

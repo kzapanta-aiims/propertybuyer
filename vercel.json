@@ -8,7 +8,8 @@
     { "source": "/buyer", "destination": "/New Builds/buyer/index.html" },
     { "source": "/commercial", "destination": "/New Builds/commercial/index.html" },
     { "source": "/investor", "destination": "/New Builds/investor/index.html" },
-    { "source": "/developer", "destination": "/New Builds/developer/index.html" }
+    { "source": "/developer", "destination": "/New Builds/developer/index.html" },
+    { "source": "/portfolio-review", "destination": "/New Builds/portfolio-review/index.html" }
   ],
   "headers": [
     {

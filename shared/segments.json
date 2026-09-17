@@ -559,6 +559,70 @@
       "consequence": "The card now names the two things the agency checks rather than the outcome it promises, which moves it off an unfalsifiable claim. It runs to two lines in the 540px card against the previous one, and the card frame is fixed at 174px with room for it, so nothing reflowed: the developer artboard is still 11334.296875 tall in Paper and the rendered checks still pass at 390, 768, 1100 and 1440.",
       "note": "This removed the last \"unlock\" on the page, hours after the word came off the banned list at the client's direction specifically so this card could keep it. The list is deliberately left loosened. Taking a word off was a client decision and putting it back is a separate decision nobody has made, and re-banning it silently would be the same quiet-delisting move that developerBannedWordUnlock exists to prevent. If the client wants it re-banned, that is one line in tools/check.mjs and one in DESIGN.md. Also worth watching: card 4 and auction move 1 now both open \"We work out\", which is a weaker duplication than the one just fixed but is still a repetition inside one page.",
       "raised": "1 Sep 2026"
+    },
+    "portfolioReviewBuiltFromArtboard": {
+      "question": "The portfolio review page existed only as a Paper design. Which design is the one to build, given an earlier decision log describes a three rung ladder and the artboard in the file does not?",
+      "decision": "BUILT 17 Sep 2026 from the artboards \"PORTFOLIO REVIEW - 1440 -- v2\" and its 390 twin, on the page named \"Client Approval\" in Paper file 01M26QSHXNKJ3CA52AQ4GRSW2F, at the design lead direction: that artboard is the only design, and anything else was made in passing while it was still in design. The page ships at New Builds/portfolio-review/index.html as a fifth paid page on landing.css, with a rewrite at /portfolio-review. Thirteen bands: header, hero with a life-size sample scorecard, awards marquee, independence claim, three photograph steps, the free page against the paywall, three published price tiers, a twelve row compare table, three Tier 1 investor records, the scale band, eight questions, the capture and the footer.",
+      "status": "BUILT, NOT YET CLIENT REVIEWED",
+      "consequence": "The rendered page is 10,652 tall at 1440 against the artboard 10,603, a difference of half a percent. The ladder structure described in an earlier draft is superseded and was not used. The artboard states the offer in four places (steps, the free against paid split, the price tiers and the compare table), which the ladder was designed to avoid; that is the approved design and is not treated as a defect here.",
+      "date": "17 Sep 2026"
+    },
+    "portfolioReviewCaptureFromArtboard": {
+      "question": "The artboard draws one form of ten fields with no segment chip row, and takes the purchase figures on the page. DESIGN.md caps a screen at three inputs, requires a lead to be creatable from step one alone, and the checker requires two capture points and all six chips on a segment page.",
+      "decision": "BUILT AS DRAWN, 17 Sep 2026. One form, ten fields in one pass: property address, property type, properties you own, purchase price, year purchased, current loan balance, weekly rent, name, phone, email. No chip row. Every other call to action on the page anchors to it. The form carries data-segment=\"investor\" so a lead still arrives labelled, plus data-form=\"portfolio-review\" so it can be told apart from a lead off the investor page.",
+      "status": "ASSUMED, NEEDS THE CLIENT",
+      "consequence": "Three departures from DESIGN.md and from the four segment pages ship together: ten inputs on one screen rather than three, one capture point rather than two, and no segment router. A visitor who abandons part way leaves no lead at all, which the two step pattern exists to prevent. The investor label is assumed and is not confirmed, and no HubSpot property exists yet for \"properties you own\". If the client confirms the researcher can take the figures on the 20 minute call, the four money and date fields come off the page and the form returns to the family two step pattern.",
+      "date": "17 Sep 2026"
+    },
+    "portfolioReviewNotInTheChecker": {
+      "question": "tools/check.mjs builds its page list from shared/segments.json and shared/locations.json. This page is neither a segment nor a location, and rule 3 forbids a seventh segment string.",
+      "decision": "NOT REGISTERED, 17 Sep 2026, at the design lead direction to settle it once the page existed. npm run check does not see the page and nothing enforces its chips, budgets, tap targets or stylesheet order.",
+      "status": "OPEN, DECIDE BEFORE THE PAGE SHIPS",
+      "consequence": "The checks were run by hand instead, at 390, 768, 1100 and 1440, on 17 Sep 2026: no horizontal scroll, no clipped text, no tap target under 44, stylesheet order correct, no raw hex and no :root outside tokens.css, all 37 images decode. Two things will fail the checker as written if the page is ever added to it as a segment: the H1 is 44 where the checker asserts 52 at 768 and above (see portfolioReviewHeroH1Size), and the page has one capture point and no chip row (see portfolioReviewCaptureFromArtboard). The honest fix is a third family in the checker with its own expectations, not a relaxation of the segment branch.",
+      "date": "17 Sep 2026"
+    },
+    "portfolioReviewCopyCorrections": {
+      "question": "What was changed between the artboard strings and the page.",
+      "decision": "FIVE CORRECTIONS, 17 Sep 2026, all mechanical and none of them a rewrite. Two typos: \"Pay for signficant value\" to \"significant\", and \"Hold or sell verdict indiscated(but locked)\" to \"indicated, but locked\". Three headings normalised to sentence case, which DESIGN.md requires and which Proyale renders as capitals either way: \"one free page to a full portfolio verdict\", \"the page with / An honest rating\" and \"Published prices. / a Rarity in this industry.\"",
+      "status": "DONE",
+      "consequence": "Nothing on the page says anything the artboard did not say. Two things were deliberately left as the artboard wrote them and both are worth the client's eye: \"Then invest for unreal value for your portfolio.\" on the teal panel is a superlative with nothing behind it, and the compare table's \"not included\" mark is a 14px hairline that reads as an em dash even though no em dash character appears in the copy.",
+      "date": "17 Sep 2026"
+    },
+    "portfolioReviewBracketedValues": {
+      "question": "The artboard carries one FAQ answer of eight, and a telephone number that exists nowhere in this repository.",
+      "decision": "BRACKETED, 17 Sep 2026, under the rule that an unfilled value ships visibly unfilled rather than as plausible copy. Seven of the eight answers read \"[Answer to be supplied by the client.]\", and the third also asks for the analyst name and credentials. The header action reads \"Call [1300 000 000]\" and routes to the form, the way the buyer page header does.",
+      "status": "OPEN, NEEDS THE CLIENT",
+      "consequence": "The accordion opens on the one question that has an answer and the other seven are visibly empty, which is honest but weak. Drafted answers for all seven exist in an uncommitted working copy from 11 Sep 2026; they have no client source, so they were not used. Either the client answers the seven or the section drops to one question.",
+      "date": "17 Sep 2026"
+    },
+    "portfolioReviewScopedCss": {
+      "question": "The page needs a 44px H1, a second outline button and a dozen components none of the four segment pages carry, and landing.css is shared by all four.",
+      "decision": "EVERY NEW RULE IS SCOPED UNDER .pr-page, a class on this page's body, in one fenced block at the foot of landing.css. Nothing above that block was edited. 17 Sep 2026.",
+      "status": "DONE",
+      "consequence": "A fifth page joined the shared design layer without a single selector that can reach the four client-reviewed pages, so this build cannot redecorate them. The cost is a long scoped block and a second way of writing rules in one file. If a sixth page arrives, the question to ask is whether the block is a page or a family.",
+      "date": "17 Sep 2026"
+    },
+    "portfolioReviewImages": {
+      "question": "Which artwork the page ships, given every page shares one assets/img.",
+      "decision": "FOUR NEW FILES, ALL PREFIXED review-: review-step-1, -2 and -3 for the three photograph cards and review-scorecard for the honest rating band, imported by tools/import-review-images.mjs with the crop geometry recorded in it. The three record cards reference the existing investor-story-1, -2 and -3 rather than new files.",
+      "status": "DONE",
+      "consequence": "The artboard's three record photographs were pulled and compared against the investor artwork already in the repository on 17 Sep 2026: they are the same images, to a mean absolute difference of zero on a 16x16 greyscale signature, so the duplicates were deleted and the audited files are referenced instead. review-step-1 ships at 454x424 against a 740x520 target, because that is all the source has; it renders at 370x260, so it is above 1x and below 2x. Nothing unprefixed was written, so no other page moved.",
+      "date": "17 Sep 2026"
+    },
+    "portfolioReviewDesignLeadRound17Sep": {
+      "question": "First design lead pass over the built page, 17 Sep 2026.",
+      "decision": "FIVE ITEMS, ALL APPLIED. (1) The awards band is bg/brand-deep, not bg/page. The build had it white, which was a misreading of the artboard, and it is the one dark band between the hero and the closer. (2) The photograph on the honest rating band fills its frame. The artboard draws 16px of padding there, but its image rectangle is absolutely positioned and larger than the frame, so the padding never shows; reproducing it with an in-flow image put a white inset around the photograph that the design does not have. (3) The two eyebrow flags, \"Start free\" and \"Pay for significant value\", go to 16px Geist Medium against the shared .pill default of 13px Regular. (4) The two rule panel titles go to the same 16px Geist Medium; the artboard sets them SemiBold and the design lead called both to Medium. (5) The five \"lighting\" rectangles inside the hero chart card, which the first build dropped, are restored, along with that card's drop shadow.",
+      "status": "DONE",
+      "consequence": "Items 1 and 2 were build errors against the artboard rather than choices, and both are now faithful to it. Item 4 is the only place the page deliberately departs from the artboard on type: 16 Medium rather than 16 SemiBold, on the design lead's direction. Item 3 matches the treatment .pill--light.pill--step already carries in base.css, so no new size entered the system. The tier flags in the pricing band stay at 13px, which is what the artboard sets for those. Item 5 is transcribed exactly: the alphas render at 0.0784, 0.2, 0.051, 0.0314 and 0.302, matching the artboard hex alphas, and it added no layout. Rendered height at 1440 is 10,658 against the artboard 10,603.",
+      "note": "The lighting layers are expressed with color-mix against text/on-brand rather than as hex or rgba. No design layer in this repository has ever held a hand-written colour, and tokens.css is never edited by a build, so color-mix against an existing token was the only way to land the artboard values without breaking either rule. The same pattern is already in landing.css for the mobile CTA.",
+      "date": "17 Sep 2026"
+    },
+    "portfolioReviewStickyCompareHeader": {
+      "question": "The compare table runs to twelve rows, so a row read near the bottom is a long way from the column it belongs to.",
+      "decision": "THE THREE COLUMN HEADERS STICK TO THE TOP OF THE VIEWPORT while the rows scroll under them, at 1024 and above. Requested by the design lead 17 Sep 2026. Not on the artboard, which is a static frame and cannot express scroll behaviour.",
+      "status": "DONE",
+      "consequence": "Two changes came with it. The table moved from border-collapse to separate with zero spacing, because a collapsed border belongs to the table rather than the cell and does not travel with a sticky row; every border is a cell border-bottom, so nothing doubles and the rendering is unchanged. And the horizontal scroll wrapper only gets its overflow below 1024, because a scroll container becomes the containing block for anything sticky inside it and would stop the header sticking to the page at all. Below 1024 the table scrolls sideways and the header does not stick, which is accepted: side by side comparison is what matters at that width and it is what the scroll buys.",
+      "date": "17 Sep 2026"
     }
   }
 }

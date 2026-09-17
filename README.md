@@ -43,6 +43,16 @@ genuinely template before the next one starts.
 | `prestige` | deferred | chip only, no page |
 | `expat` | deferred | chip only, no page |
 
+A fifth paid page, **the portfolio review lead magnet**, shipped on 17
+September 2026 at `New Builds/portfolio-review/index.html`, reachable at
+`/portfolio-review`. It is not a segment: it offers a free one property
+Property Health Check with two paid review tiers behind it, and it appears in
+no registry, so `npm run check` does not see it. It was built from its own
+Paper artboard rather than from the buyer template, and every CSS rule it adds
+is scoped under `.pr-page` so the four segment pages cannot move. Copy deck at
+`paper/portfolio-review-copy.md`; decisions under `portfolioReview*` in
+`shared/segments.json`.
+
 The first home buyers page was rejected by the client on 17 August 2026 and
 rebuilt the same day from the Paper.Design artboard "BUYER 1440" (file
 `01KZW0Y27PGW3NV0QJRPXAJ9DZ`). The old build is recoverable from git at

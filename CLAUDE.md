@@ -20,6 +20,9 @@ New Builds/buyer/index.html        the home segment, and the template
 New Builds/commercial/index.html   built 20 Aug 2026 from that template
 New Builds/investor/index.html     built 21 Aug 2026 from that template
 New Builds/developer/index.html    built 21 Aug 2026 from that template
+New Builds/portfolio-review/index.html  built 17 Sep 2026 from its own Paper
+                                        artboard, not from the template. Not
+                                        a segment, and in no registry
 
 assets/css/tokens.css    tokens and both faces. Shared, never edited by a build
 assets/css/base.css      reset, base type, buttons, pills. Shared
@@ -34,6 +37,8 @@ paper/buyer-copy.md      copy deck, home
 paper/commercial-copy.md copy deck, commercial
 paper/investor-copy.md   copy deck, investor
 paper/developer-copy.md  copy deck, developer
+paper/portfolio-review-copy.md  copy deck, the portfolio review page
+tools/import-review-images.mjs  that page's artwork in, with the crop geometry
 tools/check.mjs          the acceptance checklist, both families
 locations/PLAN.md        the rules layer, the location family. Read it first
 locations/_archive/      the 21 Aug 2026 location work, and why it was replaced
@@ -51,7 +56,7 @@ investor page under `investor-`. Any future page does the same.
 
 Pages sit two levels down, so every asset reference is `../../` relative.
 
-## Current state, 31 August 2026
+## Current state, 17 September 2026
 
 | Segment | Status | Blocked on |
 |---|---|---|
@@ -60,6 +65,35 @@ Pages sit two levels down, so every asset reference is `../../` relative.
 | `investor` | built, client-reviewed | budget bands unconfirmed |
 | `developer` | built, five client copy rounds applied, checks clean | truth card 5 still repeats auction move 2, and the two copies differ by one word. See `developerHighestBestUse1Sep` |
 | `prestige`, `expat` | no page, deliberately | chip only, see segments.json |
+| portfolio review | built 17 Sep 2026, not client-reviewed | seven FAQ answers, the analyst name, the phone number, whether the purchase figures are taken on the page or the call, the segment a review lead carries, and registration in the checker |
+
+**A fifth paid page shipped on 17 September 2026, and it is not a segment.**
+`New Builds/portfolio-review/index.html` is a lead magnet for a free one
+property Property Health Check, with two paid review tiers behind it. It was
+built from the Paper artboards "PORTFOLIO REVIEW · 1440 -- v2" and its 390
+twin, on the page named **Client Approval** in file
+`01M26QSHXNKJ3CA52AQ4GRSW2F`. Copy deck at `paper/portfolio-review-copy.md`,
+seven decisions under `portfolioReview*` in `shared/segments.json`.
+
+Three things about it differ from every page before it, and all three are
+deliberate:
+
+1. **It is in no registry, so `npm run check` does not see it.** It is neither
+   a segment nor a location, and rule 3 below forbids a seventh segment
+   string. The checks were run by hand at all four widths on 17 Sep 2026 and
+   pass. Settle this before the page ships: the honest fix is a third family
+   in `tools/check.mjs`, not a relaxation of the segment branch. Two things
+   would fail it as written, the 44px H1 and the single capture point. See
+   `portfolioReviewNotInTheChecker`.
+2. **One capture point, ten fields, no chip row.** DESIGN.md caps a screen at
+   three inputs and wants a lead creatable from step one. The artboard draws
+   one form of ten. It was built as drawn and the departure is recorded in
+   `portfolioReviewCaptureFromArtboard`. The form is fixed to `data-segment`
+   `investor`, which is **assumed** and not confirmed.
+3. **Every new CSS rule is scoped under `.pr-page`**, in one fenced block at
+   the foot of `landing.css`. Nothing above that block was edited, so a fifth
+   page joined the shared design layer with no selector that can reach the
+   four client-reviewed pages. See `portfolioReviewScopedCss`.
 
 **A third review channel is live, and a whole round came through it.** BugHerd
 project 538511 carried nine items on 31 Aug 2026, alongside the feedback hub
