@@ -64,7 +64,7 @@ reads as an em dash, though no em dash character appears in the copy.
 | String | Count / budget |
 |---|---|
 | 25 Years Property Experience | display line |
-| Call [1300 000 000] | 19/34. **Bracketed.** No telephone number exists anywhere in this repository, so the number ships visibly unfilled and the action routes to the form, the way the buyer page header does |
+| Call 1300 655 615 | 17/34. **Filled 17 Sep 2026**, supplied by the design lead. The first real telephone number in this repository: it had been bracketed on every page since 17 Aug 2026. The action is now a real `tel:1300655615` link rather than a jump to the form, on both the desktop button and the mobile call icon, which is what the standing note on five pages said to do once a number arrived |
 
 ## hero
 
@@ -325,7 +325,10 @@ Family footer. The legal slots stay bracketed: [Privacy policy] · [Terms] ·
 
 1. **Seven FAQ answers.** Bracketed, no client source.
 2. **The analyst name and credentials**, inside the third answer.
-3. **The telephone number** in the header.
+3. ~~The telephone number in the header.~~ **Supplied 17 Sep 2026**, 1300 655
+   615. It is still bracketed on the four segment pages and on the archived
+   Melbourne page, which all carry a note to swap in a `tel:` link once a
+   number exists. Those are client-reviewed pages and were left alone.
 4. **Whether the purchase figures are taken on the page or on the call.** The
    form asks on the page; the What happens next list says on the call. One of
    the two has to move.

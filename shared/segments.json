@@ -623,6 +623,14 @@
       "status": "DONE",
       "consequence": "Two changes came with it. The table moved from border-collapse to separate with zero spacing, because a collapsed border belongs to the table rather than the cell and does not travel with a sticky row; every border is a cell border-bottom, so nothing doubles and the rendering is unchanged. And the horizontal scroll wrapper only gets its overflow below 1024, because a scroll container becomes the containing block for anything sticky inside it and would stop the header sticking to the page at all. Below 1024 the table scrolls sideways and the header does not stick, which is accepted: side by side comparison is what matters at that width and it is what the scroll buys.",
       "date": "17 Sep 2026"
+    },
+    "phoneNumberSupplied17Sep": {
+      "question": "Every page in this repository has carried a bracketed telephone number since 17 Aug 2026, with a standing note to swap the action for a tel: link once a real number existed.",
+      "decision": "THE NUMBER IS 1300 655 615, supplied by the design lead on 17 Sep 2026. Applied to the portfolio review page only: the header button reads \"Call 1300 655 615\" and both it and the mobile call icon now point at tel:1300655615 rather than jumping to the form. The Paper artboard is updated to match.",
+      "status": "DONE ON ONE PAGE, OPEN ON FIVE",
+      "consequence": "This is the first real telephone number in the repository, so the standing note is now actionable everywhere. It is still bracketed and still routed to the form on buyer, commercial, investor and developer, and on the archived Melbourne page, which is six placements across five pages. Those four are client-reviewed, so they were left alone rather than changed on the back of a request about a fifth page. paper/buyer-copy.md also records the bracket in four places and is now behind. Swapping them is a small, mechanical change and wants one decision covering all four rather than four separate ones.",
+      "note": "The link is tel:1300655615 rather than the E.164 tel:+611300655615. A 1300 number is a domestic service number and does not reliably connect from outside Australia, and the audience for these pages is Australian property owners, so the domestic form is the honest one. If an expat page ever ships, that is the page that needs the question re-asked, since expat is one of the two deferred segments and its whole premise is callers who are overseas.",
+      "date": "17 Sep 2026"
     }
   }
 }
