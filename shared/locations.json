@@ -187,6 +187,12 @@
       "consequence": "This is the strongest single AEO move available on the page, because \"how much does a buyers agent cost in Melbourne\" is a head question no competitor answers directly, and an answer engine quotes the most specific sourced sentence it can find. It is also a commercial call that this repository does not get to make. Blocks section 8 and FAQ 1 and 2. If the answer is no, those slots ship bracketed rather than vague: a fee section that talks around the number is worse than one that says the number is on request.",
       "tier": "Tier 1 when published, because it is the client's own pricing schedule. Do not publish a fee figure that is not in that schedule, and do not average or round one.",
       "raised": "2 Sep 2026"
+    },
+    "agentPhotosSupplied": {
+      "decision": "The client supplied real headshots for two named people, Tass Pattas and Greg Willmott, and they replace the generated stand ins that carried those names. Delivered 21 Sep 2026 as two nodes in the Paper file \"Location Pages - Adelaide, Perth, Melbourne\", and applied there the same day to the three page artboards: Tass on Melbourne, Greg on Melbourne, Adelaide and Perth. The layers were renamed off the -gen suffix so that marker still means what it says.",
+      "status": "RESOLVED 21 Sep 2026, from the client",
+      "consequence": "This landed in Paper only, because no location page is built in HTML yet and all three are status planned. Phase 3 takes these two headshots out of the Paper file rather than regenerating them, and does not reuse the two retired assets. Everything else in those three team rows is still a stand in: jonathon-gen on Adelaide, michelle-gen on Perth, and stock library frames for Amanda Jones, Jono Roy and Rich Harvey. Only Tass and Greg are client supplied, so only those two are safe to ship as named people.",
+      "raised": "21 Sep 2026"
     }
   }
 }
