@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Email signature generator | Propertybuyer</title>
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<style>
+  /* The generator's own chrome. The signature itself is built as inline
+     styled tables in the script below, because that is all email clients
+     keep, so none of these rules reach a pasted signature. */
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg-surface-alt);
+    color: var(--text-body);
+    font-family: var(--family-text);
+    font-size: 15px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 40px 24px 64px; }
+  header h1 {
+    margin: 0 0 6px;
+    font-family: var(--family-display);
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 1.2;
+    color: var(--text-heading);
+    text-transform: uppercase;
+  }
+  header p { margin: 0 0 32px; color: var(--text-muted); max-width: 62ch; }
+
+  .layout { display: grid; grid-template-columns: minmax(0, 380px) minmax(0, 1fr); gap: 32px; align-items: start; }
+  @media (max-width: 960px) { .layout { grid-template-columns: minmax(0, 1fr); } }
+
+  .panel { background: var(--bg-page); border: 1px solid var(--border-default); border-radius: var(--radius-card); }
+  form.panel { padding: 8px 24px 24px; }
+  fieldset { border: 0; margin: 0; padding: 16px 0 0; }
+  fieldset + fieldset { border-top: 1px solid var(--border-default); margin-top: 20px; padding-top: 20px; }
+  legend {
+    padding: 16px 0 0; font-size: 12px; font-weight: 600;
+    letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted);
+  }
+  fieldset + fieldset legend { padding-top: 20px; }
+  label { display: block; margin-top: 14px; font-size: 14px; font-weight: 600; color: var(--text-heading); }
+  label .hint { display: block; font-weight: 400; color: var(--text-muted); font-size: 13px; }
+  input[type=text], input[type=url], input[type=tel] {
+    display: block; width: 100%; margin-top: 6px; padding: 10px 12px;
+    font: inherit; font-size: 15px; color: var(--text-body);
+    background: var(--bg-page); border: 1px solid var(--border-muted); border-radius: 6px;
+  }
+  input:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--border-focus); outline-offset: 2px; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  .photo-pick { display: flex; gap: 16px; align-items: center; margin-top: 10px; }
+  .photo-pick .thumb { width: 65px; height: 75px; flex-shrink: 0; border-radius: 4px; background: var(--bg-surface) center / cover no-repeat; }
+  .photo-pick .btns { display: flex; flex-wrap: wrap; gap: 8px; }
+  input[type=file] { position: absolute; width: 1px; height: 1px; opacity: 0; }
+  .slider { display: grid; grid-template-columns: 92px 1fr; align-items: center; gap: 10px; margin-top: 10px; font-size: 13px; color: var(--text-muted); }
+  input[type=range] { width: 100%; accent-color: var(--bg-brand); }
+  details { margin-top: 14px; font-size: 14px; }
+  summary { cursor: pointer; color: var(--text-link); font-weight: 600; }
+  details p { margin: 8px 0 0; color: var(--text-muted); font-size: 13px; }
+
+  button {
+    font: inherit; font-size: 14px; font-weight: 600; cursor: pointer;
+    border-radius: var(--radius-pill); padding: 10px 18px; line-height: 1.2;
+    border: 1px solid var(--border-brand); background: var(--bg-page); color: var(--text-heading);
+  }
+  button.primary { background: var(--bg-brand); color: var(--text-on-brand); border-color: var(--bg-brand); padding: 13px 26px; font-size: 15px; }
+  button.primary:hover { background: var(--bg-brand-hover); }
+  button.small { padding: 7px 14px; font-size: 13px; }
+  button.quiet { border-color: transparent; color: var(--text-muted); text-decoration: underline; padding-inline: 4px; }
+
+  .preview-col { position: sticky; top: 24px; display: grid; gap: 16px; }
+  @media (max-width: 960px) { .preview-col { position: static; } }
+  .preview { padding: 40px; overflow-x: auto; }
+  .actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .status { min-height: 1.5em; font-size: 14px; font-weight: 600; color: var(--text-success); }
+  .toggle { display: flex; gap: 8px; align-items: center; margin: 0; font-weight: 400; font-size: 14px; color: var(--text-muted); }
+  .note { padding: 16px 20px; font-size: 14px; color: var(--text-muted); }
+  .note strong { color: var(--text-heading); }
+  .note p { margin: 0; }
+  .note p + p { margin-top: 8px; }
+  .note.warn { background: var(--bg-warning-subtle); border-color: var(--border-warning); color: var(--text-body); }
+  @media (max-width: 600px) { .preview { padding: 20px; } .wrap { padding-inline: 16px; } form.panel { padding-inline: 16px; } }
+</style>
+<script src="assets.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Email signature</h1>
+    <p>Fill in your details, check the preview, then copy the signature and paste it into your email signature settings.</p>
+  </header>
+
+  <div class="layout">
+    <form class="panel" id="form" autocomplete="off">
+      <fieldset>
+        <legend>You</legend>
+        <label>Full name<input type="text" name="name"></label>
+        <label>Position title<input type="text" name="title"></label>
+
+        <label for="photo-file">Profile photo
+          <span class="hint">A head and shoulders shot works best. It is cropped to 130 by 150.</span>
+        </label>
+        <div class="photo-pick">
+          <div id="photo-thumb" class="thumb" aria-hidden="true"></div>
+          <div class="btns">
+            <button type="button" class="small" id="photo-upload">Upload photo</button>
+            <button type="button" class="small quiet" id="photo-reset">Use default</button>
+          </div>
+          <input type="file" id="photo-file" accept="image/*">
+        </div>
+        <div class="slider"><span>Zoom</span><input type="range" name="zoom" min="1" max="3" step="0.01"></div>
+        <div class="slider"><span>Left to right</span><input type="range" name="cropX" min="-120" max="120" step="1"></div>
+        <div class="slider"><span>Up and down</span><input type="range" name="cropY" min="-120" max="120" step="1"></div>
+        <details>
+          <summary>Using Gmail?</summary>
+          <p>Gmail does not keep photos that are embedded in a pasted signature. Download your cropped photo, upload it somewhere public, such as your website media library, and paste the direct link to the image here.</p>
+          <label>Photo link<input type="url" name="photoUrl" placeholder="https://"></label>
+          <p><button type="button" class="small" id="photo-download">Download cropped photo</button></p>
+        </details>
+      </fieldset>
+
+      <fieldset>
+        <legend>Contact</legend>
+        <div class="row">
+          <label>Phone<input type="tel" name="phone"></label>
+          <label>Location<input type="text" name="location"></label>
+        </div>
+        <label>Facebook link<input type="url" name="facebook"></label>
+        <label>LinkedIn link<input type="url" name="linkedin"></label>
+        <label>Instagram link<input type="url" name="instagram"></label>
+        <p class="hint" style="margin:8px 0 0;font-size:13px;color:var(--text-muted)">Leave a link empty to hide that icon.</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Banner</legend>
+        <label>Banner message<input type="text" name="tagline"></label>
+        <div class="row">
+          <label>Google rating<input type="text" name="rating" inputmode="decimal"></label>
+          <label>Number of reviews<input type="text" name="reviews"></label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Links</legend>
+        <label>Visit our website<input type="url" name="websiteUrl"></label>
+        <label>See what we bought last month<input type="url" name="purchasesUrl"></label>
+      </fieldset>
+
+      <p style="margin:24px 0 0"><button type="button" class="small quiet" id="reset-all">Reset everything to the defaults</button></p>
+    </form>
+
+    <div class="preview-col">
+      <div class="panel preview"><div id="preview"></div></div>
+      <div class="actions">
+        <button type="button" class="primary" id="copy">Copy signature</button>
+        <button type="button" id="copy-html">Copy HTML code</button>
+        <label class="toggle"><input type="checkbox" id="fallback"> Preview with fallback fonts</label>
+      </div>
+      <div class="status" id="status" role="status" aria-live="polite"></div>
+      <div class="panel note" id="hosting-note"></div>
+      <div class="panel note">
+        <p><strong>Pasting it in.</strong> Gmail: Settings, See all settings, Signature. Outlook: Settings, Mail, Compose and reply. Apple Mail: Settings, Signatures. Paste with Ctrl+V or Cmd+V.</p>
+        <p>Use Copy HTML code only if your email platform asks for the signature as HTML.</p>
+        <p>People who do not have Proyale and Geist installed will see Georgia and Arial in their place. Tick Preview with fallback fonts to see it that way.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(() => {
+  const ASSETS = window.SIGNATURE_ASSETS || {};
+  const STORE_KEY = 'pb-email-signature-v1';
+
+  const DEFAULTS = {
+    name: 'Full name',
+    title: 'Job position / title',
+    phone: '0400 000 000',
+    location: 'Sydney',
+    facebook: 'https://www.facebook.com/propertybuyeraustralia/#',
+    linkedin: 'https://www.linkedin.com/company/propertybuyer/?originalSubdomain=au',
+    instagram: 'https://www.instagram.com/propertybuyer_au/?hl=en',
+    tagline: '25 Years of Property Investment Excellence',
+    rating: '4.9',
+    reviews: '300+',
+    websiteUrl: 'https://www.propertybuyer.com.au/',
+    purchasesUrl: 'https://www.propertybuyer.com.au/our-purchases',
+    photoUrl: '',
+    photoSource: '',
+    /* The Paper crop of the default headshot: a 260px square at -61, -14
+       inside the 130 by 150 frame. */
+    zoom: 1.7333,
+    cropX: 4,
+    cropY: 41,
+  };
+
+  /* Values from the Paper file, Template artboard. */
+  const C = {
+    brand: '#00404B',
+    muted: '#5C6B6F',
+    white: '#FFFFFF',
+    action: '#A26246',
+    divider: '#E8E8E8', /* #D1D1D1 at 50% on white */
+    photoBg: '#C6C6C6',
+  };
+  const FONT = {
+    display: 'Proyale, Georgia, serif',
+    text: 'Geist, Arial, sans-serif',
+    fallbackDisplay: 'Georgia, serif',
+    fallbackText: 'Arial, sans-serif',
+  };
+  const PHOTO = { w: 130, h: 150, scale: 2 };
+
+  /* Where the signature's images point. A pasted signature can only show
+     images that recipients can load, so from a public address they are
+     links to the hosted copies in img/, and anywhere else (opened from
+     disk, localhost) they are embedded instead. */
+  const isPublic = /^https?:$/.test(location.protocol) &&
+    !/^(localhost|127\.|0\.0\.0\.0|\[::1\]|192\.168\.|10\.)/.test(location.hostname);
+  const asset = (name) => isPublic ? new URL(`img/${name}`, location.href).href : ASSETS[name];
+
+  let state = load();
+  let photoData = '';
+
+  const $ = (sel) => document.querySelector(sel);
+  const form = $('#form');
+
+  function load() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(STORE_KEY) || 'null');
+      if (saved && typeof saved === 'object') return { ...DEFAULTS, ...saved };
+    } catch (e) { /* storage unavailable, start from the defaults */ }
+    return { ...DEFAULTS };
+  }
+  function save() {
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch (e) { /* not fatal */ }
+  }
+
+  /* ------------------------------------------------------------ helpers */
+  const esc = (s) => String(s).replace(/[&<>"']/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+  function safeUrl(raw) {
+    const v = String(raw || '').trim();
+    if (!v) return '';
+    const withScheme = /^[a-z][a-z0-9+.-]*:/i.test(v) ? v : `https://${v}`;
+    try {
+      const u = new URL(withScheme);
+      return /^https?:$/.test(u.protocol) ? u.href : '';
+    } catch (e) { return ''; }
+  }
+  const telHref = (phone) => {
+    const digits = String(phone).replace(/[^\d+]/g, '');
+    return digits ? `tel:${digits}` : '';
+  };
+
+  /* --------------------------------------------------------- photo crop */
+  function loadImage(src) {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => resolve(img);
+      img.onerror = reject;
+      img.src = src;
+    });
+  }
+
+  async function renderPhoto() {
+    const [img, wave] = await Promise.all([
+      loadImage(state.photoSource || ASSETS['photo-source.jpg']),
+      loadImage(ASSETS['wave.png']),
+    ]);
+    const { w, h, scale } = PHOTO;
+    const canvas = document.createElement('canvas');
+    canvas.width = w * scale;
+    canvas.height = h * scale;
+    const ctx = canvas.getContext('2d');
+    ctx.scale(scale, scale);
+    ctx.imageSmoothingQuality = 'high';
+    ctx.fillStyle = C.photoBg;
+    ctx.fillRect(0, 0, w, h);
+    const s = Math.max(w / img.width, h / img.height) * Number(state.zoom);
+    const dw = img.width * s;
+    const dh = img.height * s;
+    ctx.drawImage(img, (w - dw) / 2 + Number(state.cropX), (h - dh) / 2 + Number(state.cropY), dw, dh);
+    /* The wave overlay is the logo artwork, placed as in Paper. */
+    ctx.drawImage(wave, -24, 113, 179, 83);
+    photoData = canvas.toDataURL('image/jpeg', 0.9);
+    $('#photo-thumb').style.backgroundImage = `url(${photoData})`;
+  }
+
+  /* An upload is scaled down before it is kept, so it fits in storage. */
+  async function readUpload(file) {
+    const url = URL.createObjectURL(file);
+    try {
+      const img = await loadImage(url);
+      const max = 900;
+      const k = Math.min(1, max / Math.max(img.width, img.height));
+      const canvas = document.createElement('canvas');
+      canvas.width = Math.round(img.width * k);
+      canvas.height = Math.round(img.height * k);
+      canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+      return canvas.toDataURL('image/jpeg', 0.9);
+    } finally {
+      URL.revokeObjectURL(url);
+    }
+  }
+
+  /* -------------------------------------------------------- signature */
+  function buildSignature(v, { fallback = false } = {}) {
+    const display = fallback ? FONT.fallbackDisplay : FONT.display;
+    const text = fallback ? FONT.fallbackText : FONT.text;
+    const t = `font-family:${text};font-size:14px;line-height:18px;letter-spacing:-0.14px;`;
+    const img = (src, w, h, alt) =>
+      `<img src="${esc(src)}" width="${w}" height="${h}" alt="${esc(alt)}" style="display:block;width:${w}px;height:${h}px;border:0;outline:none;">`;
+    const table = (attrs, inner) =>
+      `<table role="presentation" cellpadding="0" cellspacing="0" border="0" ${attrs}>${inner}</table>`;
+
+    const photoSrc = safeUrl(v.photoUrl) || photoData;
+    const phoneHref = telHref(v.phone);
+    const phoneText = esc(v.phone);
+    const phoneValue = phoneHref
+      ? `<a href="${esc(phoneHref)}" style="color:${C.brand};text-decoration:none;">${phoneText}</a>`
+      : phoneText;
+
+    const contact = (icon, label, value) => table('', `<tr>
+      <td width="48" valign="middle" style="width:48px;">${img(asset(icon), 48, 48, '')}</td>
+      <td valign="middle" style="padding-left:12px;white-space:nowrap;">
+        <div style="${t}color:${C.muted};font-weight:400;">${label}</div>
+        <div style="${t}color:${C.brand};font-weight:600;">${value}</div>
+      </td></tr>`);
+
+    const socials = [
+      ['facebook', 'facebook.png', 'Facebook'],
+      ['linkedin', 'linkedin.png', 'LinkedIn'],
+      ['instagram', 'instagram.png', 'Instagram'],
+    ].map(([key, file, alt]) => [safeUrl(v[key]), file, alt]).filter(([href]) => href);
+    const socialCells = socials.map(([href, file, alt], i) =>
+      `<td valign="middle" style="${i ? 'padding-left:12px;' : ''}"><a href="${esc(href)}" target="_blank" style="text-decoration:none;">${img(asset(file), 23, 23, alt)}</a></td>`).join('');
+
+    const website = safeUrl(v.websiteUrl);
+    const purchases = safeUrl(v.purchasesUrl);
+    const link = (href, label, color) => href
+      ? `<a href="${esc(href)}" target="_blank" style="${t}color:${color};font-weight:600;text-decoration:underline;text-decoration-color:${color};text-underline-offset:3px;">${label}</a>`
+      : `<span style="${t}color:${color};font-weight:600;">${label}</span>`;
+
+    const reviews = String(v.reviews).trim();
+    const onBrand = `${t}color:${C.white};`;
+
+    return table(`width="600" style="width:600px;border-collapse:collapse;background-color:${C.white};"`, `
+<tr><td style="padding:0;">
+  ${table('width="600" style="width:600px;border-collapse:collapse;"', `<tr>
+    <td valign="top" height="150" style="height:150px;padding:0;">
+      ${table('width="100%" height="150" style="height:150px;border-collapse:collapse;"', `
+        <tr><td valign="top" style="padding:0;">${img(asset('logo.png'), 86, 40, 'Propertybuyer')}</td></tr>
+        <tr><td valign="bottom" style="padding:0;">
+          <div style="font-family:${display};font-size:26px;line-height:32px;font-weight:400;color:${C.brand};text-transform:uppercase;">${esc(v.name)}</div>
+          <div style="${t}color:${C.muted};font-weight:400;padding-top:8px;">${esc(v.title)}</div>
+        </td></tr>`)}
+    </td>
+    <td width="130" valign="top" style="width:130px;padding:0 0 0 24px;">${img(photoSrc, PHOTO.w, PHOTO.h, v.name)}</td>
+  </tr>`)}
+</td></tr>
+<tr><td style="padding:24px 0 0;">
+  ${table('width="600" style="width:600px;border-collapse:collapse;"', `<tr><td height="1" style="height:1px;font-size:1px;line-height:1px;background-color:${C.divider};">&nbsp;</td></tr>`)}
+</td></tr>
+<tr><td style="padding:24px 0 0;">
+  ${table('width="600" style="width:600px;border-collapse:collapse;"', `<tr>
+    <td valign="middle" style="padding:0 60px 0 0;white-space:nowrap;">${contact('icon-phone.png', 'Phone', phoneValue)}</td>
+    <td valign="middle" width="100%" style="padding:0;">${contact('icon-location.png', 'Location', esc(v.location))}</td>
+    <td valign="middle" align="right" style="padding:0;">${socialCells ? table('', `<tr>${socialCells}</tr>`) : ''}</td>
+  </tr>`)}
+</td></tr>
+<tr><td style="padding:24px 0 0;">
+  ${table(`width="600" bgcolor="${C.brand}" style="width:600px;border-collapse:collapse;background-color:${C.brand};"`, `<tr>
+    <td valign="middle" style="padding:12px 0 12px 24px;">
+      ${table('', `<tr>
+        <td valign="middle">${img(asset('laurel-left.png'), 14, 26, '')}</td>
+        <td valign="middle" style="padding:0 4px;${onBrand}font-weight:400;">${esc(v.tagline)}</td>
+        <td valign="middle">${img(asset('laurel-right.png'), 14, 26, '')}</td>
+      </tr>`)}
+    </td>
+    <td valign="middle" align="right" style="padding:12px 24px 12px 24px;">
+      ${table('', `<tr>
+        <td valign="middle" style="${onBrand}font-weight:600;line-height:22px;white-space:nowrap;">${esc(v.rating)}</td>
+        <td valign="middle" style="padding:0 8px;">${img(asset('stars.png'), 80, 16, 'Google rating')}</td>
+        <td valign="middle" style="${onBrand}font-weight:600;line-height:22px;white-space:nowrap;">${reviews ? `(${esc(reviews)})` : ''}</td>
+      </tr>`)}
+    </td>
+  </tr>`)}
+</td></tr>
+<tr><td style="padding:24px 0 0;">
+  ${table('width="600" style="width:600px;border-collapse:collapse;"', `<tr>
+    <td align="left" valign="baseline" style="padding:0;">${link(website, 'Visit our website', C.brand)}</td>
+    <td align="right" valign="baseline" style="padding:0;">${link(purchases, 'See what we bought last month', C.action)}</td>
+  </tr>`)}
+</td></tr>`).replace(/\n\s*/g, '');
+  }
+
+  function buildPlain(v) {
+    return [
+      v.name,
+      v.title,
+      '',
+      `Phone: ${v.phone}`,
+      `Location: ${v.location}`,
+      '',
+      `${v.tagline}  |  Google rating ${v.rating}${v.reviews ? ` (${v.reviews})` : ''}`,
+      '',
+      `Visit our website: ${safeUrl(v.websiteUrl)}`,
+      `See what we bought last month: ${safeUrl(v.purchasesUrl)}`,
+    ].join('\n');
+  }
+
+  /* ------------------------------------------------------------- render */
+  function renderPreview() {
+    $('#preview').innerHTML = buildSignature(state, { fallback: $('#fallback').checked });
+  }
+
+  function renderHostingNote() {
+    const note = $('#hosting-note');
+    if (isPublic) {
+      note.classList.remove('warn');
+      note.innerHTML = `<p><strong>Images are linked from ${esc(location.host)}.</strong> The logo and icons load from this site, so keep it online. Your photo is embedded in the signature unless you add a photo link.</p>`;
+    } else {
+      note.classList.add('warn');
+      note.innerHTML = '<p><strong>This page is not on a public web address</strong>, so every image is embedded in the signature. That works in Outlook and Apple Mail, but Gmail drops embedded images. For Gmail, open the generator from its hosted link instead.</p>';
+    }
+  }
+
+  function fillForm() {
+    for (const el of form.elements) {
+      if (el.name && el.name in state) el.value = state[el.name];
+    }
+  }
+
+  let photoQueued = null;
+  async function update({ photo = false } = {}) {
+    save();
+    if (photo) {
+      const run = (photoQueued = renderPhoto().catch(() => flash('That photo could not be read. Try a JPG or PNG.', true)));
+      await run;
+      if (run !== photoQueued) return;
+    }
+    renderPreview();
+  }
+
+  let flashTimer;
+  function flash(msg, isError = false) {
+    const el = $('#status');
+    el.textContent = msg;
+    el.style.color = isError ? 'var(--text-error)' : '';
+    clearTimeout(flashTimer);
+    flashTimer = setTimeout(() => { el.textContent = ''; }, 4000);
+  }
+
+  /* --------------------------------------------------------------- copy */
+  async function copySignature() {
+    const html = buildSignature(state);
+    try {
+      if (!window.ClipboardItem || !navigator.clipboard?.write) throw new Error('no rich clipboard');
+      await navigator.clipboard.write([new ClipboardItem({
+        'text/html': new Blob([html], { type: 'text/html' }),
+        'text/plain': new Blob([buildPlain(state)], { type: 'text/plain' }),
+      })]);
+    } catch (e) {
+      /* Older browsers: copy the rendered signature as a selection. */
+      const holder = document.createElement('div');
+      holder.style.cssText = 'position:fixed;left:-9999px;top:0;';
+      holder.innerHTML = html;
+      document.body.appendChild(holder);
+      const range = document.createRange();
+      range.selectNode(holder.firstChild);
+      const sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+      const ok = document.execCommand('copy');
+      sel.removeAllRanges();
+      holder.remove();
+      if (!ok) return flash('Copy did not work in this browser. Select the preview and copy it by hand.', true);
+    }
+    flash('Signature copied. Paste it into your email signature settings.');
+  }
+
+  async function copyHtml() {
+    const html = buildSignature(state);
+    try {
+      await navigator.clipboard.writeText(html);
+      flash('HTML code copied.');
+    } catch (e) {
+      flash('Copy did not work in this browser.', true);
+    }
+  }
+
+  function downloadPhoto() {
+    const a = document.createElement('a');
+    a.href = photoData;
+    const slug = String(state.name).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'photo';
+    a.download = `signature-photo-${slug}.jpg`;
+    a.click();
+  }
+
+  /* ------------------------------------------------------------- events */
+  form.addEventListener('input', (e) => {
+    const el = e.target;
+    if (!el.name || !(el.name in state)) return;
+    state[el.name] = el.value;
+    update({ photo: ['zoom', 'cropX', 'cropY'].includes(el.name) });
+  });
+  form.addEventListener('submit', (e) => e.preventDefault());
+
+  $('#photo-upload').addEventListener('click', () => $('#photo-file').click());
+  $('#photo-file').addEventListener('change', async (e) => {
+    const file = e.target.files && e.target.files[0];
+    e.target.value = '';
+    if (!file) return;
+    try {
+      state.photoSource = await readUpload(file);
+    } catch (err) {
+      return flash('That photo could not be read. Try a JPG or PNG.', true);
+    }
+    Object.assign(state, { zoom: 1, cropX: 0, cropY: 0 });
+    fillForm();
+    update({ photo: true });
+  });
+  $('#photo-reset').addEventListener('click', () => {
+    Object.assign(state, { photoSource: '', zoom: DEFAULTS.zoom, cropX: DEFAULTS.cropX, cropY: DEFAULTS.cropY });
+    fillForm();
+    update({ photo: true });
+  });
+  $('#photo-download').addEventListener('click', downloadPhoto);
+  $('#reset-all').addEventListener('click', () => {
+    state = { ...DEFAULTS };
+    fillForm();
+    update({ photo: true });
+  });
+  $('#fallback').addEventListener('change', renderPreview);
+  $('#copy').addEventListener('click', copySignature);
+  $('#copy-html').addEventListener('click', copyHtml);
+
+  fillForm();
+  renderHostingNote();
+  update({ photo: true });
+})();
+</script>
+</body>
+</html>

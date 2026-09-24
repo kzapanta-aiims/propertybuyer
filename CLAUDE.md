@@ -40,6 +40,8 @@ locations/_archive/      the 21 Aug 2026 location work, and why it was replaced
 shared/locations.json    the location registry and its decision log
 tools/import-paper-images.mjs  Paper artwork in, with the crop geometry
 tools/extract-deck-images.mjs  story photographs out of the client decks
+email-signature/PB_Emal-Signature_Generator.html  staff email signature generator, from the Paper "Email Signature" file
+tools/build-signature-assets.mjs  renders its PNG icons and assets.js. Rerun after artwork changes
 ```
 
 **All pages share one `assets/img`, and the unprefixed photograph names
