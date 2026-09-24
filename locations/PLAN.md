@@ -623,7 +623,7 @@ selected chip state documented.
 
 ## 7. Claude Code plan
 
-Working directory: the `propertybuyer-landing-pages` repository. Read order
+Working directory: the `propertybuyer` repository. Read order
 for the agent is unchanged: `DESIGN.md`, `HANDOVER.md`, `shared/segments.json`,
 then this file at `locations/PLAN.md`.
 
