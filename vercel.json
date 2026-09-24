@@ -4,7 +4,8 @@
   "buildCommand": "",
   "outputDirectory": ".",
   "redirects": [
-    { "source": "/email-signature", "destination": "/email-signature/", "permanent": false }
+    { "source": "/email-signature", "destination": "/email-signature/PB_Emal-Signature_Generator.html", "permanent": false },
+    { "source": "/email-signature/", "destination": "/email-signature/PB_Emal-Signature_Generator.html", "permanent": false }
   ],
   "rewrites": [
     { "source": "/", "destination": "/New Builds/buyer/index.html" },

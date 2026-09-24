@@ -82,7 +82,7 @@ DESIGN.md                the rules layer, corrected against Figma Variables
 HANDOVER.md              read this before touching anything
 tools/check.mjs          the acceptance checklist, automated
 tools/extract-deck-images.mjs  story photographs out of the client decks
-email-signature/index.html     staff email signature generator, from the Paper "Email Signature" file
+email-signature/PB_Emal-Signature_Generator.html  staff email signature generator, from the Paper "Email Signature" file
 tools/build-signature-assets.mjs  renders its PNG icons and assets.js. Rerun after artwork changes
 paper/buyer-copy.md      copy deck, home
 paper/commercial-copy.md copy deck, commercial
