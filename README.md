@@ -1,4 +1,4 @@
-# propertybuyer-landing-pages
+# propertybuyer
 
 Propertybuyer landing pages. Two families of page in one repository, because
 they share the tokens, the two self hosted faces, the base components, the
