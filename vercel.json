@@ -3,6 +3,9 @@
   "installCommand": "",
   "buildCommand": "",
   "outputDirectory": ".",
+  "redirects": [
+    { "source": "/email-signature", "destination": "/email-signature/", "permanent": false }
+  ],
   "rewrites": [
     { "source": "/", "destination": "/New Builds/buyer/index.html" },
     { "source": "/buyer", "destination": "/New Builds/buyer/index.html" },
