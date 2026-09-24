@@ -27,14 +27,15 @@
  *
  *   node tools/extract-deck-images.mjs
  *
- * Decks are client working files and are not committed. Put them in
- * .deck-src/, which is gitignored.
+ * Decks live in paper/decks/ since 8 Sep 2026, committed at the client lead's
+ * direction so the record travels with the repository. .deck-src/ is still
+ * read as a fallback for a deck that is not committed.
  */
 import sharp from 'sharp';
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
 
-const SRC = '.deck-src';
+const SRC = existsSync('paper/decks') ? 'paper/decks' : '.deck-src';
 const OUT = 'assets/img';
 const QUALITY = 82;
 
@@ -44,6 +45,12 @@ const SLOTS = [
   { deck: 'Legacy All Investor.pdf', page: 20, out: 'investor-story-1.webp', who: 'Mathew, Sydney inner west' },
   { deck: 'Legacy All Investor.pdf', page: 37, out: 'investor-story-2.webp', who: 'Wendy, Melbourne' },
   { deck: 'Legacy All Investor.pdf', page: 63, out: 'investor-story-3.webp', who: 'Pui Kwan and Janis, Brisbane' },
+  /* Adelaide location page, 8 Sep 2026. The same three records sit in the
+     Legacy homebuyer deck on the same page numbers with the same photographs;
+     the investor deck is used only because it was the one already on disk. */
+  { deck: 'Legacy All Investor.pdf', page: 78, out: 'adelaide-story-1.webp', who: 'Karl, Adelaide, 2008' },
+  { deck: 'Legacy All Investor.pdf', page: 77, out: 'adelaide-story-2.webp', who: 'Peter, Adelaide, 2009' },
+  { deck: 'Legacy All Investor.pdf', page: 80, out: 'adelaide-story-3.webp', who: 'Li, regional SA, 2025' },
 ];
 
 /* ---- a small read-only PDF object reader ------------------------------- */

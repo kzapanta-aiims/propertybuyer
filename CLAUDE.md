@@ -30,12 +30,15 @@ assets/js/review-loader.js  client review gate, every page. Vendored, see below
 assets/js/review.js         the review overlay, loaded only behind ?review=1
 shared/segments.json     segment list plus the decision log
 paper/proof-register.md  every Tier 1 proof point, with its source
+paper/decks/             the client's five success-story decks, committed 8 Sep 2026
 paper/buyer-copy.md      copy deck, home
 paper/commercial-copy.md copy deck, commercial
 paper/investor-copy.md   copy deck, investor
 paper/developer-copy.md  copy deck, developer
 tools/check.mjs          the acceptance checklist, both families
 locations/PLAN.md        the rules layer, the location family. Read it first
+locations/adelaide/COPY.md  what the Adelaide Paper artboard says, and why. 8 Sep 2026
+locations/perth/COPY.md     the Perth variant as designed. BLOCKED.md beside it says what is missing
 locations/_archive/      the 21 Aug 2026 location work, and why it was replaced
 shared/locations.json    the location registry and its decision log
 tools/import-paper-images.mjs  Paper artwork in, with the crop geometry
@@ -165,6 +168,29 @@ that exists, carry every content signal off the live page or record why it
 was dropped. That rule is `replacementInventory` in `shared/locations.json`
 and the inventory itself is `PLAN.md` section 2. Dropping a signal quietly is
 the one way this work goes backwards.
+
+**The Paper designs for Adelaide and Perth were done on 8 Sep 2026, ahead of
+their HTML.** Both artboards were derived from the client-approved Melbourne
+artboard. Every claim on them is either in the register or bracketed, and
+`locations/adelaide/COPY.md` and `locations/perth/COPY.md` record what they
+say. Two things learned there that reach every future deck read: **all five
+South Australian records appear in both Legacy decks with opposite framings**,
+so the Adelaide cards render figures and bracket the segment pill, and **the
+client decks re-narrate one purchase per audience as a matter of course**,
+not as an oddity. Run the cross deck check before selecting any record, from
+any deck. See `adelaideProofFramingContested` in `shared/locations.json` and
+`paper/decks/README.md`.
+
+**All three location artboards took a language pass on 8 Sep 2026, Melbourne
+included.** The rules are written down in `locations/adelaide/COPY.md` under
+"Language pass" and they are the standard for this family: full stops on every
+sentence of body copy and none on fragments, "a buyer's agent" singular
+against "buyers' agents" plural, and "off-market" hyphenated only before a
+noun. Melbourne was client-approved and was still corrected, because two of
+three pages reading correctly and one not is worse than editing approved work
+for grammar. **The award band subhead is furniture shared with the four paid
+segment pages and still reads "most awarded buyer agents" there**, so sweep
+`New Builds/` before the next paid round. See `melbourneLanguagePass`.
 
 **The header, the footer and the lead capture component live in base.css**
 since 21 Aug 2026, promoted from landing.css when the location family needed

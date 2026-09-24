@@ -24,12 +24,19 @@ it was dropped. Perth is the only new URL.
 
 | Page | Status | Holding it back |
 |---|---|---|
-| `melbourne/` | planned, the template | the 21 Aug build is archived; needs the phase 2 copy deck |
-| `adelaide/` | planned | proof extraction from the investor deck, and the Melbourne template |
-| `perth/` | blocked | a named person and one Perth purchase, or hold it. `PLAN.md` section 5 |
+| `melbourne/` | planned, the template. Paper artboard client-approved | the 21 Aug build is archived; needs the phase 2 copy deck and the third proof record |
+| `adelaide/` | designed in Paper 8 Sep 2026, `COPY.md` written | client to confirm the framing of three proof records, and the Melbourne HTML template |
+| `perth/` | blocked, `BLOCKED.md` says exactly why. Paper artboard shows the variant | a named agent who buys in Perth, one Perth purchase, and which office runs it |
 
 Build one at a time. Melbourne teaches what is genuinely template; fold that
-back before Adelaide starts.
+back before Adelaide starts. The Paper designs run ahead of the HTML: all
+three artboards exist in the file "Location Pages - Adelaide, Perth,
+Melbourne", and the two copy decks here record what the Adelaide and Perth
+artboards say.
+
+The client's five success-story decks are committed in `../paper/decks/`
+since 8 Sep 2026. The Adelaide proof comes from the two Legacy decks; no deck
+holds a Perth record.
 
 ## Shape
 

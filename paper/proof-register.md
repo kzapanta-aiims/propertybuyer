@@ -447,6 +447,77 @@ both pages are current before this page takes paid traffic, and confirm the
 $250 million total and the twenty named purchases specifically, because those
 are the two that reach a live page.
 
+## Adelaide location page, selected 8 September 2026
+
+**Source.** The Adelaide section of the two Legacy decks, pages 76 to 80 of
+each, now committed in `paper/decks/`. Five South Australian records, the same
+five purchases in both decks. The three July 2026 decks supplied the same day
+carry no South Australian record at all, and no deck of the five carries a
+Perth or Western Australian one.
+
+**The cross deck check was run before selection, and all five are
+re-narrated.** Each appears in the homebuyer deck as a home and in the
+investor deck as an investment, with identical year, price, 2026 value and
+equity, and a different backstory. This is the pattern first seen on 21 August
+with three buyer page records, now five for five in Adelaide, and the July
+2026 decks repeat it (Mark and Christine, Katherine, Brendan and Audrey, Arin
+and Jaydn, Ainslie, Frances and Ben, Sridevi all appear in both July decks
+with identical figures). It is no longer an oddity in how one deck was
+written; it is how the client writes decks.
+
+| Client | Where | Year | Price | 2026 value | Equity | Homebuyer deck says | Investor deck says | Deck pages |
+|---|---|---|---|---|---|---|---|---|
+| Karl | Adelaide SA, 3 bed 2 bath 2 car townhouse | 2008 | $400,000 | $1,050,000 | $650,000 | first home, 3 weeks, saving $30,000 | first investment, 3.7% initial yield, $700 pw | p78 both |
+| Peter | Adelaide SA, 3 bed 2 bath 2 car | 2009 | $365,000 | $1,050,000 | $685,000 | new role interstate, 3 weeks, saving $29,000 | interstate investor, 4.6% initial yield, $700 pw | p77 both |
+| Li | Regional SA, 3 bed 1 bath 1 car | 2025 | $617,000 | $750,000 | $133,000 | biggest move, family home, 3 weeks, saving $43,000 | biggest investment, 5.1% initial yield, $620 pw | p80 both |
+| Susan | Regional SA (body says "inner-east pocket"), 3 bed 1 bath 1 car | 2025 | $902,000 | $990,000 | $88,000 | downsize closer to family, 4 weeks, saving $77,000 | regional addition to portfolio, 4.2% initial yield, $750 pw | p76 both |
+| Ollie | Regional SA, 3 bed 1 bath 1 car | 2025 | $715,000 | $725,000 | $10,000 | lakeside dream, 3 weeks, saving $54,000 | waterside strategy, 3.2% initial yield, $650 pw | p79 both |
+
+**What renders and what does not.** The figures both decks print are Tier 1:
+attributable to a first name, dated, and agreed by two documents. The framing
+is contested and therefore Tier 3. So the three Adelaide cards carry the
+year, price, 2026 value and equity, plus one fact both decks share for each
+(Karl's "first purchase", Peter's "without flying down once", Li's location),
+and the segment pill reads `[Home or investment]`. Nothing on a card says
+home, investment, yield, rent, saving or time to purchase, because each of
+those appears in only one deck. One client answer per record clears the pill.
+
+This is a different treatment from the Melbourne third slot, which stays
+bracketed entirely. The difference is deliberate: Melbourne needed a *home
+buyer* record for residential intent, so the framing was the point of the
+card. Adelaide's cards make no segment claim, so the uncontested figures can
+stand on their own.
+
+**Why these three.** Karl and Peter are the only two the decks place in
+Adelaide itself; the others are "Regional, SA". Li has the strongest recent
+figures of the regional three. Susan's record contradicts itself on location
+and Ollie's equity is $10,000. Karl's quote, "We had one shot to get this
+right. Propertybuyer made sure we did", is identical in both decks and names
+no segment, so it is also the one usable Adelaide testimonial. Peter's quote
+is identical in both decks too but contains a word on the banned list.
+
+**Two figures worth a raised eyebrow, recorded rather than resolved.** Karl
+and Peter carry the same 2026 value, $1,050,000, and the same 2026 rent, $700
+a week, one year apart in purchase. Both decks agree, so it is not a
+transcription error here, but it is the kind of thing the client should be
+asked about alongside the framing question.
+
+**Photographs** are the hero shots from the deck pages named above, extracted
+by `tools/extract-deck-images.mjs` to `assets/img/adelaide-story-1..3.webp`.
+Both decks carry the same photographs for the same record.
+
+**Correction to an earlier row.** The 21 August investor table listed Peter
+as "Regional SA". The deck header places him in Adelaide, SA; the text
+extraction had put the header after the backstory. Corrected above.
+
+## Perth, checked 8 September 2026
+
+Zero records in any of the five decks, no WA person on the client's team
+page, no Perth office, and `/location/perth` returns 404. See
+`locations/perth/BLOCKED.md`. The Perth artboard in Paper was updated to the
+variant with brackets where a person and a purchase would go, and no proof
+card exists on it.
+
 ## Not hunted, per the claims register
 
 Off-market percentages (competitors quote 69 and 70), the purchase-rate
