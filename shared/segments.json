@@ -69,7 +69,51 @@
       "register": "Numerical. Lead with site access and resale numbers, shortest copy of any segment."
     }
   ],
+  "broadPages": [
+    {
+      "key": "all",
+      "label": "All segments",
+      "status": "built",
+      "page": "New Builds/all/index.html",
+      "register": "Broad-targeting traffic that has not said what it is buying. Lead with buyers only, then let the visitor self-select a segment. Never assume one."
+    }
+  ],
   "openDecisions": {
+    "broadPageCaptureContract": {
+      "problem": "The broad-targeting page, built 28 Sep 2026, has no segment of its own. The segment-page rule that both forms default to the page's key has nothing to default to, and any default would mislabel every lead that never touches the chip row.",
+      "decision": "The page is registered under broadPages, not segments, so the six segment strings are untouched. Its forms carry data-page=\"all\" and no data-segment. No chip is pre-selected and the segment radio group is required, the same inversion the location family uses. tools/check.mjs gained a third family, 'broad', that enforces exactly this.",
+      "status": "DECIDED IN THE BUILD, OPEN TO OVERRULE",
+      "consequence": "HubSpot needs to read the page from data-page rather than data-segment on this page, and the segment from the chip. Whoever wires the forms should know this page differs from the four segment pages.",
+      "date": "2026-09-28"
+    },
+    "broadBudgetBands": {
+      "problem": "Each segment page carries its own budget scale, and the broad page serves all of them with one select.",
+      "decision": "Six bands, every value already live on a segment page: under-800k, 800k-1.5m and 1.5m-3m from home, 3m-6m and 6m-20m from commercial, 20m-plus from commercial and developer. HubSpot receives no value it has not seen before.",
+      "status": "ASSUMED, NOT CONFIRMED",
+      "consequence": "The bands straddle segments, so an investor at $900k and a home buyer at $900k land in the same band. Budget bands are unconfirmed on the other pages too.",
+      "date": "2026-09-28"
+    },
+    "broadSegmentTiles": {
+      "problem": "Broad traffic arrives without a segment, so the page needs a place where the visitor says what they are buying before the proof starts.",
+      "decision": "A net-new band under the hero, 'Four ways to buy'. Each tile names a purchase, answers that segment's first fear, and links to the hero form, pre-selecting the matching chip through a generic [data-pick-segment] handler in page.js. Styles are additive in landing.css under .segments and .segment-tile, inert on the four segment pages. Designed in Paper, artboard 'ALL SEGMENTS 1440 v1', and the client's layout edits there were built as they stand.",
+      "status": "DONE, NOT YET CLIENT REVIEWED",
+      "consequence": "The investment tile says 'SMSF included'. SMSF buyers are named in DESIGN.md section Segments but not in the claims register; confirm it with the client or cut it.",
+      "date": "2026-09-28"
+    },
+    "broadStoryRecords": {
+      "problem": "The broad page has three Tier 1 slots and four segments.",
+      "decision": "One record each for home (Roderick and Denise, from the buyer page), investor (Mathew, from the investor page) and commercial (Geoff, from the commercial page), copied verbatim. No developer record, because the developer page's own slots are still bracketed.",
+      "status": "DONE",
+      "consequence": "The investor record inherits investorDeckOverlap if that is ever resolved against it. The prestige band is kept on this page because it serves home buyers; open to overrule.",
+      "date": "2026-09-28"
+    },
+    "awardYear2026": {
+      "problem": "The hero pill on the broad page reads 'Best Buyers Agency of the Year 2026', one year on from the four segment pages.",
+      "decision": "Confirmed by Kenn on 28 Sep 2026: the agency won again in 2026. The four segment pages still say 2025 and were not touched on this branch.",
+      "status": "RESOLVED 28 Sep 2026",
+      "consequence": "The segment pages should move to 2026 in their own change.",
+      "date": "2026-09-28"
+    },
     "deferredChipBehaviour": {
       "assumed": "Keep prestige and expat chips in every router and chip row. They select normally and post to the same capture form, so the lead still arrives labelled in HubSpot. No page, no outbound link, no dead click.",
       "status": "ASSUMED, NOT CONFIRMED",

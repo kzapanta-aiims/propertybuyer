@@ -1,0 +1,942 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Buy property with an expert on your side | Propertybuyer</title>
+<meta name="description" content="Independent buyer's agency, established 2001. Homes, investments, commercial property and development sites, bought for buyers only, never for sellers.">
+<!-- Both faces are declared inside tokens.css, so without these the browser
+     cannot discover them until the stylesheet has downloaded and parsed.
+     Proyale sets the H1, which is the largest contentful paint on this page,
+     so it is the one that matters most. crossorigin is required on font
+     preloads even same-origin, or the fetch is made twice. -->
+<link rel="preload" href="../../assets/fonts/proyale-regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/geist-variable.woff2" as="font" type="font/woff2" crossorigin>
+<!-- Three sheets, one order: tokens, base, then the design layer for this
+     page family. The split landed 21 Aug 2026 so the paid pages and the
+     location pages stop sharing one file. See assets/css/tokens.css. -->
+<link rel="stylesheet" href="../../assets/css/tokens.css">
+<link rel="stylesheet" href="../../assets/css/base.css">
+<link rel="stylesheet" href="../../assets/css/landing.css">
+<!-- The reveal from-states are declared in this page's markup and gated on
+     html.js, so the flag has to be set here, before the first paint. Set
+     from the top of page.js, which is where it used to live and where it
+     still lives for the pages that have not moved yet, the browser paints
+     the cards visible and the script blanks them a moment later, and the
+     entry animation reads as a flash rather than an entry. page.js sets the
+     same flag on arrival; setting it twice is harmless.
+
+     The timer is the safety net. On this page html.js plus a markup reveal
+     class is what holds a card at opacity 0, so a page.js that never
+     arrives would leave the body invisible. The attribute switches the
+     from-state off in landing.css for the whole document rather than
+     element by element, so it covers markup that has not parsed yet, and
+     page.js reads it on arrival so it cannot re-hide a rescued page. -->
+<script>
+(function (el) {
+  el.classList.add('js');
+  setTimeout(function () {
+    if (!el.hasAttribute('data-reveals')) el.setAttribute('data-reveals', 'rescued');
+  }, 3000);
+})(document.documentElement);
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- ==========================================================================
+     Header. Teal band, logo left, tagline and outline action right.
+     Derived 28 Sep 2026 from Paper "ALL SEGMENTS 1440 v1". No fixed segment:
+     this is the broad-targeting page, see broadPages in shared/segments.json.
+     ========================================================================== -->
+<header class="site-header on-dark">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Propertybuyer, home">
+      <svg width="329" height="26" viewBox="0 10.023 329 25.753" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true" focusable="false">
+        <path d="M45.086 30.774C37.58 33.187 35.519 25.907 30.281 28.027L26.201 31.912C32.61 30.774 33.801 41.982 45.086 30.764V30.774Z" fill="#B9795D"/>
+        <path d="M36.076 23.004C39.462 23.057 41.389 26.556 44.774 26.931 46.969 27.183 49.775 26.117 53.979 21.939 47.311 24.08 44.939 18.576 40.819 18.806 40.436 18.827 40.094 18.889 39.762 18.973L35.445 23.089C35.652 23.026 35.869 22.984 36.076 22.994V23.004Z" fill="#B9795D"/>
+        <path d="M16.277 23.369C21.309 21.551 23.224 27.035 27.707 26.962 28.111 26.962 28.495 26.899 28.857 26.825L33.464 22.429C26.413 22.606 24.902 13.572 16.267 23.369H16.277Z" fill="#FFFFFF"/>
+        <path d="M62.835 13.111C56.446 15.159 54.002 10.197 50.182 9.978 49.819 9.957 49.477 9.978 49.156 10.03L44.818 14.177C50.492 14.125 52.076 23.797 62.835 13.111Z" fill="#B9795D"/>
+        <path d="M31.969 9.977C28.573 10.165 27.434 13.32 25.342 13.55 17.66 14.406 16.345 4.41 7.419 14.542 12.452 12.725 14.367 18.208 18.851 18.135 22.951 18.062 24.928 14.144 27.237 14.176 30.623 14.229 32.55 17.727 35.935 18.104 36.743 18.197 37.488 18.114 38.182 17.936L42.737 13.581C37.82 13.904 35.562 9.779 31.969 9.977Z" fill="#FFFFFF"/>
+        <path d="M88.117 14.688C92.487 14.688 94.682 17.248 94.682 19.807 94.682 22.365 92.487 24.925 88.117 24.925H83.676V27.369C83.676 29.176 83.676 30.503 85.219 30.503V30.691H79.348V30.503C80.912 30.503 80.912 29.176 80.912 27.369V18C80.912 16.193 80.912 14.866 79.348 14.866V14.678H88.117V14.688ZM87.891 24.382C90.52 24.382 91.835 22.094 91.835 19.817 91.835 17.54 90.52 15.243 87.891 15.243H85.219C83.676 15.243 83.676 16.204 83.676 18.01V24.382H87.891Z" fill="#FFFFFF"/>
+        <path d="M100.491 23.829V27.369C100.491 29.176 100.491 30.503 102.033 30.503V30.691H96.163V30.503C97.726 30.503 97.726 29.176 97.726 27.369V18C97.726 16.193 97.726 14.866 96.163 14.866V14.678H104.518C112.531 14.678 113.195 22.377 106.486 23.64L110.99 28.121C112.346 29.427 113.568 30.493 114.406 30.493V30.681H108.07V30.493C109.426 30.493 109.25 29.897 108.639 29.166L107.573 28.09C107.5 28.017 107.438 27.954 107.366 27.913L103.421 23.818H100.48L100.491 23.829ZM104.291 23.285C109.519 23.285 109.519 15.243 104.291 15.243H102.023C100.48 15.243 100.48 16.204 100.48 18.01V23.285H104.291Z" fill="#FFFFFF"/>
+        <path d="M123.093 31.118C118.858 31.118 113.878 28.35 113.878 22.689 113.878 17.027 118.858 14.26 123.093 14.26 127.328 14.26 132.288 17.027 132.288 22.689 132.288 28.35 127.328 31.118 123.093 31.118ZM123.093 30.555C131.448 30.555 131.448 14.813 123.093 14.813 114.737 14.813 114.717 30.555 123.093 30.555Z" fill="#FFFFFF"/>
+        <path d="M142.458 14.688C146.827 14.688 149.022 17.248 149.022 19.807 149.022 22.365 146.827 24.925 142.458 24.925H138.016V27.369C138.016 29.176 138.016 30.503 139.559 30.503V30.691H133.688V30.503C135.251 30.503 135.251 29.176 135.251 27.369V18C135.251 16.193 135.251 14.866 133.688 14.866V14.678H142.458V14.688ZM142.24 24.382C144.871 24.382 146.185 22.094 146.185 19.817 146.185 17.54 144.871 15.243 142.24 15.243H139.569C138.026 15.243 138.026 16.204 138.026 18.01V24.382H142.24Z" fill="#FFFFFF"/>
+        <path d="M160.381 30.137C162.513 30.137 165.93 28.967 167.111 26.658L167.245 26.701 165.909 30.68H150.503V30.493C152.066 30.493 152.066 29.165 152.066 27.358V17.989C152.066 16.182 152.066 14.855 150.503 14.855V14.667H165.588L166.385 17.749 166.251 17.822C165.071 15.492 162.171 15.221 160.069 15.221H160.163 156.383C154.841 15.221 154.841 16.182 154.841 17.989V22.397H160.96C163.269 22.22 163.932 20.976 163.932 19.796H164.108V25.531H163.932C163.932 24.277 163.186 22.951 160.401 22.951H154.851V30.127H160.401L160.381 30.137Z" fill="#FFFFFF"/>
+        <path d="M171.891 23.829V27.369C171.891 29.176 171.891 30.503 173.433 30.503V30.691H167.563V30.503C169.126 30.503 169.126 29.176 169.126 27.369V18C169.126 16.193 169.126 14.866 167.563 14.866V14.678H175.919C183.933 14.678 184.595 22.377 177.886 23.64L182.39 28.121C183.746 29.427 184.968 30.493 185.806 30.493V30.681H179.459V30.493C180.816 30.493 180.64 29.897 180.029 29.166L178.963 28.09C178.89 28.017 178.828 27.954 178.755 27.913L174.811 23.818H171.87L171.891 23.829ZM175.701 23.285C180.929 23.285 180.929 15.243 175.701 15.243H173.433C171.891 15.243 171.891 16.204 171.891 18.01V23.285H175.701Z" fill="#FFFFFF"/>
+        <path d="M202.366 14.689L203.183 18.344 203.049 18.418C201.92 16.151 199.177 15.315 197.064 15.243H195.543V27.38C195.543 29.188 195.543 30.513 197.084 30.513V30.701H191.214V30.513C192.757 30.513 192.757 29.188 192.757 27.38V15.222 15.243H191.214C189.133 15.315 186.369 16.151 185.261 18.418L185.126 18.344 185.924 14.689H202.366Z" fill="#FFFFFF"/>
+        <path d="M209.692 30.503C210.987 30.503 211.184 29.594 211.235 28.236V24.141L206.793 17.926C205.52 16.213 204.35 14.866 203.439 14.866V14.678H209.713V14.866C207.612 14.866 208.802 16.371 209.941 18L213.835 23.484 218.048 17.823C219.228 16.224 219.291 14.876 217.168 14.876V14.688H223.505V14.876C222.458 14.876 220.243 15.901 218.586 18.01L214.01 24.152V27.369C214.01 29.176 214.01 30.503 215.553 30.503V30.691H209.682V30.503H209.692Z" fill="#FFFFFF"/>
+        <path d="M232.917 14.688C240.527 14.688 240.734 22.21 234.346 22.21 243.084 22.21 242.474 30.691 234.346 30.691H223.857V30.503C225.421 30.503 225.421 29.176 225.421 27.369V18C225.421 16.193 225.421 14.866 223.857 14.866V14.678H232.917V14.688ZM228.185 22.21H232.492C237.523 22.21 237.523 15.243 232.492 15.243H229.573C228.195 15.315 228.195 16.266 228.195 18.01V22.22L228.185 22.21ZM228.185 30.137H233.912C238.943 30.137 238.943 22.784 233.912 22.784H228.185V30.137Z" fill="#FFFFFF"/>
+        <path d="M247.807 14.688V14.876C246.4 14.876 246.285 16.015 246.264 17.593V24.977C246.264 28.226 249.071 30.002 251.908 30.002 254.744 30.002 257.592 28.194 257.592 24.172V18.073C257.457 16.109 256.183 14.876 254.692 14.876V14.688H261.04V14.876C259.456 14.876 258.14 16.245 258.14 18.418V24.172C258.14 29.02 254.196 31.506 250.417 31.506 246.907 31.506 243.51 29.354 243.51 24.967V18C243.51 16.193 243.51 14.866 241.948 14.866V14.678H247.818L247.807 14.688Z" fill="#FFFFFF"/>
+        <path d="M267.531 30.503C268.825 30.503 269.022 29.594 269.073 28.236V24.141L264.633 17.926C263.358 16.213 262.188 14.866 261.278 14.866V14.678H267.552V14.866C265.451 14.866 266.651 16.371 267.779 18L271.672 23.484 275.886 17.823C277.066 16.224 277.129 14.876 275.007 14.876V14.688H281.354V14.876C280.307 14.876 278.091 15.901 276.436 18.01L271.86 24.152V27.369C271.86 29.176 271.86 30.503 273.402 30.503V30.691H267.531V30.503Z" fill="#FFFFFF"/>
+        <path d="M291.585 30.137C293.718 30.137 297.135 28.967 298.315 26.658L298.451 26.701 297.115 30.68H281.708V30.493C283.271 30.493 283.271 29.165 283.271 27.358V17.989C283.271 16.182 283.271 14.855 281.708 14.855V14.667H296.793L297.591 17.749 297.456 17.822C296.275 15.492 293.376 15.221 291.274 15.221H291.367 287.588C286.046 15.221 286.046 16.182 286.046 17.989V22.397H292.165C294.474 22.22 295.137 20.976 295.137 19.796H295.313V25.531H295.137C295.137 24.277 294.392 22.951 291.606 22.951H286.057V30.127H291.606L291.585 30.137Z" fill="#FFFFFF"/>
+        <path d="M303.096 23.829V27.369C303.096 29.176 303.096 30.503 304.639 30.503V30.691H298.769V30.503C300.331 30.503 300.331 29.176 300.331 27.369V18C300.331 16.193 300.331 14.866 298.769 14.866V14.678H307.123C315.138 14.678 315.8 22.377 309.091 23.64L313.595 28.121C314.95 29.427 316.173 30.493 317.011 30.493V30.681H310.665V30.493C312.021 30.493 311.845 29.897 311.235 29.166L310.168 28.09C310.095 28.017 310.032 27.954 309.96 27.913L306.015 23.818H303.075L303.096 23.829ZM306.906 23.285C312.135 23.285 312.135 15.243 306.906 15.243H304.639C303.096 15.243 303.096 16.204 303.096 18.01V23.285H306.906Z" fill="#FFFFFF"/>
+        <path d="M316.589 16.517C316.589 15.284 317.573 14.302 318.794 14.302 320.015 14.302 320.999 15.284 320.999 16.517 320.999 17.75 320.027 18.742 318.794 18.742 317.562 18.742 316.589 17.75 316.589 16.517ZM316.93 16.517C316.93 17.551 317.758 18.407 318.794 18.407 319.83 18.407 320.658 17.562 320.658 16.517 320.658 15.473 319.819 14.637 318.794 14.637 317.77 14.637 316.93 15.473 316.93 16.517ZM318.743 16.788H318.307V17.791H317.955V15.243H318.981C319.426 15.243 319.798 15.545 319.798 16.015 319.798 16.58 319.302 16.767 319.157 16.767L319.83 17.781H319.394L318.743 16.778V16.788ZM318.307 15.555V16.454H318.981C319.219 16.454 319.436 16.277 319.436 16.015 319.436 15.733 319.219 15.555 318.981 15.555H318.307Z" fill="#FFFFFF"/>
+      </svg>
+    </a>
+    <div class="header-right">
+      <span class="header-tag">25 Years of Property Excellence</span>
+      <a class="btn btn--outline" href="#lead-form">Speak to an expert</a>
+      <!-- Mobile-only call action. No phone number is supplied anywhere in
+           this repo yet, so it routes to the form like the button it
+           replaces; swap the href for tel: when the number arrives. -->
+      <a class="header-call" href="#lead-form" aria-label="Speak to an expert">
+        <svg viewBox="0 0 24 24" width="22" height="22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.24.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2Z" fill="currentColor"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ==========================================================================
+     Hero. Teal band. Award pill, H1, buyer-vs-agent avatars, subhead and
+     body left; capture form right; awards marquee below.
+     ========================================================================== -->
+<section class="hero on-dark" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="hero-copy-top">
+          <p class="pill pill--dark">
+            <svg class="laurel laurel-cap--l" viewBox="0 0 14 26" width="14" height="26" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="lg-a" gradientUnits="objectBoundingBox" x1="0.5" y1="0" x2="0.5" y2="1"><stop offset="0" stop-color="#b9795d"/><stop offset="0.15" stop-color="#53362a"/><stop offset="0.51" stop-color="#f8d5c6"/><stop offset="0.86" stop-color="#53362a"/><stop offset="1" stop-color="#b9795d"/></linearGradient></defs><g transform="translate(0 26) scale(1 -1)"><path d="M7.603 22.386C7.879 22.028 8.138 21.645 8.378 21.239C8.695 20.704 8.975 20.135 9.216 19.539C9.878 19.396 12.646 18.566 14.000 14.519C13.803 14.572 11.190 15.490 9.734 18.015C9.983 17.114 10.152 16.170 10.232 15.203C10.241 15.095 10.249 14.986 10.256 14.878C10.773 14.578 13.223 12.926 13.200 8.573C13.030 8.687 10.827 10.413 10.278 13.301C10.235 12.138 10.062 11.004 9.763 9.937C10.205 9.477 12.071 7.234 10.890 3.089C10.750 3.251 8.953 5.693 9.388 8.805C9.070 7.980 8.648 7.186 8.135 6.433C8.355 5.889 9.231 3.218 6.763 0.000C6.699 0.188 6.015 2.842 7.305 5.348C6.772 4.723 6.171 4.136 5.507 3.594C5.312 3.356 5.096 3.145 4.855 2.951C3.494 1.854 1.751 1.241 0.002 1.243C-0.040 1.791 0.684 2.297 1.064 2.583C1.933 3.237 2.847 3.684 3.910 3.969C4.485 4.124 5.122 4.252 5.729 4.280C6.591 5.047 7.330 5.897 7.929 6.807C7.690 6.560 7.424 6.330 7.132 6.118C6.297 5.514 5.337 5.097 4.346 4.811C4.348 5.016 4.377 5.220 4.430 5.418C4.496 5.663 4.601 5.896 4.717 6.122C5.613 7.877 7.408 9.542 9.386 10.004C9.839 11.611 9.988 13.362 9.852 15.087C9.443 11.548 7.081 9.705 6.891 9.575C6.985 13.778 9.135 15.588 9.749 16.020C9.499 17.798 8.942 19.513 8.094 20.971C8.838 17.234 6.666 14.386 6.504 14.199C5.337 18.454 7.131 20.906 7.721 21.569C6.904 22.793 5.903 23.764 4.750 24.460C6.546 21.405 5.373 18.131 5.279 17.922C3.087 21.358 3.989 23.941 4.341 24.692C3.479 25.151 2.539 25.465 1.532 25.624C1.428 25.640 1.358 25.737 1.374 25.840C1.388 25.933 1.469 26.000 1.561 26.000C1.571 26.000 1.581 25.999 1.591 25.998C3.392 25.714 4.988 24.957 6.316 23.774C6.981 23.890 9.860 24.164 12.648 20.922C12.452 20.898 9.857 20.774 7.602 22.386C7.602 22.386 7.603 22.386 7.603 22.386Z" fill="url(#lg-a)"/></g></svg>
+            <span>Best Buyers Agency of the Year 2026</span>
+            <svg class="laurel" viewBox="0 0 14 26" width="14" height="26" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="lg-b" gradientUnits="objectBoundingBox" x1="0.5" y1="0" x2="0.5" y2="1"><stop offset="0" stop-color="#b9795d"/><stop offset="0.15" stop-color="#53362a"/><stop offset="0.51" stop-color="#f8d5c6"/><stop offset="0.86" stop-color="#53362a"/><stop offset="1" stop-color="#b9795d"/></linearGradient></defs><path d="M7.603 22.386C7.879 22.028 8.138 21.645 8.378 21.239C8.695 20.704 8.975 20.135 9.216 19.539C9.878 19.396 12.646 18.566 14.000 14.519C13.803 14.572 11.190 15.490 9.734 18.015C9.983 17.114 10.152 16.170 10.232 15.203C10.241 15.095 10.249 14.986 10.256 14.878C10.773 14.578 13.223 12.926 13.200 8.573C13.030 8.687 10.827 10.413 10.278 13.301C10.235 12.138 10.062 11.004 9.763 9.937C10.205 9.477 12.071 7.234 10.890 3.089C10.750 3.251 8.953 5.693 9.388 8.805C9.070 7.980 8.648 7.186 8.135 6.433C8.355 5.889 9.231 3.218 6.763 0.000C6.699 0.188 6.015 2.842 7.305 5.348C6.772 4.723 6.171 4.136 5.507 3.594C5.312 3.356 5.096 3.145 4.855 2.951C3.494 1.854 1.751 1.241 0.002 1.243C-0.040 1.791 0.684 2.297 1.064 2.583C1.933 3.237 2.847 3.684 3.910 3.969C4.485 4.124 5.122 4.252 5.729 4.280C6.591 5.047 7.330 5.897 7.929 6.807C7.690 6.560 7.424 6.330 7.132 6.118C6.297 5.514 5.337 5.097 4.346 4.811C4.348 5.016 4.377 5.220 4.430 5.418C4.496 5.663 4.601 5.896 4.717 6.122C5.613 7.877 7.408 9.542 9.386 10.004C9.839 11.611 9.988 13.362 9.852 15.087C9.443 11.548 7.081 9.705 6.891 9.575C6.985 13.778 9.135 15.588 9.749 16.020C9.499 17.798 8.942 19.513 8.094 20.971C8.838 17.234 6.666 14.386 6.504 14.199C5.337 18.454 7.131 20.906 7.721 21.569C6.904 22.793 5.903 23.764 4.750 24.460C6.546 21.405 5.373 18.131 5.279 17.922C3.087 21.358 3.989 23.941 4.341 24.692C3.479 25.151 2.539 25.465 1.532 25.624C1.428 25.640 1.358 25.737 1.374 25.840C1.388 25.933 1.469 26.000 1.561 26.000C1.571 26.000 1.581 25.999 1.591 25.998C3.392 25.714 4.988 24.957 6.316 23.774C6.981 23.890 9.860 24.164 12.648 20.922C12.452 20.898 9.857 20.774 7.602 22.386C7.602 22.386 7.603 22.386 7.603 22.386Z" fill="url(#lg-b)"/></svg>
+          </p>
+          <div class="hero-title-block">
+            <h1>Buy property<br class="br--desktop"> with an expert<br class="br--desktop"> on your side</h1>
+            <div class="hero-vs" aria-hidden="true">
+              <div class="hero-vs-pair">
+                <div class="avatar-card avatar-card--l">
+                  <div class="avatar-card__img"><img src="../../assets/img/hero-buyer-1.webp" alt="" fetchpriority="high" decoding="async" width="400" height="459"></div>
+                  <svg class="avatar-card__mark" viewBox="132.49 2.471 37.551 17.004" width="38" height="17" xmlns="http://www.w3.org/2000/svg"><path d="M174.502 23.166C158.189 28.179 151.949 16.03 142.192 15.493C141.267 15.443 140.396 15.493 139.575 15.622C139.575 15.622 128.497 25.774 128.497 25.774C142.986 25.647 147.032 49.328 174.502 23.166Z" fill="#B9795D"/></svg>
+                </div>
+                <div class="avatar-card avatar-card--r">
+                  <div class="avatar-card__img"><img src="../../assets/img/hero-buyer-2.webp" alt="" fetchpriority="high" decoding="async" width="400" height="266"></div>
+                  <svg class="avatar-card__mark" viewBox="132.49 2.471 37.551 17.004" width="38" height="17" xmlns="http://www.w3.org/2000/svg"><path d="M174.502 23.166C158.189 28.179 151.949 16.03 142.192 15.493C141.267 15.443 140.396 15.493 139.575 15.622C139.575 15.622 128.497 25.774 128.497 25.774C142.986 25.647 147.032 49.328 174.502 23.166Z" fill="#B9795D"/></svg>
+                </div>
+              </div>
+              <span class="hero-vs__vs">vs</span>
+              <div class="avatar-card avatar-card--vs">
+                <div class="avatar-card__img"><img src="../../assets/img/hero-agent-grey.webp" alt="" fetchpriority="high" decoding="async" width="102" height="102"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-sub">
+          <p class="hero__subhead">We act for buyers only, never for sellers.</p>
+          <p class="hero-body">A home, an investment, a commercial asset or a development site. Going direct hands the selling agent your budget and your deadline. We sit on your side of the table, whatever you are buying.</p>
+        </div>
+      </div>
+
+      <!-- Capture point 1 of 2. Step one of the search brief; the contact
+           step is not designed yet, so submission is stubbed.
+
+           Broad page contract, 28 Sep 2026: the form carries data-page="all"
+           and NO data-segment. Broad traffic has not said what it is buying,
+           so a default would mislabel every lead that never touches the chip
+           row. No chip is pre-selected and the group is required, so the
+           segment always arrives as the visitor's own answer. The segment
+           tiles below the hero pre-select a chip here when clicked. -->
+      <form class="lead-card" id="lead-form" data-page="all" method="post" action="#">
+        <div class="lead-card__mark" aria-hidden="true">
+          <svg viewBox="0 0 56 26.31" width="56" height="27" xmlns="http://www.w3.org/2000/svg"><path transform="translate(19.133 17.946)" d="M18.860 3.126C11.364 5.529 9.306 -1.721 4.074 0.391C4.074 0.391 0.000 4.260 0.000 4.260C6.400 3.126 7.590 14.287 18.860 3.116C18.860 3.116 18.860 3.126 18.860 3.126Z" fill="#B9795D"/><path transform="translate(28.365 9.145)" d="M0.631 4.188C4.012 4.240 5.935 7.725 9.316 8.099C11.508 8.349 14.311 7.288 18.509 3.127C11.850 5.260 9.482 -0.222 5.367 0.007C4.984 0.028 4.643 0.090 4.312 0.173C4.312 0.173 0.000 4.272 0.000 4.272C0.207 4.209 0.424 4.168 0.631 4.178C0.631 4.178 0.631 4.188 0.631 4.188Z" fill="#B9795D"/><path transform="translate(9.212 9.147)" d="M0.010 4.550C5.036 2.740 6.948 8.201 11.426 8.128C11.829 8.128 12.212 8.066 12.573 7.993C12.573 7.993 17.175 3.614 17.175 3.614C10.133 3.791 8.624 -5.207 0.000 4.550C0.000 4.550 0.010 4.550 0.010 4.550Z" fill="#00313A"/><path transform="translate(37.725 0.354)" d="M17.992 3.128C11.612 5.167 9.172 0.226 5.356 0.008C4.994 -0.013 4.653 0.008 4.332 0.060C4.332 0.060 0.000 4.189 0.000 4.189C5.666 4.137 7.248 13.769 17.992 3.128Z" fill="#B9795D"/><path transform="translate(0.378 0.355)" d="M24.516 0.007C21.125 0.194 19.987 3.336 17.899 3.565C10.226 4.418 8.913 -5.537 0.000 4.553C5.025 2.743 6.938 8.204 11.415 8.131C15.510 8.058 17.485 4.158 19.791 4.189C23.172 4.241 25.095 7.725 28.477 8.100C29.283 8.193 30.027 8.110 30.720 7.933C30.720 7.933 35.270 3.596 35.270 3.596C30.358 3.918 28.104 -0.190 24.516 0.007Z" fill="#00313A"/></svg>
+        </div>
+        <p class="lead-card__title">Tell us about your search</p>
+        <hr class="lead-card__rule">
+
+        <div class="lead-step lead-step--1">
+
+        <!-- Input 1 of 3. Segment is a tap chip row, not a dropdown. All six
+             segments stay in the router; prestige and expat capture a
+             labelled lead here even though they have no page yet. -->
+        <fieldset class="field">
+          <legend class="micro">What are you buying</legend>
+          <div class="chip-row">
+            <label class="chip"><input type="radio" name="segment" value="home" data-segment="home" required><span>Home to live in</span></label>
+            <label class="chip"><input type="radio" name="segment" value="investor" data-segment="investor"><span>Investment</span></label>
+            <label class="chip"><input type="radio" name="segment" value="commercial" data-segment="commercial"><span>Commercial</span></label>
+            <label class="chip"><input type="radio" name="segment" value="developer" data-segment="developer"><span>Development site</span></label>
+            <label class="chip"><input type="radio" name="segment" value="prestige" data-segment="prestige"><span>Prestige</span></label>
+            <label class="chip"><input type="radio" name="segment" value="expat" data-segment="expat"><span>Expat</span></label>
+          </div>
+        </fieldset>
+
+        <!-- Input 2 of 3. Budget is a band, never a typed number. -->
+        <div class="field">
+          <label class="micro" for="budget">Your budget</label>
+          <div class="select-wrap">
+            <select id="budget" name="budget" required>
+              <option value="" selected disabled>Select a band</option>
+              <!-- One scale for every segment, 28 Sep 2026. Each value is
+                   already live on one of the four segment pages, so HubSpot
+                   receives nothing it has not seen before. See
+                   broadBudgetBands in shared/segments.json. -->
+              <option value="under-800k">Under $800k</option>
+              <option value="800k-1.5m">$800k to $1.5m</option>
+              <option value="1.5m-3m">$1.5m to $3m</option>
+              <option value="3m-6m">$3m to $6m</option>
+              <option value="6m-20m">$6m to $20m</option>
+              <option value="20m-plus">$20m and above</option>
+            </select>
+            <svg width="12" height="8" viewBox="0 0 12 8" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 1.5L6 6.5L11 1.5" fill="none" stroke="var(--text-heading)" stroke-width="1.5"/></svg>
+          </div>
+        </div>
+
+        <!-- Input 3 of 3. -->
+        <div class="field">
+          <label class="micro" for="suburb">Suburb or postcode</label>
+          <input class="input" type="text" id="suburb" name="suburb" placeholder="Where do you want to buy?" autocomplete="off">
+        </div>
+
+        <button class="btn btn--primary" type="button" data-step-next>Next: contact details</button>
+        </div>
+
+        <!-- Step 2 of 2, contact details. Not in the Paper artboard; built to
+             the same field pattern. Hidden by script on load so without JS
+             the whole form renders and still submits in one pass. The final
+             label is "Send my details" because DESIGN.md bans "Submit" as a
+             button label; change there first if it should read differently. -->
+        <div class="lead-step lead-step--2">
+          <div class="field">
+            <label class="micro" for="lead-name">First name</label>
+            <input class="input" type="text" id="lead-name" name="name" placeholder="First name is fine" autocomplete="name">
+          </div>
+          <div class="field">
+            <label class="micro" for="lead-phone">Phone</label>
+            <input class="input" type="tel" id="lead-phone" name="phone" placeholder="Mobile preferred" autocomplete="tel">
+          </div>
+          <div class="field">
+            <label class="micro" for="lead-email">Email</label>
+            <input class="input" type="email" id="lead-email" name="email" placeholder="you@example.com" autocomplete="email">
+          </div>
+          <button class="btn btn--primary" type="submit">Send my details</button>
+          <button class="btn-back" type="button" data-step-back>Back</button>
+        </div>
+        <p class="lead-card__privacy"><strong>Your privacy is our priority.</strong> <span>All data provided remains encrypted.</span></p>
+      </form>
+    </div>
+
+    <!-- Awards marquee. Continuous, non-interactive. The badge set renders
+         twice so the loop is seamless; the mask fades both edges. -->
+    <div class="hero-awards">
+      <p class="hero-awards__label">Australia's most awarded buyer's agents</p>
+
+      <!-- The badge strip is a decorative loop: the same nine images run
+           twice so the marquee can wrap, and they repeat again in the closer
+           band. Announcing 36 images four times over would be noise, so the
+           strips are hidden from assistive tech and the awards are stated
+           once here instead. This list is also the only machine-readable
+           form of these awards, which matters for search.
+
+           TRANSCRIBED from the supplied badge artwork on 18 Aug 2026, not
+           from a client list. Worth a confirmation pass: the wording is read
+           off the images in assets/img/badge-*.png. -->
+      <ul class="sr-only">
+        <li>Australian Buyers Agent Awards 2026 winner, Administrator of the Year, Commercial</li>
+        <li>Australian Buyers Agent Awards 2026 winner, Due Diligence Specialist of the Year, Commercial</li>
+        <li>REB Awards 2025 winner, Buyers Agency of the Year</li>
+        <li>REB Awards 2024 winner, Operations Manager of the Year</li>
+        <li>REB Awards 2023 winner, Industry Thought Leader of the Year</li>
+        <li>REINSW Awards for Excellence 2025 winner</li>
+        <li>REINSW Awards for Excellence 2022 winner, Communication</li>
+        <li>Australian Achiever Awards 2022 winner, Excellence in Customer Service</li>
+      </ul>
+
+      <div class="hero-awards__strip" aria-hidden="true">
+        <svg class="laurel-cap--l" viewBox="-29 0 43 79.857" width="43" height="80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="lg-c" gradientUnits="objectBoundingBox" x1="0.5" y1="0" x2="0.5" y2="1"><stop offset="0" stop-color="#b9795d"/><stop offset="0.15" stop-color="#53362a"/><stop offset="0.51" stop-color="#f8d5c6"/><stop offset="0.86" stop-color="#53362a"/><stop offset="1" stop-color="#b9795d"/></linearGradient></defs><g transform="translate(0 26) scale(1 -1)"><path d="M-5.648 14.88C-4.8 13.778-4.005 12.6-3.268 11.351-2.294 9.705-1.434 7.954-0.694 6.12 1.34 5.68 9.841 3.126 14-9.326 13.395-9.163 5.369-6.339 0.897 1.431 1.662-1.342 2.181-4.246 2.427-7.222 2.454-7.554 2.479-7.889 2.501-8.222 4.088-9.145 11.613-14.228 11.543-27.622 11.021-27.271 4.254-21.96 2.568-13.074 2.436-16.652 1.905-20.142 0.986-23.425 2.344-24.84 8.075-31.742 4.448-44.495 4.018-43.997-1.502-36.483-0.165-26.908-1.142-29.446-2.438-31.889-4.014-34.206-3.338-35.88-0.648-44.099-8.228-54-8.425-53.422-10.525-45.255-6.563-37.545-8.2-39.468-10.046-41.274-12.086-42.942-12.685-43.674-13.348-44.323-14.088-44.92-18.268-48.295-23.622-50.182-28.994-50.175-29.123-48.489-26.899-46.932-25.732-46.052-23.063-44.04-20.256-42.665-16.991-41.788-15.225-41.311-13.268-40.917-11.404-40.831-8.756-38.471-6.486-35.855-4.647-33.055-5.381-33.815-6.198-34.523-7.095-35.175-9.659-37.034-12.608-38.317-15.652-39.197-15.645-38.566-15.556-37.939-15.394-37.329-15.191-36.575-14.868-35.859-14.512-35.163-11.76-29.763-6.247-24.64-0.172-23.219 1.22-18.274 1.677-12.886 1.26-7.579 0.003-18.468-7.251-24.139-7.835-24.539-7.546-11.606-0.943-6.037 0.943-4.708 0.175 0.763-1.535 6.04-4.14 10.526-1.855-0.972-8.526-9.735-9.023-10.311-12.608 2.781-7.098 10.326-5.286 12.366-7.795 16.132-10.869 19.12-14.411 21.261-8.894 11.861-12.497 1.788-12.786 1.145-19.519 11.717-16.748 19.665-15.667 21.975-18.315 23.388-21.202 24.354-24.295 24.843-24.614 24.892-24.829 25.191-24.78 25.508-24.737 25.794-24.488 26-24.206 26-24.175 26-24.144 25.997-24.113 25.994-18.582 25.12-13.68 22.791-9.601 19.151-7.558 19.508 1.284 20.351 9.847 10.375 9.245 10.301 1.275 9.92-5.651 14.88-5.651 14.88-5.648 14.88-5.648 14.88Z" fill="url(#lg-c)"/></g></svg>
+        <!-- One set of nine. page.js clones it at runtime until the loop is
+             seamless at the current width, because how many copies are needed
+             depends on how wide the strip is. -->
+        <div class="marquee" role="presentation">
+          <div class="marquee__track">
+            <div class="badge"><img src="../../assets/img/badge-1.webp" alt="" loading="eager" decoding="async" width="160" height="160"></div>
+            <div class="badge"><img src="../../assets/img/badge-2.webp" alt="" loading="eager" decoding="async" width="160" height="160"></div>
+            <div class="badge"><img src="../../assets/img/badge-3.webp" alt="" loading="eager" decoding="async" width="160" height="160"></div>
+            <div class="badge"><img src="../../assets/img/badge-4.webp" alt="" loading="eager" decoding="async" width="160" height="160"></div>
+            <div class="badge"><img src="../../assets/img/badge-5.webp" alt="" loading="eager" decoding="async" width="160" height="160"></div>
+            <div class="badge"><img src="../../assets/img/badge-6.webp" alt="" loading="eager" decoding="async" width="160" height="160"></div>
+            <div class="badge badge--reb"><img src="../../assets/img/badge-reb.svg" alt="" loading="eager" decoding="async"></div>
+            <div class="badge"><img src="../../assets/img/badge-7.webp" alt="" loading="eager" decoding="async" width="160" height="160"></div>
+            <div class="badge"><img src="../../assets/img/badge-8.webp" alt="" loading="eager" decoding="async" width="156" height="160"></div>
+          </div>
+        </div>
+        <svg viewBox="-29 -54 43 80" width="43" height="80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="lg-d" gradientUnits="objectBoundingBox" x1="0.5" y1="0" x2="0.5" y2="1"><stop offset="0" stop-color="#b9795d"/><stop offset="0.15" stop-color="#53362a"/><stop offset="0.51" stop-color="#f8d5c6"/><stop offset="0.86" stop-color="#53362a"/><stop offset="1" stop-color="#b9795d"/></linearGradient></defs><path d="M-5.648 14.88C-4.8 13.778-4.005 12.6-3.268 11.351-2.294 9.705-1.434 7.954-0.694 6.12 1.34 5.68 9.841 3.126 14-9.326 13.395-9.163 5.369-6.339 0.897 1.431 1.662-1.342 2.181-4.246 2.427-7.222 2.454-7.554 2.479-7.889 2.501-8.222 4.088-9.145 11.613-14.228 11.543-27.622 11.021-27.271 4.254-21.96 2.568-13.074 2.436-16.652 1.905-20.142 0.986-23.425 2.344-24.84 8.075-31.742 4.448-44.495 4.018-43.997-1.502-36.483-0.165-26.908-1.142-29.446-2.438-31.889-4.014-34.206-3.338-35.88-0.648-44.099-8.228-54-8.425-53.422-10.525-45.255-6.563-37.545-8.2-39.468-10.046-41.274-12.086-42.942-12.685-43.674-13.348-44.323-14.088-44.92-18.268-48.295-23.622-50.182-28.994-50.175-29.123-48.489-26.899-46.932-25.732-46.052-23.063-44.04-20.256-42.665-16.991-41.788-15.225-41.311-13.268-40.917-11.404-40.831-8.756-38.471-6.486-35.855-4.647-33.055-5.381-33.815-6.198-34.523-7.095-35.175-9.659-37.034-12.608-38.317-15.652-39.197-15.645-38.566-15.556-37.939-15.394-37.329-15.191-36.575-14.868-35.859-14.512-35.163-11.76-29.763-6.247-24.64-0.172-23.219 1.22-18.274 1.677-12.886 1.26-7.579 0.003-18.468-7.251-24.139-7.835-24.539-7.546-11.606-0.943-6.037 0.943-4.708 0.175 0.763-1.535 6.04-4.14 10.526-1.855-0.972-8.526-9.735-9.023-10.311-12.608 2.781-7.098 10.326-5.286 12.366-7.795 16.132-10.869 19.12-14.411 21.261-8.894 11.861-12.497 1.788-12.786 1.145-19.519 11.717-16.748 19.665-15.667 21.975-18.315 23.388-21.202 24.354-24.295 24.843-24.614 24.892-24.829 25.191-24.78 25.508-24.737 25.794-24.488 26-24.206 26-24.175 26-24.144 25.997-24.113 25.994-18.582 25.12-13.68 22.791-9.601 19.151-7.558 19.508 1.284 20.351 9.847 10.375 9.245 10.301 1.275 9.92-5.651 14.88-5.651 14.88-5.648 14.88-5.648 14.88Z" fill="url(#lg-d)"/></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     Four ways to buy. Cream band, net-new 28 Sep 2026 for the broad page.
+     Broad traffic has not said what it is buying, so this is where it says
+     so: each tile names a purchase, answers that segment's first fear, and
+     pre-selects the matching chip in the hero form when clicked. Tiles are
+     plain links to #lead-form, so without script they still land on the
+     form, just without the pre-selection.
+     ========================================================================== -->
+<section class="section segments">
+  <div class="wrap">
+    <div class="reveal segments-head">
+      <h2>Four ways to buy</h2>
+      <p class="muted">What you are buying changes what we check first. It never changes who we work for.</p>
+    </div>
+    <div class="segment-tiles">
+      <a class="reveal segment-tile" href="#lead-form" data-pick-segment="home">
+        <div class="segment-tile__media"><img src="../../assets/img/story-melbourne-upsize.webp" alt="A family home in Melbourne" loading="lazy" decoding="async" width="700" height="434"></div>
+        <div class="segment-tile__body">
+          <p class="segment-tile__index" aria-hidden="true">01</p>
+          <h3>Home <br>to live in</h3>
+          <p class="segment-tile__lead">Someone inspects it first</p>
+          <p>Upgrading, downsizing or moving cities. A person inspects every property before you see it, and we carry the negotiation.</p>
+        </div>
+      </a>
+      <a class="reveal segment-tile" href="#lead-form" data-pick-segment="investor">
+        <div class="segment-tile__media"><img src="../../assets/img/investor-story-2.webp" alt="A single level investment home in Melbourne" loading="lazy" decoding="async" width="685" height="419"></div>
+        <div class="segment-tile__body">
+          <p class="segment-tile__index" aria-hidden="true">02</p>
+          <h3>Investment property</h3>
+          <p class="segment-tile__lead">No developer commissions</p>
+          <p>First property through to a portfolio, SMSF included. An honest assessment on the ground, not another spreadsheet.</p>
+        </div>
+      </a>
+      <a class="reveal segment-tile" href="#lead-form" data-pick-segment="commercial">
+        <div class="segment-tile__media"><img src="../../assets/img/story-brisbane-warehouse.webp" alt="A commercial building in Brisbane" loading="lazy" decoding="async" width="685" height="419"></div>
+        <div class="segment-tile__body">
+          <p class="segment-tile__index" aria-hidden="true">03</p>
+          <h3>Commercial property</h3>
+          <p class="segment-tile__lead">Buy or lease, answered</p>
+          <p>Owner-occupiers facing a lease expiry and investors buying for yield. Due diligence comes before any offer.</p>
+        </div>
+      </a>
+      <a class="reveal segment-tile" href="#lead-form" data-pick-segment="developer">
+        <div class="segment-tile__media"><img src="../../assets/img/developer-truth-3.webp" alt="A site manager on a development site" loading="lazy" decoding="async" width="722" height="718"></div>
+        <div class="segment-tile__body">
+          <p class="segment-tile__index" aria-hidden="true">04</p>
+          <h3>Development <br>site</h3>
+          <p class="segment-tile__lead">Site access and the numbers</p>
+          <p>Duplex and subdivision through to larger sites. Resale numbers before you commit.</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     Published client stories. White band. Three proof cards, each gated on
+     the proof register: brackets hold until real details are supplied.
+     ========================================================================== -->
+<section class="section testimonials">
+  <div class="wrap">
+    <div class="testimonials-head">
+      <div class="reveal testimonials-head__intro">
+        <h2>Published<br> client stories</h2>
+        <p class="muted">A home, an investment and a commercial purchase, with the numbers attached.</p>
+      </div>
+      <div class="reveal rating-rows">
+        <div class="rating-row">
+          <div class="rating-row__place">
+            <svg width="39" height="18" viewBox="-0.055 -0.484 38.876 18.012" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M26.415 14.054C21.399 15.643 20.022 10.848 16.522 12.244L13.797 14.803C18.079 14.054 18.874 21.437 26.415 14.047V14.054Z" fill="#B9795D"/><path d="M20.393 8.936C22.657 8.969 23.943 11.275 26.206 11.523 27.671 11.688 29.547 10.985 32.355 8.234 27.9 9.644 26.317 6.018 23.563 6.169 23.307 6.183 23.077 6.224 22.857 6.279L19.973 8.99C20.111 8.949 20.256 8.922 20.393 8.928V8.936Z" fill="#B9795D"/><path d="M7.166 9.175C10.528 7.979 11.808 11.591 14.803 11.542 15.073 11.542 15.329 11.502 15.571 11.453L18.649 8.556C13.938 8.673 12.928 2.722 7.159 9.175H7.166Z" fill="#00404B"/><path d="M38.272 2.42C34.003 3.768 32.37 0.5 29.819 0.356 29.575 0.342 29.348 0.356 29.133 0.39L26.234 3.122C30.026 3.088 31.085 9.458 38.272 2.42Z" fill="#B9795D"/><path d="M17.65 0.356C15.381 0.478 14.62 2.557 13.223 2.708 8.09 3.272 7.212-3.311 1.248 3.362 4.61 2.164 5.89 5.777 8.885 5.729 11.625 5.681 12.946 3.1 14.489 3.122 16.75 3.156 18.038 5.46 20.299 5.707 20.839 5.769 21.337 5.715 21.801 5.598L24.845 2.728C21.559 2.941 20.051 0.224 17.65 0.356Z" fill="#00404B"/></svg>
+            <span>Sydney</span>
+          </div>
+          <div class="rating-row__score">
+            <strong>4.9</strong>
+            <div class="stars" aria-label="4.9 out of 5 stars">
+              <svg viewBox="0 2.703 20 20" width="20" height="20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path transform="translate(2 2)" d="M2.854 18.486C2.854 18.486 4.209 12.631 4.209 12.631 4.209 12.631-0.333 8.694-0.333 8.694-0.333 8.694 5.667 8.173 5.667 8.173 5.667 8.173 8 2.652 8 2.652 8 2.652 10.333 8.173 10.333 8.173 10.333 8.173 16.333 8.694 16.333 8.694 16.333 8.694 11.791 12.631 11.791 12.631 11.791 12.631 13.146 18.486 13.146 18.486 13.146 18.486 8 15.382 8 15.382 8 15.382 2.854 18.486 2.854 18.486Z" fill="var(--bg-prestige)"/></svg>
+              <svg viewBox="0 2.703 20 20" width="20" height="20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path transform="translate(2 2)" d="M2.854 18.486C2.854 18.486 4.209 12.631 4.209 12.631 4.209 12.631-0.333 8.694-0.333 8.694-0.333 8.694 5.667 8.173 5.667 8.173 5.667 8.173 8 2.652 8 2.652 8 2.652 10.333 8.173 10.333 8.173 10.333 8.173 16.333 8.694 16.333 8.694 16.333 8.694 11.791 12.631 11.791 12.631 11.791 12.631 13.146 18.486 13.146 18.486 13.146 18.486 8 15.382 8 15.382 8 15.382 2.854 18.486 2.854 18.486Z" fill="var(--bg-prestige)"/></svg>
+              <svg viewBox="0 2.703 20 20" width="20" height="20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path transform="translate(2 2)" d="M2.854 18.486C2.854 18.486 4.209 12.631 4.209 12.631 4.209 12.631-0.333 8.694-0.333 8.694-0.333 8.694 5.667 8.173 5.667 8.173 5.667 8.173 8 2.652 8 2.652 8 2.652 10.333 8.173 10.333 8.173 10.333 8.173 16.333 8.694 16.333 8.694 16.333 8.694 11.791 12.631 11.791 12.631 11.791 12.631 13.146 18.486 13.146 18.486 13.146 18.486 8 15.382 8 15.382 8 15.382 2.854 18.486 2.854 18.486Z" fill="var(--bg-prestige)"/></svg>
+              <svg viewBox="0 2.703 20 20" width="20" height="20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path transform="translate(2 2)" d="M2.854 18.486C2.854 18.486 4.209 12.631 4.209 12.631 4.209 12.631-0.333 8.694-0.333 8.694-0.333 8.694 5.667 8.173 5.667 8.173 5.667 8.173 8 2.652 8 2.652 8 2.652 10.333 8.173 10.333 8.173 10.333 8.173 16.333 8.694 16.333 8.694 16.333 8.694 11.791 12.631 11.791 12.631 11.791 12.631 13.146 18.486 13.146 18.486 13.146 18.486 8 15.382 8 15.382 8 15.382 2.854 18.486 2.854 18.486Z" fill="var(--bg-prestige)"/></svg>
+              <svg viewBox="0 2.703 20 20" width="20" height="20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path transform="translate(2 2)" d="M2.854 18.486C2.854 18.486 4.209 12.631 4.209 12.631 4.209 12.631-0.333 8.694-0.333 8.694-0.333 8.694 5.667 8.173 5.667 8.173 5.667 8.173 8 2.652 8 2.652 8 2.652 10.333 8.173 10.333 8.173 10.333 8.173 16.333 8.694 16.333 8.694 16.333 8.694 11.791 12.631 11.791 12.631 11.791 12.631 13.146 18.486 13.146 18.486 13.146 18.486 8 15.382 8 15.382 8 15.382 2.854 18.486 2.854 18.486Z" fill="var(--bg-prestige)"/></svg>
+            </div>
+          </div>
+        </div>
+        <div class="rating-row">
+          <div class="rating-row__place">
+            <svg width="39" height="18" viewBox="-0.055 -0.484 38.876 18.012" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M26.415 14.054C21.399 15.643 20.022 10.848 16.522 12.244L13.797 14.803C18.079 14.054 18.874 21.437 26.415 14.047V14.054Z" fill="#B9795D"/><path d="M20.393 8.936C22.657 8.969 23.943 11.275 26.206 11.523 27.671 11.688 29.547 10.985 32.355 8.234 27.9 9.644 26.317 6.018 23.563 6.169 23.307 6.183 23.077 6.224 22.857 6.279L19.973 8.99C20.111 8.949 20.256 8.922 20.393 8.928V8.936Z" fill="#B9795D"/><path d="M7.166 9.175C10.528 7.979 11.808 11.591 14.803 11.542 15.073 11.542 15.329 11.502 15.571 11.453L18.649 8.556C13.938 8.673 12.928 2.722 7.159 9.175H7.166Z" fill="#00404B"/><path d="M38.272 2.42C34.003 3.768 32.37 0.5 29.819 0.356 29.575 0.342 29.348 0.356 29.133 0.39L26.234 3.122C30.026 3.088 31.085 9.458 38.272 2.42Z" fill="#B9795D"/><path d="M17.65 0.356C15.381 0.478 14.62 2.557 13.223 2.708 8.09 3.272 7.212-3.311 1.248 3.362 4.61 2.164 5.89 5.777 8.885 5.729 11.625 5.681 12.946 3.1 14.489 3.122 16.75 3.156 18.038 5.46 20.299 5.707 20.839 5.769 21.337 5.715 21.801 5.598L24.845 2.728C21.559 2.941 20.051 0.224 17.65 0.356Z" fill="#00404B"/></svg>
+            <span>Melbourne</span>
+          </div>
+          <div class="rating-row__score">
+            <strong>5.0</strong>
+            <div class="stars" aria-label="5 out of 5 stars">
+              <svg viewBox="0 2.703 20 20" width="20" height="20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path transform="translate(2 2)" d="M2.854 18.486C2.854 18.486 4.209 12.631 4.209 12.631 4.209 12.631-0.333 8.694-0.333 8.694-0.333 8.694 5.667 8.173 5.667 8.173 5.667 8.173 8 2.652 8 2.652 8 2.652 10.333 8.173 10.333 8.173 10.333 8.173 16.333 8.694 16.333 8.694 16.333 8.694 11.791 12.631 11.791 12.631 11.791 12.631 13.146 18.486 13.146 18.486 13.146 18.486 8 15.382 8 15.382 8 15.382 2.854 18.486 2.854 18.486Z" fill="var(--bg-prestige)"/></svg>
+              <svg viewBox="0 2.703 20 20" width="20" height="20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path transform="translate(2 2)" d="M2.854 18.486C2.854 18.486 4.209 12.631 4.209 12.631 4.209 12.631-0.333 8.694-0.333 8.694-0.333 8.694 5.667 8.173 5.667 8.173 5.667 8.173 8 2.652 8 2.652 8 2.652 10.333 8.173 10.333 8.173 10.333 8.173 16.333 8.694 16.333 8.694 16.333 8.694 11.791 12.631 11.791 12.631 11.791 12.631 13.146 18.486 13.146 18.486 13.146 18.486 8 15.382 8 15.382 8 15.382 2.854 18.486 2.854 18.486Z" fill="var(--bg-prestige)"/></svg>
+              <svg viewBox="0 2.703 20 20" width="20" height="20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path transform="translate(2 2)" d="M2.854 18.486C2.854 18.486 4.209 12.631 4.209 12.631 4.209 12.631-0.333 8.694-0.333 8.694-0.333 8.694 5.667 8.173 5.667 8.173 5.667 8.173 8 2.652 8 2.652 8 2.652 10.333 8.173 10.333 8.173 10.333 8.173 16.333 8.694 16.333 8.694 16.333 8.694 11.791 12.631 11.791 12.631 11.791 12.631 13.146 18.486 13.146 18.486 13.146 18.486 8 15.382 8 15.382 8 15.382 2.854 18.486 2.854 18.486Z" fill="var(--bg-prestige)"/></svg>
+              <svg viewBox="0 2.703 20 20" width="20" height="20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path transform="translate(2 2)" d="M2.854 18.486C2.854 18.486 4.209 12.631 4.209 12.631 4.209 12.631-0.333 8.694-0.333 8.694-0.333 8.694 5.667 8.173 5.667 8.173 5.667 8.173 8 2.652 8 2.652 8 2.652 10.333 8.173 10.333 8.173 10.333 8.173 16.333 8.694 16.333 8.694 16.333 8.694 11.791 12.631 11.791 12.631 11.791 12.631 13.146 18.486 13.146 18.486 13.146 18.486 8 15.382 8 15.382 8 15.382 2.854 18.486 2.854 18.486Z" fill="var(--bg-prestige)"/></svg>
+              <svg viewBox="0 2.703 20 20" width="20" height="20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path transform="translate(2 2)" d="M2.854 18.486C2.854 18.486 4.209 12.631 4.209 12.631 4.209 12.631-0.333 8.694-0.333 8.694-0.333 8.694 5.667 8.173 5.667 8.173 5.667 8.173 8 2.652 8 2.652 8 2.652 10.333 8.173 10.333 8.173 10.333 8.173 16.333 8.694 16.333 8.694 16.333 8.694 11.791 12.631 11.791 12.631 11.791 12.631 13.146 18.486 13.146 18.486 13.146 18.486 8 15.382 8 15.382 8 15.382 2.854 18.486 2.854 18.486Z" fill="var(--bg-prestige)"/></svg>
+            </div>
+          </div>
+        </div>
+        <div class="rating-row">
+          <div class="rating-row__place">
+            <svg width="39" height="18" viewBox="-0.055 -0.484 38.876 18.012" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M26.415 14.054C21.399 15.643 20.022 10.848 16.522 12.244L13.797 14.803C18.079 14.054 18.874 21.437 26.415 14.047V14.054Z" fill="#B9795D"/><path d="M20.393 8.936C22.657 8.969 23.943 11.275 26.206 11.523 27.671 11.688 29.547 10.985 32.355 8.234 27.9 9.644 26.317 6.018 23.563 6.169 23.307 6.183 23.077 6.224 22.857 6.279L19.973 8.99C20.111 8.949 20.256 8.922 20.393 8.928V8.936Z" fill="#B9795D"/><path d="M7.166 9.175C10.528 7.979 11.808 11.591 14.803 11.542 15.073 11.542 15.329 11.502 15.571 11.453L18.649 8.556C13.938 8.673 12.928 2.722 7.159 9.175H7.166Z" fill="#00404B"/><path d="M38.272 2.42C34.003 3.768 32.37 0.5 29.819 0.356 29.575 0.342 29.348 0.356 29.133 0.39L26.234 3.122C30.026 3.088 31.085 9.458 38.272 2.42Z" fill="#B9795D"/><path d="M17.65 0.356C15.381 0.478 14.62 2.557 13.223 2.708 8.09 3.272 7.212-3.311 1.248 3.362 4.61 2.164 5.89 5.777 8.885 5.729 11.625 5.681 12.946 3.1 14.489 3.122 16.75 3.156 18.038 5.46 20.299 5.707 20.839 5.769 21.337 5.715 21.801 5.598L24.845 2.728C21.559 2.941 20.051 0.224 17.65 0.356Z" fill="#00404B"/></svg>
+            <span>Brisbane</span>
+          </div>
+          <div class="rating-row__score">
+            <strong>4.9</strong>
+            <div class="stars" aria-label="4.9 out of 5 stars">
+              <svg viewBox="0 2.703 20 20" width="20" height="20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path transform="translate(2 2)" d="M2.854 18.486C2.854 18.486 4.209 12.631 4.209 12.631 4.209 12.631-0.333 8.694-0.333 8.694-0.333 8.694 5.667 8.173 5.667 8.173 5.667 8.173 8 2.652 8 2.652 8 2.652 10.333 8.173 10.333 8.173 10.333 8.173 16.333 8.694 16.333 8.694 16.333 8.694 11.791 12.631 11.791 12.631 11.791 12.631 13.146 18.486 13.146 18.486 13.146 18.486 8 15.382 8 15.382 8 15.382 2.854 18.486 2.854 18.486Z" fill="var(--bg-prestige)"/></svg>
+              <svg viewBox="0 2.703 20 20" width="20" height="20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path transform="translate(2 2)" d="M2.854 18.486C2.854 18.486 4.209 12.631 4.209 12.631 4.209 12.631-0.333 8.694-0.333 8.694-0.333 8.694 5.667 8.173 5.667 8.173 5.667 8.173 8 2.652 8 2.652 8 2.652 10.333 8.173 10.333 8.173 10.333 8.173 16.333 8.694 16.333 8.694 16.333 8.694 11.791 12.631 11.791 12.631 11.791 12.631 13.146 18.486 13.146 18.486 13.146 18.486 8 15.382 8 15.382 8 15.382 2.854 18.486 2.854 18.486Z" fill="var(--bg-prestige)"/></svg>
+              <svg viewBox="0 2.703 20 20" width="20" height="20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path transform="translate(2 2)" d="M2.854 18.486C2.854 18.486 4.209 12.631 4.209 12.631 4.209 12.631-0.333 8.694-0.333 8.694-0.333 8.694 5.667 8.173 5.667 8.173 5.667 8.173 8 2.652 8 2.652 8 2.652 10.333 8.173 10.333 8.173 10.333 8.173 16.333 8.694 16.333 8.694 16.333 8.694 11.791 12.631 11.791 12.631 11.791 12.631 13.146 18.486 13.146 18.486 13.146 18.486 8 15.382 8 15.382 8 15.382 2.854 18.486 2.854 18.486Z" fill="var(--bg-prestige)"/></svg>
+              <svg viewBox="0 2.703 20 20" width="20" height="20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path transform="translate(2 2)" d="M2.854 18.486C2.854 18.486 4.209 12.631 4.209 12.631 4.209 12.631-0.333 8.694-0.333 8.694-0.333 8.694 5.667 8.173 5.667 8.173 5.667 8.173 8 2.652 8 2.652 8 2.652 10.333 8.173 10.333 8.173 10.333 8.173 16.333 8.694 16.333 8.694 16.333 8.694 11.791 12.631 11.791 12.631 11.791 12.631 13.146 18.486 13.146 18.486 13.146 18.486 8 15.382 8 15.382 8 15.382 2.854 18.486 2.854 18.486Z" fill="var(--bg-prestige)"/></svg>
+              <svg viewBox="0 2.703 20 20" width="20" height="20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path transform="translate(2 2)" d="M2.854 18.486C2.854 18.486 4.209 12.631 4.209 12.631 4.209 12.631-0.333 8.694-0.333 8.694-0.333 8.694 5.667 8.173 5.667 8.173 5.667 8.173 8 2.652 8 2.652 8 2.652 10.333 8.173 10.333 8.173 10.333 8.173 16.333 8.694 16.333 8.694 16.333 8.694 11.791 12.631 11.791 12.631 11.791 12.631 13.146 18.486 13.146 18.486 13.146 18.486 8 15.382 8 15.382 8 15.382 2.854 18.486 2.854 18.486Z" fill="var(--bg-prestige)"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Three Tier 1 records, one per segment that has one. Each is copied
+         verbatim from the segment page that already carries it: home from
+         the buyer page, investor from the investor page, commercial from
+         the commercial page. The developer slots are still bracketed on
+         their own page, so no developer record is shown here. Every card
+         uses the .story-card__flow box so the headings line up. -->
+    <div class="story-cards">
+      <article class="reveal story-card">
+        <div class="story-card__media">
+          <img src="../../assets/img/story-sydney-downsize.webp" alt="An eastern suburbs home secured in Sydney" loading="lazy" decoding="async" width="685" height="419">
+          <p class="story-card__privacy">
+            <svg viewBox="-0.656 -0.594 16 16" width="16" height="16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path transform="translate(0.83 2.33)" d="M9.311 6.053C9.311 6.053 8.405 5.147 8.405 5.147 8.498 4.657 8.358 4.199 7.983 3.772 7.608 3.344 7.123 3.178 6.53 3.272 6.53 3.272 5.623 2.365 5.623 2.365 5.801 2.282 5.98 2.219 6.162 2.178 6.345 2.137 6.54 2.115 6.748 2.115 7.53 2.115 8.193 2.389 8.741 2.935 9.287 3.483 9.561 4.147 9.561 4.928 9.561 5.137 9.54 5.332 9.498 5.513 9.457 5.695 9.393 5.875 9.311 6.053ZM11.311 8.022C11.311 8.022 10.405 7.147 10.405 7.147 10.8 6.844 11.152 6.514 11.46 6.154 11.767 5.794 12.03 5.385 12.248 4.928 11.727 3.875 10.98 3.04 10.006 2.419 9.032 1.8 7.946 1.49 6.748 1.49 6.446 1.49 6.15 1.51 5.857 1.553 5.566 1.594 5.28 1.657 4.998 1.74 4.998 1.74 4.03 0.772 4.03 0.772 4.456 0.594 4.893 0.462 5.342 0.373 5.79 0.284 6.258 0.24 6.748 0.24 8.321 0.24 9.722 0.675 10.951 1.545 12.181 2.414 13.071 3.543 13.623 4.928 13.383 5.542 13.068 6.113 12.678 6.638 12.287 7.165 11.831 7.625 11.311 8.022ZM11.623 11.865C11.623 11.865 8.998 9.272 8.998 9.272 8.633 9.385 8.266 9.472 7.897 9.529 7.527 9.587 7.143 9.615 6.748 9.615 5.175 9.615 3.773 9.18 2.546 8.31 1.316 7.44 0.425 6.313-0.127 4.928 0.092 4.375 0.368 3.863 0.701 3.389 1.035 2.914 1.415 2.49 1.842 2.115 1.842 2.115 0.123 0.365 0.123 0.365 0.123 0.365 0.998-0.51 0.998-0.51 0.998-0.51 12.498 10.99 12.498 10.99 12.498 10.99 11.623 11.865 11.623 11.865ZM2.717 2.99C2.415 3.262 2.138 3.558 1.89 3.88 1.638 4.204 1.425 4.553 1.248 4.928 1.77 5.98 2.516 6.815 3.491 7.435 4.465 8.055 5.55 8.365 6.748 8.365 6.956 8.365 7.16 8.352 7.357 8.325 7.556 8.3 7.758 8.272 7.967 8.24 7.967 8.24 7.405 7.647 7.405 7.647 7.29 7.678 7.181 7.702 7.076 7.717 6.972 7.733 6.862 7.74 6.748 7.74 5.967 7.74 5.303 7.467 4.756 6.919 4.208 6.373 3.936 5.709 3.936 4.928 3.936 4.813 3.943 4.703 3.96 4.6 3.975 4.495 3.998 4.387 4.03 4.272 4.03 4.272 2.717 2.99 2.717 2.99Z" fill="#FFFFFF"/></svg>
+            <span>Privacy protection</span>
+          </p>
+        </div>
+        <div class="story-card__body">
+          <p class="pill pill--light">Home buyer</p>
+          <div class="story-card__text">
+            <h3>Downsized <br>in Sydney</h3>
+            <div class="story-card__flow">
+              <p>Roderick and Denise were downsizing and refused to trade quality or location for it. We secured an eastern suburbs home that met every point of the brief.</p>
+              <dl class="story-stats">
+                <div class="story-stat"><dt>Bought 2014</dt><dd>$4.87M</dd></div>
+                <div class="story-stat"><dt>Value today</dt><dd>$15M</dd></div>
+                <div class="story-stat"><dt>To purchase</dt><dd>8 weeks</dd></div>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </article>
+      <article class="reveal story-card">
+        <div class="story-card__media">
+          <img src="../../assets/img/investor-story-1.webp" alt="An inner west property secured in Sydney" loading="lazy" decoding="async" width="685" height="419">
+          <p class="story-card__privacy">
+            <svg viewBox="-0.656 -0.594 16 16" width="16" height="16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path transform="translate(0.83 2.33)" d="M9.311 6.053C9.311 6.053 8.405 5.147 8.405 5.147 8.498 4.657 8.358 4.199 7.983 3.772 7.608 3.344 7.123 3.178 6.53 3.272 6.53 3.272 5.623 2.365 5.623 2.365 5.801 2.282 5.98 2.219 6.162 2.178 6.345 2.137 6.54 2.115 6.748 2.115 7.53 2.115 8.193 2.389 8.741 2.935 9.287 3.483 9.561 4.147 9.561 4.928 9.561 5.137 9.54 5.332 9.498 5.513 9.457 5.695 9.393 5.875 9.311 6.053ZM11.311 8.022C11.311 8.022 10.405 7.147 10.405 7.147 10.8 6.844 11.152 6.514 11.46 6.154 11.767 5.794 12.03 5.385 12.248 4.928 11.727 3.875 10.98 3.04 10.006 2.419 9.032 1.8 7.946 1.49 6.748 1.49 6.446 1.49 6.15 1.51 5.857 1.553 5.566 1.594 5.28 1.657 4.998 1.74 4.998 1.74 4.03 0.772 4.03 0.772 4.456 0.594 4.893 0.462 5.342 0.373 5.79 0.284 6.258 0.24 6.748 0.24 8.321 0.24 9.722 0.675 10.951 1.545 12.181 2.414 13.071 3.543 13.623 4.928 13.383 5.542 13.068 6.113 12.678 6.638 12.287 7.165 11.831 7.625 11.311 8.022ZM11.623 11.865C11.623 11.865 8.998 9.272 8.998 9.272 8.633 9.385 8.266 9.472 7.897 9.529 7.527 9.587 7.143 9.615 6.748 9.615 5.175 9.615 3.773 9.18 2.546 8.31 1.316 7.44 0.425 6.313-0.127 4.928 0.092 4.375 0.368 3.863 0.701 3.389 1.035 2.914 1.415 2.49 1.842 2.115 1.842 2.115 0.123 0.365 0.123 0.365 0.123 0.365 0.998-0.51 0.998-0.51 0.998-0.51 12.498 10.99 12.498 10.99 12.498 10.99 11.623 11.865 11.623 11.865ZM2.717 2.99C2.415 3.262 2.138 3.558 1.89 3.88 1.638 4.204 1.425 4.553 1.248 4.928 1.77 5.98 2.516 6.815 3.491 7.435 4.465 8.055 5.55 8.365 6.748 8.365 6.956 8.365 7.16 8.352 7.357 8.325 7.556 8.3 7.758 8.272 7.967 8.24 7.967 8.24 7.405 7.647 7.405 7.647 7.29 7.678 7.181 7.702 7.076 7.717 6.972 7.733 6.862 7.74 6.748 7.74 5.967 7.74 5.303 7.467 4.756 6.919 4.208 6.373 3.936 5.709 3.936 4.928 3.936 4.813 3.943 4.703 3.96 4.6 3.975 4.495 3.998 4.387 4.03 4.272 4.03 4.272 2.717 2.99 2.717 2.99Z" fill="#FFFFFF"/></svg>
+            <span>Privacy protection</span>
+          </p>
+        </div>
+        <div class="story-card__body">
+          <p class="pill pill--light">First investment</p>
+          <div class="story-card__text">
+            <h3>Inner west, <br>Sydney</h3>
+            <div class="story-card__flow">
+              <p>Mathew had watched the inner west for years without ever buying. We secured his first investment a short walk from the light rail, inside two weeks. It has created $1.44M in equity and now rents for $1,000 a week.</p>
+              <dl class="story-stats">
+                <div class="story-stat"><dt>Bought 2007</dt><dd>$580K</dd></div>
+                <div class="story-stat"><dt>Initial yield</dt><dd>6.0%</dd></div>
+                <div class="story-stat"><dt>Value today</dt><dd>$2.02M</dd></div>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </article>
+      <article class="reveal story-card">
+        <div class="story-card__media">
+          <img src="../../assets/img/story-melbourne-office.webp" alt="An office secured in Melbourne for an owner-occupier" loading="lazy" decoding="async" width="685" height="419">
+          <p class="story-card__privacy">
+            <svg viewBox="-0.656 -0.594 16 16" width="16" height="16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path transform="translate(0.83 2.33)" d="M9.311 6.053C9.311 6.053 8.405 5.147 8.405 5.147 8.498 4.657 8.358 4.199 7.983 3.772 7.608 3.344 7.123 3.178 6.53 3.272 6.53 3.272 5.623 2.365 5.623 2.365 5.801 2.282 5.98 2.219 6.162 2.178 6.345 2.137 6.54 2.115 6.748 2.115 7.53 2.115 8.193 2.389 8.741 2.935 9.287 3.483 9.561 4.147 9.561 4.928 9.561 5.137 9.54 5.332 9.498 5.513 9.457 5.695 9.393 5.875 9.311 6.053ZM11.311 8.022C11.311 8.022 10.405 7.147 10.405 7.147 10.8 6.844 11.152 6.514 11.46 6.154 11.767 5.794 12.03 5.385 12.248 4.928 11.727 3.875 10.98 3.04 10.006 2.419 9.032 1.8 7.946 1.49 6.748 1.49 6.446 1.49 6.15 1.51 5.857 1.553 5.566 1.594 5.28 1.657 4.998 1.74 4.998 1.74 4.03 0.772 4.03 0.772 4.456 0.594 4.893 0.462 5.342 0.373 5.79 0.284 6.258 0.24 6.748 0.24 8.321 0.24 9.722 0.675 10.951 1.545 12.181 2.414 13.071 3.543 13.623 4.928 13.383 5.542 13.068 6.113 12.678 6.638 12.287 7.165 11.831 7.625 11.311 8.022ZM11.623 11.865C11.623 11.865 8.998 9.272 8.998 9.272 8.633 9.385 8.266 9.472 7.897 9.529 7.527 9.587 7.143 9.615 6.748 9.615 5.175 9.615 3.773 9.18 2.546 8.31 1.316 7.44 0.425 6.313-0.127 4.928 0.092 4.375 0.368 3.863 0.701 3.389 1.035 2.914 1.415 2.49 1.842 2.115 1.842 2.115 0.123 0.365 0.123 0.365 0.123 0.365 0.998-0.51 0.998-0.51 0.998-0.51 12.498 10.99 12.498 10.99 12.498 10.99 11.623 11.865 11.623 11.865ZM2.717 2.99C2.415 3.262 2.138 3.558 1.89 3.88 1.638 4.204 1.425 4.553 1.248 4.928 1.77 5.98 2.516 6.815 3.491 7.435 4.465 8.055 5.55 8.365 6.748 8.365 6.956 8.365 7.16 8.352 7.357 8.325 7.556 8.3 7.758 8.272 7.967 8.24 7.967 8.24 7.405 7.647 7.405 7.647 7.29 7.678 7.181 7.702 7.076 7.717 6.972 7.733 6.862 7.74 6.748 7.74 5.967 7.74 5.303 7.467 4.756 6.919 4.208 6.373 3.936 5.709 3.936 4.928 3.936 4.813 3.943 4.703 3.96 4.6 3.975 4.495 3.998 4.387 4.03 4.272 4.03 4.272 2.717 2.99 2.717 2.99Z" fill="#FFFFFF"/></svg>
+            <span>Privacy protection</span>
+          </p>
+        </div>
+        <div class="story-card__body">
+          <p class="pill pill--light">Owner-occupier</p>
+          <div class="story-card__text">
+            <h3>Office <br>in Melbourne</h3>
+            <div class="story-card__flow">
+              <p>Geoff wanted premises of his own rather than another lease. We appraised a 952 sqm office at $4,172,548 and bought it for $3,908,748.</p>
+              <dl class="story-stats">
+                <div class="story-stat"><dt>Under appraisal</dt><dd>$263,800</dd></div>
+                <div class="story-stat"><dt>Floor area</dt><dd>952 sqm</dd></div>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     The Truth. Cream band with wall texture. Editorial head left, document
+     stack visual right, then four cards that stack as you scroll.
+     ========================================================================== -->
+<section class="section truth">
+  <div class="wrap">
+    <div class="truth-head">
+      <div class="reveal truth-head__copy">
+        <div class="truth-head__group">
+          <p class="pill pill--dark">The Truth</p>
+          <h2 class="truth-title"><span>We buy property.</span> <span class="line-2">We have never sold one.</span></h2>
+          <p class="lede">No seller pays us, so no seller can influence what we put in front of you.</p>
+        </div>
+        <div class="truth-cta">
+          <a class="btn btn--primary" href="#lead-form">Book a free consultation</a>
+          <p class="btn-note">No obligation. No upfront fees. Just a conversation.</p>
+        </div>
+      </div>
+      <div class="reveal truth-visual" aria-hidden="true">
+        <img class="truth-visual__docs" src="../../assets/img/truth-docs.webp" alt="" loading="lazy" decoding="async" width="1100" height="1220">
+        <img class="truth-visual__medal" src="../../assets/img/medal.webp" alt="" loading="lazy" decoding="async" width="100" height="100">
+      </div>
+    </div>
+
+    <div class="truth-cards">
+      <article class="truth-card">
+        <div class="truth-card__media">
+          <img src="../../assets/img/truth-card-1.webp" alt="A buyer and their agent on the same side of the table" loading="lazy" decoding="async" width="722" height="718">
+        </div>
+        <div class="truth-card__copy">
+          <svg class="swoosh" viewBox="0 8.931 41.979 19.01" width="42" height="19" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M41.56 16.31C26.823 21.043 21.185 9.573 12.372 9.065 11.537 9.016 10.748 9.065 10.008 9.186 10.008 9.186 0 18.772 0 18.772 13.089 18.653 16.743 41.014 41.56 16.31Z" fill="#B9795D"/></svg>
+          <div class="group">
+            <h2>No incentives to sell to you, ever</h2>
+            <p>We take no commission from sellers, developers or agents. You are the only person paying us, so you are the only person we answer to.</p>
+          </div>
+        </div>
+      </article>
+      <article class="truth-card">
+        <div class="truth-card__media">
+          <img src="../../assets/img/truth-card-2.webp" alt="An agent inspecting a property in person" loading="lazy" decoding="async" width="722" height="718">
+        </div>
+        <div class="truth-card__copy">
+          <svg class="swoosh" viewBox="0 8.931 41.979 19.01" width="42" height="19" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M41.56 16.31C26.823 21.043 21.185 9.573 12.372 9.065 11.537 9.016 10.748 9.065 10.008 9.186 10.008 9.186 0 18.772 0 18.772 13.089 18.653 16.743 41.014 41.56 16.31Z" fill="#B9795D"/></svg>
+          <div class="group">
+            <h2>An agent who knows the asset</h2>
+            <p>A family home, a warehouse and a duplex site are different purchases. Your agent works the market you are buying in, and inspects in person.</p>
+          </div>
+        </div>
+      </article>
+      <article class="truth-card">
+        <div class="truth-card__media">
+          <img src="../../assets/img/truth-card-3.webp" alt="A valuation prepared against comparable sales" loading="lazy" decoding="async" width="722" height="718">
+        </div>
+        <div class="truth-card__copy">
+          <svg class="swoosh" viewBox="0 8.931 41.979 19.01" width="42" height="19" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M41.56 16.31C26.823 21.043 21.185 9.573 12.372 9.065 11.537 9.016 10.748 9.065 10.008 9.186 10.008 9.186 0 18.772 0 18.772 13.089 18.653 16.743 41.014 41.56 16.31Z" fill="#B9795D"/></svg>
+          <div class="group">
+            <h2>We tell you what it is worth</h2>
+            <p>You get an independent read on value against recent comparable sales. Then we hold the line in the negotiation.</p>
+          </div>
+        </div>
+      </article>
+      <article class="truth-card">
+        <div class="truth-card__media">
+          <img src="../../assets/img/truth-card-4.webp" alt="An empty home seen before it is listed" loading="lazy" decoding="async" width="722" height="718">
+        </div>
+        <div class="truth-card__copy">
+          <svg class="swoosh" viewBox="0 8.931 41.979 19.01" width="42" height="19" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M41.56 16.31C26.823 21.043 21.185 9.573 12.372 9.065 11.537 9.016 10.748 9.065 10.008 9.186 10.008 9.186 0 18.772 0 18.772 13.089 18.653 16.743 41.014 41.56 16.31Z" fill="#B9795D"/></svg>
+          <div class="group">
+            <h2>Access before it is listed</h2>
+            <p>Selling agents bring us off-market properties before they reach the portals, because we buy often enough to be worth calling.</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     Stats band. Teal gradient with texture. Team collage with stat callouts
+     left, review proof right. Numbers come from the Paper design and are on
+     the proof register for verification before launch.
+     ========================================================================== -->
+<section class="section stats on-dark">
+  <div class="wrap">
+    <div class="reveal stats-visual" aria-hidden="true">
+      <img class="stats-visual__photo" src="../../assets/img/stats-team.webp" alt="" loading="lazy" decoding="async" width="550" height="373">
+      <img class="stats-visual__medal" src="../../assets/img/medal.webp" alt="" loading="lazy" decoding="async" width="100" height="100">
+      <div class="stat stat--properties">
+        <div>
+          <p class="stat__num">5,000+</p>
+          <p class="stat__label">properties purchased</p>
+        </div>
+        <svg viewBox="0 0.152 53.001 12.76" width="53" height="13" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g fill="#D2AB67"><path d="M50.808 3.06C22.298 10.533-0.015 2.889-0.015 2.889l0.363 0.881s26.274 7.388 50.46-0.71Z" fill-rule="evenodd"/><path d="M37.772 5.997c4.168-1.67 10.228-5.578 7.904-5.881-4.222-0.552-7.903 5.881-7.904 5.881Z"/><path d="M7.949 5.252c4.906-0.525 9.869-3.547 7.999-4.286-2.817-1.114-7.999 4.286-7.999 4.286Z"/><path d="M29.568 6.649C34.652 5.128 41.759 0.692 39.074 0.082c-4.144-0.943-9.506 6.567-9.506 6.567Z"/><path d="M14.58 6.221c4.639-0.929 11.032-4.576 8.692-5.147-3.288-0.803-8.692 5.147-8.692 5.147Z"/><path d="M21.712 6.714C26.624 5.529 33.887 1.015 31.235 0.4c-3.801-0.882-9.523 6.316-9.523 6.315Z"/><path d="M37.729 5.764c3.435 0.394 11.218 1.881 9.479 3.598-1.889 1.863-9.478-3.598-9.479-3.598Z"/><path d="M7.866 4.972c3.856 1.852 9.568 5.386 7.404 6.131-3.594 1.238-7.403-6.131-7.404-6.131Z"/><path d="M2.866 4.22c4.112-0.2 8.94-2.828 7.133-3.367C7.026-0.035 2.866 4.22 2.866 4.22Z"/><path d="M3.027 3.908c2.819 1.737 7.108 5.533 5.27 5.945-3.215 0.721-5.27-5.945-5.27-5.945Z"/><path d="M29.615 6.487c5.129 0.929 12.851 3.049 10.562 4.599-3.697 2.505-10.561-4.6-10.562-4.599Z"/><path d="M14.587 5.852c5.327 1.965 10.146 4.906 8.057 6.125-3.171 1.852-8.057-6.125-8.057-6.125Z"/><path d="M21.777 6.389c5.099 1.406 11.865 4.965 9.488 6.292-3.648 2.037-9.488-6.292-9.488-6.292Z"/><path d="M43.124 4.92c4.01-2.127 10.017-5.312 9.86-2.735-0.193 3.136-9.859 2.735-9.86 2.735Z"/></g></svg>
+      </div>
+      <div class="stat stat--awards">
+        <div>
+          <p class="stat__num">50+</p>
+          <p class="stat__label">industry awards</p>
+        </div>
+        <svg viewBox="0 0.152 53.001 12.76" width="53" height="13" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g fill="#D2AB67"><path d="M50.808 3.06C22.298 10.533-0.015 2.889-0.015 2.889l0.363 0.881s26.274 7.388 50.46-0.71Z" fill-rule="evenodd"/><path d="M37.772 5.997c4.168-1.67 10.228-5.578 7.904-5.881-4.222-0.552-7.903 5.881-7.904 5.881Z"/><path d="M7.949 5.252c4.906-0.525 9.869-3.547 7.999-4.286-2.817-1.114-7.999 4.286-7.999 4.286Z"/><path d="M29.568 6.649C34.652 5.128 41.759 0.692 39.074 0.082c-4.144-0.943-9.506 6.567-9.506 6.567Z"/><path d="M14.58 6.221c4.639-0.929 11.032-4.576 8.692-5.147-3.288-0.803-8.692 5.147-8.692 5.147Z"/><path d="M21.712 6.714C26.624 5.529 33.887 1.015 31.235 0.4c-3.801-0.882-9.523 6.316-9.523 6.315Z"/><path d="M37.729 5.764c3.435 0.394 11.218 1.881 9.479 3.598-1.889 1.863-9.478-3.598-9.479-3.598Z"/><path d="M7.866 4.972c3.856 1.852 9.568 5.386 7.404 6.131-3.594 1.238-7.403-6.131-7.404-6.131Z"/><path d="M2.866 4.22c4.112-0.2 8.94-2.828 7.133-3.367C7.026-0.035 2.866 4.22 2.866 4.22Z"/><path d="M3.027 3.908c2.819 1.737 7.108 5.533 5.27 5.945-3.215 0.721-5.27-5.945-5.27-5.945Z"/><path d="M29.615 6.487c5.129 0.929 12.851 3.049 10.562 4.599-3.697 2.505-10.561-4.6-10.562-4.599Z"/><path d="M14.587 5.852c5.327 1.965 10.146 4.906 8.057 6.125-3.171 1.852-8.057-6.125-8.057-6.125Z"/><path d="M21.777 6.389c5.099 1.406 11.865 4.965 9.488 6.292-3.648 2.037-9.488-6.292-9.488-6.292Z"/><path d="M43.124 4.92c4.01-2.127 10.017-5.312 9.86-2.735-0.193 3.136-9.859 2.735-9.86 2.735Z"/></g></svg>
+      </div>
+      <div class="stat stat--reviews">
+        <div>
+          <p class="stat__num">4.9 star</p>
+          <p class="stat__label">Google reviews</p>
+        </div>
+        <svg viewBox="0 0.152 53.001 12.76" width="53" height="13" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g fill="#D2AB67"><path d="M50.808 3.06C22.298 10.533-0.015 2.889-0.015 2.889l0.363 0.881s26.274 7.388 50.46-0.71Z" fill-rule="evenodd"/><path d="M37.772 5.997c4.168-1.67 10.228-5.578 7.904-5.881-4.222-0.552-7.903 5.881-7.904 5.881Z"/><path d="M7.949 5.252c4.906-0.525 9.869-3.547 7.999-4.286-2.817-1.114-7.999 4.286-7.999 4.286Z"/><path d="M29.568 6.649C34.652 5.128 41.759 0.692 39.074 0.082c-4.144-0.943-9.506 6.567-9.506 6.567Z"/><path d="M14.58 6.221c4.639-0.929 11.032-4.576 8.692-5.147-3.288-0.803-8.692 5.147-8.692 5.147Z"/><path d="M21.712 6.714C26.624 5.529 33.887 1.015 31.235 0.4c-3.801-0.882-9.523 6.316-9.523 6.315Z"/><path d="M37.729 5.764c3.435 0.394 11.218 1.881 9.479 3.598-1.889 1.863-9.478-3.598-9.479-3.598Z"/><path d="M7.866 4.972c3.856 1.852 9.568 5.386 7.404 6.131-3.594 1.238-7.403-6.131-7.404-6.131Z"/><path d="M2.866 4.22c4.112-0.2 8.94-2.828 7.133-3.367C7.026-0.035 2.866 4.22 2.866 4.22Z"/><path d="M3.027 3.908c2.819 1.737 7.108 5.533 5.27 5.945-3.215 0.721-5.27-5.945-5.27-5.945Z"/><path d="M29.615 6.487c5.129 0.929 12.851 3.049 10.562 4.599-3.697 2.505-10.561-4.6-10.562-4.599Z"/><path d="M14.587 5.852c5.327 1.965 10.146 4.906 8.057 6.125-3.171 1.852-8.057-6.125-8.057-6.125Z"/><path d="M21.777 6.389c5.099 1.406 11.865 4.965 9.488 6.292-3.648 2.037-9.488-6.292-9.488-6.292Z"/><path d="M43.124 4.92c4.01-2.127 10.017-5.312 9.86-2.735-0.193 3.136-9.859 2.735-9.86 2.735Z"/></g></svg>
+      </div>
+    </div>
+
+    <div class="reveal stats-copy">
+      <div class="stats-copy__head">
+        <h2>Reviewed by buyers only,<br>since 2001.</h2>
+        <div class="stats-points">
+          <div class="stats-point">
+            <div class="stats-point__laurels" aria-hidden="true">
+              <svg class="laurel-cap--l" viewBox="0 0 14 26" width="14" height="26" xmlns="http://www.w3.org/2000/svg"><g transform="translate(0 26) scale(1 -1)"><path d="M7.603 22.386C7.879 22.028 8.138 21.645 8.378 21.239C8.695 20.704 8.975 20.135 9.216 19.539C9.878 19.396 12.646 18.566 14.000 14.519C13.803 14.572 11.190 15.490 9.734 18.015C9.983 17.114 10.152 16.170 10.232 15.203C10.241 15.095 10.249 14.986 10.256 14.878C10.773 14.578 13.223 12.926 13.200 8.573C13.030 8.687 10.827 10.413 10.278 13.301C10.235 12.138 10.062 11.004 9.763 9.937C10.205 9.477 12.071 7.234 10.890 3.089C10.750 3.251 8.953 5.693 9.388 8.805C9.070 7.980 8.648 7.186 8.135 6.433C8.355 5.889 9.231 3.218 6.763 0.000C6.699 0.188 6.015 2.842 7.305 5.348C6.772 4.723 6.171 4.136 5.507 3.594C5.312 3.356 5.096 3.145 4.855 2.951C3.494 1.854 1.751 1.241 0.002 1.243C-0.040 1.791 0.684 2.297 1.064 2.583C1.933 3.237 2.847 3.684 3.910 3.969C4.485 4.124 5.122 4.252 5.729 4.280C6.591 5.047 7.330 5.897 7.929 6.807C7.690 6.560 7.424 6.330 7.132 6.118C6.297 5.514 5.337 5.097 4.346 4.811C4.348 5.016 4.377 5.220 4.430 5.418C4.496 5.663 4.601 5.896 4.717 6.122C5.613 7.877 7.408 9.542 9.386 10.004C9.839 11.611 9.988 13.362 9.852 15.087C9.443 11.548 7.081 9.705 6.891 9.575C6.985 13.778 9.135 15.588 9.749 16.020C9.499 17.798 8.942 19.513 8.094 20.971C8.838 17.234 6.666 14.386 6.504 14.199C5.337 18.454 7.131 20.906 7.721 21.569C6.904 22.793 5.903 23.764 4.750 24.460C6.546 21.405 5.373 18.131 5.279 17.922C3.087 21.358 3.989 23.941 4.341 24.692C3.479 25.151 2.539 25.465 1.532 25.624C1.428 25.640 1.358 25.737 1.374 25.840C1.388 25.933 1.469 26.000 1.561 26.000C1.571 26.000 1.581 25.999 1.591 25.998C3.392 25.714 4.988 24.957 6.316 23.774C6.981 23.890 9.860 24.164 12.648 20.922C12.452 20.898 9.857 20.774 7.602 22.386C7.602 22.386 7.603 22.386 7.603 22.386Z" fill="#C9A26B"/></g></svg>
+              <svg viewBox="0 0 14 26" width="14" height="26" xmlns="http://www.w3.org/2000/svg"><path d="M7.603 22.386C7.879 22.028 8.138 21.645 8.378 21.239C8.695 20.704 8.975 20.135 9.216 19.539C9.878 19.396 12.646 18.566 14.000 14.519C13.803 14.572 11.190 15.490 9.734 18.015C9.983 17.114 10.152 16.170 10.232 15.203C10.241 15.095 10.249 14.986 10.256 14.878C10.773 14.578 13.223 12.926 13.200 8.573C13.030 8.687 10.827 10.413 10.278 13.301C10.235 12.138 10.062 11.004 9.763 9.937C10.205 9.477 12.071 7.234 10.890 3.089C10.750 3.251 8.953 5.693 9.388 8.805C9.070 7.980 8.648 7.186 8.135 6.433C8.355 5.889 9.231 3.218 6.763 0.000C6.699 0.188 6.015 2.842 7.305 5.348C6.772 4.723 6.171 4.136 5.507 3.594C5.312 3.356 5.096 3.145 4.855 2.951C3.494 1.854 1.751 1.241 0.002 1.243C-0.040 1.791 0.684 2.297 1.064 2.583C1.933 3.237 2.847 3.684 3.910 3.969C4.485 4.124 5.122 4.252 5.729 4.280C6.591 5.047 7.330 5.897 7.929 6.807C7.690 6.560 7.424 6.330 7.132 6.118C6.297 5.514 5.337 5.097 4.346 4.811C4.348 5.016 4.377 5.220 4.430 5.418C4.496 5.663 4.601 5.896 4.717 6.122C5.613 7.877 7.408 9.542 9.386 10.004C9.839 11.611 9.988 13.362 9.852 15.087C9.443 11.548 7.081 9.705 6.891 9.575C6.985 13.778 9.135 15.588 9.749 16.020C9.499 17.798 8.942 19.513 8.094 20.971C8.838 17.234 6.666 14.386 6.504 14.199C5.337 18.454 7.131 20.906 7.721 21.569C6.904 22.793 5.903 23.764 4.750 24.460C6.546 21.405 5.373 18.131 5.279 17.922C3.087 21.358 3.989 23.941 4.341 24.692C3.479 25.151 2.539 25.465 1.532 25.624C1.428 25.640 1.358 25.737 1.374 25.840C1.388 25.933 1.469 26.000 1.561 26.000C1.571 26.000 1.581 25.999 1.591 25.998C3.392 25.714 4.988 24.957 6.316 23.774C6.981 23.890 9.860 24.164 12.648 20.922C12.452 20.898 9.857 20.774 7.602 22.386C7.602 22.386 7.603 22.386 7.603 22.386Z" fill="#C9A26B"/></svg>
+            </div>
+            <p>5,000+ properties purchased</p>
+          </div>
+          <div class="stats-point">
+            <div class="stats-point__laurels" aria-hidden="true">
+              <svg class="laurel-cap--l" viewBox="0 0 14 26" width="14" height="26" xmlns="http://www.w3.org/2000/svg"><g transform="translate(0 26) scale(1 -1)"><path d="M7.603 22.386C7.879 22.028 8.138 21.645 8.378 21.239C8.695 20.704 8.975 20.135 9.216 19.539C9.878 19.396 12.646 18.566 14.000 14.519C13.803 14.572 11.190 15.490 9.734 18.015C9.983 17.114 10.152 16.170 10.232 15.203C10.241 15.095 10.249 14.986 10.256 14.878C10.773 14.578 13.223 12.926 13.200 8.573C13.030 8.687 10.827 10.413 10.278 13.301C10.235 12.138 10.062 11.004 9.763 9.937C10.205 9.477 12.071 7.234 10.890 3.089C10.750 3.251 8.953 5.693 9.388 8.805C9.070 7.980 8.648 7.186 8.135 6.433C8.355 5.889 9.231 3.218 6.763 0.000C6.699 0.188 6.015 2.842 7.305 5.348C6.772 4.723 6.171 4.136 5.507 3.594C5.312 3.356 5.096 3.145 4.855 2.951C3.494 1.854 1.751 1.241 0.002 1.243C-0.040 1.791 0.684 2.297 1.064 2.583C1.933 3.237 2.847 3.684 3.910 3.969C4.485 4.124 5.122 4.252 5.729 4.280C6.591 5.047 7.330 5.897 7.929 6.807C7.690 6.560 7.424 6.330 7.132 6.118C6.297 5.514 5.337 5.097 4.346 4.811C4.348 5.016 4.377 5.220 4.430 5.418C4.496 5.663 4.601 5.896 4.717 6.122C5.613 7.877 7.408 9.542 9.386 10.004C9.839 11.611 9.988 13.362 9.852 15.087C9.443 11.548 7.081 9.705 6.891 9.575C6.985 13.778 9.135 15.588 9.749 16.020C9.499 17.798 8.942 19.513 8.094 20.971C8.838 17.234 6.666 14.386 6.504 14.199C5.337 18.454 7.131 20.906 7.721 21.569C6.904 22.793 5.903 23.764 4.750 24.460C6.546 21.405 5.373 18.131 5.279 17.922C3.087 21.358 3.989 23.941 4.341 24.692C3.479 25.151 2.539 25.465 1.532 25.624C1.428 25.640 1.358 25.737 1.374 25.840C1.388 25.933 1.469 26.000 1.561 26.000C1.571 26.000 1.581 25.999 1.591 25.998C3.392 25.714 4.988 24.957 6.316 23.774C6.981 23.890 9.860 24.164 12.648 20.922C12.452 20.898 9.857 20.774 7.602 22.386C7.602 22.386 7.603 22.386 7.603 22.386Z" fill="#C9A26B"/></g></svg>
+              <svg viewBox="0 0 14 26" width="14" height="26" xmlns="http://www.w3.org/2000/svg"><path d="M7.603 22.386C7.879 22.028 8.138 21.645 8.378 21.239C8.695 20.704 8.975 20.135 9.216 19.539C9.878 19.396 12.646 18.566 14.000 14.519C13.803 14.572 11.190 15.490 9.734 18.015C9.983 17.114 10.152 16.170 10.232 15.203C10.241 15.095 10.249 14.986 10.256 14.878C10.773 14.578 13.223 12.926 13.200 8.573C13.030 8.687 10.827 10.413 10.278 13.301C10.235 12.138 10.062 11.004 9.763 9.937C10.205 9.477 12.071 7.234 10.890 3.089C10.750 3.251 8.953 5.693 9.388 8.805C9.070 7.980 8.648 7.186 8.135 6.433C8.355 5.889 9.231 3.218 6.763 0.000C6.699 0.188 6.015 2.842 7.305 5.348C6.772 4.723 6.171 4.136 5.507 3.594C5.312 3.356 5.096 3.145 4.855 2.951C3.494 1.854 1.751 1.241 0.002 1.243C-0.040 1.791 0.684 2.297 1.064 2.583C1.933 3.237 2.847 3.684 3.910 3.969C4.485 4.124 5.122 4.252 5.729 4.280C6.591 5.047 7.330 5.897 7.929 6.807C7.690 6.560 7.424 6.330 7.132 6.118C6.297 5.514 5.337 5.097 4.346 4.811C4.348 5.016 4.377 5.220 4.430 5.418C4.496 5.663 4.601 5.896 4.717 6.122C5.613 7.877 7.408 9.542 9.386 10.004C9.839 11.611 9.988 13.362 9.852 15.087C9.443 11.548 7.081 9.705 6.891 9.575C6.985 13.778 9.135 15.588 9.749 16.020C9.499 17.798 8.942 19.513 8.094 20.971C8.838 17.234 6.666 14.386 6.504 14.199C5.337 18.454 7.131 20.906 7.721 21.569C6.904 22.793 5.903 23.764 4.750 24.460C6.546 21.405 5.373 18.131 5.279 17.922C3.087 21.358 3.989 23.941 4.341 24.692C3.479 25.151 2.539 25.465 1.532 25.624C1.428 25.640 1.358 25.737 1.374 25.840C1.388 25.933 1.469 26.000 1.561 26.000C1.571 26.000 1.581 25.999 1.591 25.998C3.392 25.714 4.988 24.957 6.316 23.774C6.981 23.890 9.860 24.164 12.648 20.922C12.452 20.898 9.857 20.774 7.602 22.386C7.602 22.386 7.603 22.386 7.603 22.386Z" fill="#C9A26B"/></svg>
+            </div>
+            <p>50+ industry awards</p>
+          </div>
+          <div class="stats-point">
+            <div class="stats-point__laurels" aria-hidden="true">
+              <svg class="laurel-cap--l" viewBox="0 0 14 26" width="14" height="26" xmlns="http://www.w3.org/2000/svg"><g transform="translate(0 26) scale(1 -1)"><path d="M7.603 22.386C7.879 22.028 8.138 21.645 8.378 21.239C8.695 20.704 8.975 20.135 9.216 19.539C9.878 19.396 12.646 18.566 14.000 14.519C13.803 14.572 11.190 15.490 9.734 18.015C9.983 17.114 10.152 16.170 10.232 15.203C10.241 15.095 10.249 14.986 10.256 14.878C10.773 14.578 13.223 12.926 13.200 8.573C13.030 8.687 10.827 10.413 10.278 13.301C10.235 12.138 10.062 11.004 9.763 9.937C10.205 9.477 12.071 7.234 10.890 3.089C10.750 3.251 8.953 5.693 9.388 8.805C9.070 7.980 8.648 7.186 8.135 6.433C8.355 5.889 9.231 3.218 6.763 0.000C6.699 0.188 6.015 2.842 7.305 5.348C6.772 4.723 6.171 4.136 5.507 3.594C5.312 3.356 5.096 3.145 4.855 2.951C3.494 1.854 1.751 1.241 0.002 1.243C-0.040 1.791 0.684 2.297 1.064 2.583C1.933 3.237 2.847 3.684 3.910 3.969C4.485 4.124 5.122 4.252 5.729 4.280C6.591 5.047 7.330 5.897 7.929 6.807C7.690 6.560 7.424 6.330 7.132 6.118C6.297 5.514 5.337 5.097 4.346 4.811C4.348 5.016 4.377 5.220 4.430 5.418C4.496 5.663 4.601 5.896 4.717 6.122C5.613 7.877 7.408 9.542 9.386 10.004C9.839 11.611 9.988 13.362 9.852 15.087C9.443 11.548 7.081 9.705 6.891 9.575C6.985 13.778 9.135 15.588 9.749 16.020C9.499 17.798 8.942 19.513 8.094 20.971C8.838 17.234 6.666 14.386 6.504 14.199C5.337 18.454 7.131 20.906 7.721 21.569C6.904 22.793 5.903 23.764 4.750 24.460C6.546 21.405 5.373 18.131 5.279 17.922C3.087 21.358 3.989 23.941 4.341 24.692C3.479 25.151 2.539 25.465 1.532 25.624C1.428 25.640 1.358 25.737 1.374 25.840C1.388 25.933 1.469 26.000 1.561 26.000C1.571 26.000 1.581 25.999 1.591 25.998C3.392 25.714 4.988 24.957 6.316 23.774C6.981 23.890 9.860 24.164 12.648 20.922C12.452 20.898 9.857 20.774 7.602 22.386C7.602 22.386 7.603 22.386 7.603 22.386Z" fill="#C9A26B"/></g></svg>
+              <svg viewBox="0 0 14 26" width="14" height="26" xmlns="http://www.w3.org/2000/svg"><path d="M7.603 22.386C7.879 22.028 8.138 21.645 8.378 21.239C8.695 20.704 8.975 20.135 9.216 19.539C9.878 19.396 12.646 18.566 14.000 14.519C13.803 14.572 11.190 15.490 9.734 18.015C9.983 17.114 10.152 16.170 10.232 15.203C10.241 15.095 10.249 14.986 10.256 14.878C10.773 14.578 13.223 12.926 13.200 8.573C13.030 8.687 10.827 10.413 10.278 13.301C10.235 12.138 10.062 11.004 9.763 9.937C10.205 9.477 12.071 7.234 10.890 3.089C10.750 3.251 8.953 5.693 9.388 8.805C9.070 7.980 8.648 7.186 8.135 6.433C8.355 5.889 9.231 3.218 6.763 0.000C6.699 0.188 6.015 2.842 7.305 5.348C6.772 4.723 6.171 4.136 5.507 3.594C5.312 3.356 5.096 3.145 4.855 2.951C3.494 1.854 1.751 1.241 0.002 1.243C-0.040 1.791 0.684 2.297 1.064 2.583C1.933 3.237 2.847 3.684 3.910 3.969C4.485 4.124 5.122 4.252 5.729 4.280C6.591 5.047 7.330 5.897 7.929 6.807C7.690 6.560 7.424 6.330 7.132 6.118C6.297 5.514 5.337 5.097 4.346 4.811C4.348 5.016 4.377 5.220 4.430 5.418C4.496 5.663 4.601 5.896 4.717 6.122C5.613 7.877 7.408 9.542 9.386 10.004C9.839 11.611 9.988 13.362 9.852 15.087C9.443 11.548 7.081 9.705 6.891 9.575C6.985 13.778 9.135 15.588 9.749 16.020C9.499 17.798 8.942 19.513 8.094 20.971C8.838 17.234 6.666 14.386 6.504 14.199C5.337 18.454 7.131 20.906 7.721 21.569C6.904 22.793 5.903 23.764 4.750 24.460C6.546 21.405 5.373 18.131 5.279 17.922C3.087 21.358 3.989 23.941 4.341 24.692C3.479 25.151 2.539 25.465 1.532 25.624C1.428 25.640 1.358 25.737 1.374 25.840C1.388 25.933 1.469 26.000 1.561 26.000C1.571 26.000 1.581 25.999 1.591 25.998C3.392 25.714 4.988 24.957 6.316 23.774C6.981 23.890 9.860 24.164 12.648 20.922C12.452 20.898 9.857 20.774 7.602 22.386C7.602 22.386 7.603 22.386 7.603 22.386Z" fill="#C9A26B"/></svg>
+            </div>
+            <p>300+ genuine Google reviews</p>
+          </div>
+        </div>
+        <div class="review-pill">
+          <span class="review-pill__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <a href="https://www.google.com/search?q=propertybuyer+reviews" rel="noopener">See our reviews</a>
+        </div>
+      </div>
+      <div class="stats-cta">
+        <a class="btn btn--primary" href="#lead-form">Book a free consultation</a>
+        <p class="btn-note">No obligation. No upfront fees. Just a conversation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     What happens after you call us. White band, four process cards.
+     ========================================================================== -->
+<section class="section steps">
+  <div class="wrap">
+    <div class="reveal steps-head">
+      <h2>What happens after you call us</h2>
+      <p class="muted">Most clients go from engagement to purchase in 30 to 60 days.</p>
+      <p class="order">Here is the order it happens in:</p>
+    </div>
+    <!-- Four cards on a horizontal rail, per Paper "BUYER 1440 v3", which
+         merged the old research and diligence cards into one. All four fit
+         the 1200 container, so at desktop there is nothing to scroll and
+         page.js hides the arrows; narrower than that the rail overflows and
+         they come back. Drag the rail or use the arrows; without script it is
+         still a native horizontal scroller, so nothing is unreachable. -->
+    <div class="steps-row" data-steps-row>
+      <article class="reveal step-card step-card--1 on-dark">
+        <p class="pill pill--light pill--step">Step 1</p>
+        <div class="step-card__text">
+          <h3>Define your strategy</h3>
+          <p>We start with your brief: what you are buying and why, your budget, and the areas that fit it.</p>
+        </div>
+        <div class="step-card__img"><img src="../../assets/img/step-strategy.webp" alt="Notes taken during a strategy call" loading="lazy" decoding="async" width="454" height="424"></div>
+        <svg class="step-card__swoosh" viewBox="0 8.931 41.979 19.01" width="42" height="19" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M41.56 16.31C26.823 21.043 21.185 9.573 12.372 9.065 11.537 9.016 10.748 9.065 10.008 9.186 10.008 9.186 0 18.772 0 18.772 13.089 18.653 16.743 41.014 41.56 16.31Z" fill="#B9795D"/></svg>
+      </article>
+      <article class="reveal step-card step-card--2 on-dark">
+        <p class="pill pill--light pill--step">Step 2</p>
+        <div class="step-card__text">
+          <h3>Market research<br>&amp; due diligence</h3>
+          <p>We read your area against recent sales, then inspect every shortlisted property and contract before you commit.</p>
+        </div>
+        <div class="step-card__img"><img src="../../assets/img/step-research.webp" alt="An agent inspecting a shortlisted property" loading="lazy" decoding="async" width="454" height="424"></div>
+        <svg class="step-card__swoosh" viewBox="0 8.931 41.979 19.01" width="42" height="19" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M41.56 16.31C26.823 21.043 21.185 9.573 12.372 9.065 11.537 9.016 10.748 9.065 10.008 9.186 10.008 9.186 0 18.772 0 18.772 13.089 18.653 16.743 41.014 41.56 16.31Z" fill="#B9795D"/></svg>
+      </article>
+      <article class="reveal step-card step-card--3 on-dark">
+        <p class="pill pill--light pill--step">Step 3</p>
+        <div class="step-card__text">
+          <h3>Negotiate &amp; secure</h3>
+          <p>We handle the agent and the auction. You are never the one standing there revealing your position.</p>
+        </div>
+        <div class="step-card__img"><img src="../../assets/img/step-negotiate.webp" alt="An agent securing a property by phone" loading="lazy" decoding="async" width="454" height="424"></div>
+        <svg class="step-card__swoosh" viewBox="0 8.931 41.979 19.01" width="42" height="19" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M41.56 16.31C26.823 21.043 21.185 9.573 12.372 9.065 11.537 9.016 10.748 9.065 10.008 9.186 10.008 9.186 0 18.772 0 18.772 13.089 18.653 16.743 41.014 41.56 16.31Z" fill="#FFFFFF"/></svg>
+      </article>
+      <article class="reveal step-card step-card--4 on-dark">
+        <p class="pill pill--light pill--step">Step 4</p>
+        <div class="step-card__text">
+          <h3>Settlement &amp; ongoing support</h3>
+          <p>We stay with you through settlement and beyond, from the final walk-through to the keys in your hand.</p>
+        </div>
+        <div class="step-card__img"><img src="../../assets/img/step-settlement.webp" alt="Two clients at home after settlement" loading="lazy" decoding="async" width="675" height="450"></div>
+        <svg class="step-card__swoosh" viewBox="0 8.931 41.979 19.01" width="42" height="19" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M41.56 16.31C26.823 21.043 21.185 9.573 12.372 9.065 11.537 9.016 10.748 9.065 10.008 9.186 10.008 9.186 0 18.772 0 18.772 13.089 18.653 16.743 41.014 41.56 16.31Z" fill="#FFFFFF"/></svg>
+      </article>
+    </div>
+    <div class="steps-nav">
+      <button class="steps-nav__btn" type="button" data-steps-prev aria-label="Previous steps" disabled>
+        <svg viewBox="0 0 16 16" width="16" height="16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M10 2L4 8L10 14" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+      </button>
+      <button class="steps-nav__btn" type="button" data-steps-next aria-label="Next steps">
+        <svg viewBox="0 0 16 16" width="16" height="16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 2L12 8L6 14" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     Services. Teal band with texture, from Paper "BUYER 1440 v2" 19 Aug 2026.
+     The three engagement shapes named on the client's site: full search,
+     appraise and negotiate, auction bidding.
+     ========================================================================== -->
+<section class="section services on-dark">
+  <div class="wrap">
+    <div class="reveal services-head">
+      <div class="services-head__intro">
+        <p class="pill pill--dark">Services</p>
+        <h2>Our services</h2>
+      </div>
+      <div class="services-cta">
+        <a class="btn btn--primary" href="#lead-form">Book a free consultation</a>
+        <p class="btn-note">No obligation. No upfront fees. Just a conversation.</p>
+      </div>
+    </div>
+    <div class="service-cards">
+      <article class="reveal service-card">
+        <div class="service-card__img"><img src="../../assets/img/service-full-search.webp" alt="The Propertybuyer buyer's agents" loading="lazy" decoding="async" width="1200" height="800"></div>
+        <div class="service-card__text">
+          <h3>Full search</h3>
+          <p>The complete engagement. We search, shortlist, inspect, appraise and negotiate, from the first brief to the keys.</p>
+        </div>
+      </article>
+      <article class="reveal service-card">
+        <div class="service-card__img"><img src="../../assets/img/service-appraise.webp" alt="A home being appraised before an offer" loading="lazy" decoding="async" width="1200" height="800"></div>
+        <div class="service-card__text">
+          <h3>Appraise &amp; negotiate</h3>
+          <p>Found the property yourself? We inspect it, tell you what it is worth, and negotiate so you do not overpay.</p>
+        </div>
+      </article>
+      <article class="reveal service-card">
+        <div class="service-card__img"><img src="../../assets/img/service-auction.webp" alt="A buyer shaking hands with the agent after winning at auction" loading="lazy" decoding="async" width="800" height="1067"></div>
+        <div class="service-card__text">
+          <h3>Auction bidding</h3>
+          <p>We agree your walk-away number before the day, then do the bidding for you. No nerves to read, no tells to price.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     Real access. Off-market and auction, in one band. Cream band with
+     texture, full-bleed photo strip, four moves, then the second capture
+     point.
+     ========================================================================== -->
+<section class="auction">
+  <div class="reveal auction-head">
+    <p class="pill pill--dark">Real access</p>
+    <h2>Off-market &amp; auction ready</h2>
+    <div class="sub">
+      <p><strong>Much of what we buy never reaches a listing.</strong></p>
+      <p>Here is how we get there first.</p>
+    </div>
+  </div>
+
+  <div class="auction-strip" aria-hidden="true">
+    <div class="auction-strip__row">
+      <div class="reveal-glass auction-photo"><img src="../../assets/img/auction-1.webp" alt="" loading="lazy" decoding="async" width="1146" height="1360"></div>
+      <div class="reveal-glass auction-photo"><img src="../../assets/img/auction-2.webp" alt="" loading="lazy" decoding="async" width="1146" height="1360"></div>
+      <div class="reveal-glass auction-photo"><img src="../../assets/img/auction-3.webp" alt="" loading="lazy" decoding="async" width="906" height="1075"></div>
+    </div>
+  </div>
+
+  <div class="auction-moves">
+    <div class="moves-row">
+      <div class="reveal move">
+        <svg viewBox="0 0 24 24" width="40" height="40" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="var(--text-heading)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 11.6a8.2 8.2 0 0 1-8.8 8.2 9.6 9.6 0 0 1-3.1-.5L3.2 21l1.7-4.5a8 8 0 0 1-1.1-4.9A8.2 8.2 0 0 1 12 3.4a8.2 8.2 0 0 1 8.8 8.2z"/></svg>
+        <div class="move__text">
+          <h3>We ask before it is listed</h3>
+          <p>Your brief goes out to a database of 10,000+ agents. We hear about a property while the vendor is still deciding whether to list it at all.</p>
+        </div>
+      </div>
+      <div class="reveal move">
+        <svg viewBox="0 0 24 24" width="40" height="40" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="var(--text-heading)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8.2" r="3.2"/><path d="M2.6 20c0-3.5 2.9-6.4 6.4-6.4s6.4 2.9 6.4 6.4"/><circle cx="17.8" cy="9.4" r="2.3"/><path d="M17.8 13.8c2.3 0 3.9 1.8 3.9 4.2"/></svg>
+        <div class="move__text">
+          <h3>Fewer buyers in the room</h3>
+          <p>An off-market sale has no campaign and no competing bidders. It is a negotiation between two parties rather than a contest you have to win.</p>
+        </div>
+      </div>
+    </div>
+    <div class="moves-row">
+      <div class="reveal move">
+        <svg viewBox="0 0 24 24" width="40" height="40" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="var(--text-heading)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.6 4.2 5.5v6.1c0 4.9 3.3 8.5 7.8 9.8 4.5-1.3 7.8-4.9 7.8-9.8V5.5z"/></svg>
+        <div class="move__text">
+          <h3>Your position stays yours</h3>
+          <p>Going direct tells the selling agent what you can pay and how much you want it. We sit between you and the person who is paid to act against you.</p>
+        </div>
+      </div>
+      <div class="reveal move">
+        <svg viewBox="0 0 40 40" width="40" height="40" xmlns="http://www.w3.org/2000/svg" fill="var(--text-heading)" aria-hidden="true"><path transform="translate(6.667 3.333)" d="M0.000 31.667C0.000 31.667 0.000 28.889 0.000 28.889C0.000 28.889 20.000 28.889 20.000 28.889C20.000 28.889 20.000 31.667 20.000 31.667C20.000 31.667 0.000 31.667 0.000 31.667ZM9.305 23.083C9.305 23.083 0.000 13.778 0.000 13.778C0.000 13.778 3.111 10.583 3.111 10.583C3.111 10.583 12.500 19.889 12.500 19.889C12.500 19.889 9.305 23.083 9.305 23.083ZM19.889 12.500C19.889 12.500 10.583 3.111 10.583 3.111C10.583 3.111 13.778 0.000 13.778 0.000C13.778 0.000 23.083 9.305 23.083 9.305C23.083 9.305 19.889 12.500 19.889 12.500ZM28.055 30.000C28.055 30.000 5.917 7.861 5.917 7.861C5.917 7.861 7.861 5.917 7.861 5.917C7.861 5.917 30.000 28.055 30.000 28.055C30.000 28.055 28.055 30.000 28.055 30.000Z"/></svg>
+        <div class="move__text">
+          <h3>Auction ready when it counts</h3>
+          <p>Some properties only come up under the hammer. You agree the walk-away number before the day, your agent bids to it, and we stop when it is passed.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Capture point 2 of 2. Routes into the hero form; the button is a
+         real submit so the lead intent is countable. -->
+    <form class="reveal auction-cta" data-page="all" method="get" action="#lead-form">
+      <div class="auction-cta__lines">
+        <p>Most buyers only ever see the advertised market.</p>
+        <p>Tell us what you are looking for and we will put it to our agent network.</p>
+      </div>
+      <div class="auction-cta__action">
+        <button class="btn btn--primary" type="submit">Book a free consultation</button>
+        <p class="btn-note">No sudden commitments.</p>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     Prestige. Near-black band, grain gradient and liquid mark exported as
+     stills from the Paper shaders. Chips for prestige stay in the hero
+     router; this band is the visual moment.
+     tel: number for the prestige team is not supplied yet, so both actions
+     route to the form until it is.
+     ========================================================================== -->
+<section class="section prestige on-dark">
+  <div class="wrap">
+    <div class="reveal prestige-visual" aria-hidden="true">
+      <img src="../../assets/img/prestige-liquid-mark.webp" alt="" loading="lazy" decoding="async" width="546" height="401">
+    </div>
+    <div class="reveal prestige-copy">
+      <h2>A quieter way to buy</h2>
+      <p class="qualifier">For homes valued at $5m and above</p>
+      <p class="body">Our prestige buyer's agents represent high-net-worth buyers seeking luxury, off-market or ultra-premium homes. They provide market insight, a strategic search, expert negotiation and discreet acquisition support.</p>
+      <div class="prestige-actions">
+        <a class="btn btn--prestige" href="#lead-form">Call the prestige team</a>
+        <a class="btn btn--ghost" href="#lead-form">Send an enquiry</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     FAQ. Native details/summary accordion, first question open.
+     ========================================================================== -->
+<section class="section faq">
+  <div class="wrap">
+    <h2 class="reveal">Questions <br>before you brief us</h2>
+    <div class="faq-list">
+      <details class="reveal faq-item" open>
+        <summary>
+          Do you only buy homes?
+          <svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 1V13M1 7H13" fill="none" stroke="var(--text-heading)" stroke-width="1.5"/></svg>
+        </summary>
+        <p class="faq-item__a">No. We buy homes, investment properties, commercial assets and development sites, always for the buyer and never for the seller. Your brief goes to an agent who works that kind of purchase.</p>
+      </details>
+      <details class="reveal faq-item">
+        <summary>
+          What does it cost?
+          <svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 1V13M1 7H13" fill="none" stroke="var(--text-heading)" stroke-width="1.5"/></svg>
+        </summary>
+        <p class="faq-item__a">A full search is 1.5 to 2 percent. If you have already found the property, appraise and negotiate is 1 percent. The first conversation costs nothing.</p>
+      </details>
+      <details class="reveal faq-item">
+        <summary>
+          How long does it usually take?
+          <svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 1V13M1 7H13" fill="none" stroke="var(--text-heading)" stroke-width="1.5"/></svg>
+        </summary>
+        <p class="faq-item__a">Most clients go from engagement to purchase in 30 to 60 days. A tight brief in a liquid market can be faster; a rare brief takes as long as it takes to find the right property.</p>
+      </details>
+      <details class="reveal faq-item">
+        <summary>
+          Does the seller pay you anything?
+          <svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 1V13M1 7H13" fill="none" stroke="var(--text-heading)" stroke-width="1.5"/></svg>
+        </summary>
+        <p class="faq-item__a">No. We take no commission from sellers, developers or agents. You are the only person paying us, so you are the only person we answer to.</p>
+      </details>
+      <details class="reveal faq-item">
+        <summary>
+          What if I have already found a property?
+          <svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 1V13M1 7H13" fill="none" stroke="var(--text-heading)" stroke-width="1.5"/></svg>
+        </summary>
+        <p class="faq-item__a">Then the search is done and the risk is not. We inspect it, tell you what it is worth, and negotiate or bid so you do not overpay.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     Closer. Final CTA band after the FAQ, desktop and mobile. Flat dark
+     brand surface, one step off bg/brand so it separates from the footer
+     band below it. The award ticker repeats here as the closing proof.
+     Claims are reused from earlier in the page, nothing new is asserted.
+     ========================================================================== -->
+<section class="section closer on-dark" id="closer">
+  <div class="reveal wrap closer__wrap">
+    <h2>Your side of the table is waiting</h2>
+    <p class="closer__body">One conversation tells you what your budget really buys, whether that is a home, an investment, a commercial asset or a site. No pressure, and nothing to sign.</p>
+    <a class="btn btn--primary closer__btn" href="#lead-form">Speak to an expert</a>
+    <p class="closer__note">Buyers only, since 2001. Your details stay private.</p>
+    <!-- Same badge set and marquee mechanics as the hero strip. The laurel
+         caps are a hero device and are left out here, which also avoids a
+         second copy of their gradient ids. -->
+    <!-- Decorative repeat of the hero strip; the awards are listed once in
+         the hero, so this is hidden from assistive tech. -->
+    <div class="marquee closer__ticker" role="presentation" aria-hidden="true">
+      <div class="marquee__track">
+        <div class="badge"><img src="../../assets/img/badge-1.webp" alt="" loading="lazy" decoding="async" width="160" height="160"></div>
+        <div class="badge"><img src="../../assets/img/badge-2.webp" alt="" loading="lazy" decoding="async" width="160" height="160"></div>
+        <div class="badge"><img src="../../assets/img/badge-3.webp" alt="" loading="lazy" decoding="async" width="160" height="160"></div>
+        <div class="badge"><img src="../../assets/img/badge-4.webp" alt="" loading="lazy" decoding="async" width="160" height="160"></div>
+        <div class="badge"><img src="../../assets/img/badge-5.webp" alt="" loading="lazy" decoding="async" width="160" height="160"></div>
+        <div class="badge"><img src="../../assets/img/badge-6.webp" alt="" loading="lazy" decoding="async" width="160" height="160"></div>
+        <div class="badge badge--reb"><img src="../../assets/img/badge-reb.svg" alt="" loading="lazy" decoding="async"></div>
+        <div class="badge"><img src="../../assets/img/badge-7.webp" alt="" loading="lazy" decoding="async" width="160" height="160"></div>
+        <div class="badge"><img src="../../assets/img/badge-8.webp" alt="" loading="lazy" decoding="async" width="156" height="160"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- Mobile-only fixed CTA. Visible the whole way down the page and hidden
+     only while the hero capture form is on screen, where it would compete
+     with the form it points at. The hint and the button label are both
+     rewritten by the availability check in page.js; the markup below is
+     the unknown-availability state, which is what renders without script. -->
+<div class="mobile-cta" id="mobile-cta">
+  <div class="mobile-cta__top">
+    <p class="mobile-cta__hint"><span class="mobile-cta__dot" aria-hidden="true"></span><span data-experts-hint>Our experts are ready to talk</span></p>
+
+  </div>
+  <a class="btn btn--primary mobile-cta__btn" href="#lead-form" data-cta-label>Speak to a team member</a>
+</div>
+
+<!-- ==========================================================================
+     Footer. Deep teal. Legal links are bracketed placeholders until the
+     real URLs and licence numbers are supplied.
+     ========================================================================== -->
+<footer class="site-footer on-dark">
+  <div class="wrap">
+    <img class="footer-logo" src="../../assets/img/logo-stacked-white.svg" alt="Propertybuyer" loading="lazy" decoding="async">
+    <a class="site-link" href="https://propertybuyer.com.au" rel="noopener">propertybuyer.com.au</a>
+    <p class="blurb">Independent buyer's agency, established 2001. Offices in Sydney, Melbourne, Brisbane and Adelaide, with coverage across the major regional markets.</p>
+    <div class="legal-row">
+      <span>&copy; 2026 Propertybuyer.</span>
+      <span>[Privacy policy] &middot; [Terms] &middot; [Licence numbers]</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Behaviour: two-step form, scroll reveals, glass entry. Classic script,
+     runs from disk too. FORMS ARE STUBBED, no endpoint exists yet. -->
+<script src="../../assets/js/page.js"></script>
+<!-- Client review overlay. Inert on a normal visit: the loader reads the
+     ?review=1 gate and loads nothing without it. See the client-review
+     skill and the feedback-hub repo. -->
+<script defer src="../../assets/js/review-loader.js" data-review-site="propertybuyer" data-review-hub="https://feedback-hub-navy.vercel.app"></script>
+<!-- Live Paper shaders, progressive enhancement over the exported stills.
+     Module scripts need http, so `npm run serve`; from disk the stills
+     simply remain, which is the intended fallback. -->
+<script type="module" src="../../assets/js/shaders.mjs"></script>
+</body>
+</html>

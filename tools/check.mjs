@@ -43,10 +43,17 @@ const pages = [
   ...locations
     .filter((l) => l.page && existsSync(l.page))
     .map((l) => ({ key: l.slug, file: l.page, family: 'location' })),
+  /* The broad-targeting page, 28 Sep 2026. Same design layer as the segment
+     pages, but no segment of its own, so it takes the location family's
+     inverted capture contract with data-page in place of data-location.
+     See openDecisions.broadPageCaptureContract. */
+  ...(registry.broadPages || [])
+    .filter((b) => b.page && existsSync(b.page))
+    .map((b) => ({ key: b.key, file: b.page, family: 'broad' })),
 ].filter((p) => !only || p.key === only);
 
 if (only && pages.length === 0) {
-  const known = [...ALLOWED, ...locations.map((l) => l.slug)];
+  const known = [...ALLOWED, ...locations.map((l) => l.slug), ...(registry.broadPages || []).map((b) => b.key)];
   console.log(`No built page for "${only}". Known pages: ${known.join(', ')}`);
   process.exit(1);
 }
@@ -253,11 +260,13 @@ for (const { key, file, family } of pages) {
        and the segment is the question. So every form carries data-location
        for HubSpot, no form fixes a segment, no chip is pre-selected (a
        default would mislabel every lead that never touched the row), and the
-       radio group is required so the choice cannot be skipped. */
-    const locTagged = forms.filter((f) => f.includes(`data-location="${key}"`));
+       radio group is required so the choice cannot be skipped. The broad page
+       inverts it the same way, tagged data-page instead of data-location. */
+    const attr = family === 'broad' ? 'data-page' : 'data-location';
+    const locTagged = forms.filter((f) => f.includes(`${attr}="${key}"`));
     locTagged.length === forms.length && forms.length >= 2
-      ? pass(`${forms.length} capture points, all carry data-location="${key}"`)
-      : fail(`${locTagged.length} of ${forms.length} capture points carry data-location="${key}", and a page needs at least 2`);
+      ? pass(`${forms.length} capture points, all carry ${attr}="${key}"`)
+      : fail(`${locTagged.length} of ${forms.length} capture points carry ${attr}="${key}", and a page needs at least 2`);
 
     const segForms = forms.filter((f) => f.includes('data-segment'));
     segForms.length === 0

@@ -1245,3 +1245,73 @@ body[data-poc="true"] .poc-toggle {
 
 /* ============================= end POC ONLY ============================== */
 
+
+/* ==========================================================================
+   Four ways to buy. Broad page only, 28 Sep 2026, from Paper "ALL SEGMENTS
+   1440 v1". Inert on the four segment pages, which carry no .segments band.
+   Each tile is a link to the hero form; page.js pre-selects the matching
+   chip on click. Card anatomy follows .story-card: one radius, the same
+   hover lift, a dark fade over the photograph.
+   ========================================================================== */
+
+.segments { background: var(--bg-surface-alt); }
+.segments .wrap { display: flex; flex-direction: column; gap: 56px; }
+.segments-head { display: flex; justify-content: space-between; align-items: flex-end; gap: var(--gap-lg); }
+.segments-head h2 { max-width: 640px; }
+.segments-head .muted { max-width: 380px; padding-bottom: 6px; }
+
+.segment-tiles { display: flex; gap: var(--space-gutter); }
+.segment-tile {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-card);
+  overflow: clip;
+  background: var(--bg-page);
+  color: inherit;
+  text-decoration: none;
+  box-shadow: 0 0 0 0 transparent;
+  transition: transform 320ms ease-out, box-shadow 320ms ease-out;
+}
+.segment-tile:hover { transform: translateY(-4px); box-shadow: var(--shadow-cta-panel); }
+.segment-tile:focus-visible { outline-offset: 4px; border-radius: var(--radius-card); }
+.segment-tile__media { position: relative; height: 300px; flex-shrink: 0; overflow: clip; background: var(--bg-brand); }
+.segment-tile__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: scale 600ms ease-out; }
+.segment-tile:hover .segment-tile__media img { scale: 1.04; }
+/* The fade from the Paper tile: teal/950, clear to 45 percent, 72 at the foot. */
+.segment-tile__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg in oklab, oklab(16.2% -0.025 -0.013 / 0%) 45%, oklab(16.2% -0.025 -0.013 / 72%) 100%);
+}
+.segment-tile__body { flex: 1; display: flex; flex-direction: column; gap: var(--gap-sm); padding: var(--gap) var(--gap) 28px; }
+.segment-tile__index {
+  font-family: var(--family-display);
+  font-size: var(--type-display);
+  line-height: 1;
+  letter-spacing: var(--tracking-display);
+  color: var(--text-heading);
+}
+.segment-tile__lead { font-weight: var(--weight-semibold); color: var(--text-heading); }
+
+@media (min-width: 768px) and (max-width: 1099px) {
+  .segment-tiles { flex-wrap: wrap; }
+  .segment-tile { flex: 1 1 calc(50% - var(--space-gutter)); }
+}
+
+@media (max-width: 767px) {
+  .segments .wrap { gap: var(--gap-lg); }
+  .segments-head { flex-direction: column; align-items: flex-start; gap: var(--gap-sm); }
+  .segments-head .muted { padding-bottom: 0; }
+  .segment-tiles { flex-direction: column; }
+  .segment-tile__media { height: 220px; }
+  .segment-tile__body h3 br { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .segment-tile, .segment-tile__media img { transition: none; }
+  .segment-tile:hover { transform: none; }
+  .segment-tile:hover .segment-tile__media img { scale: none; }
+}
