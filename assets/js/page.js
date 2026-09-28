@@ -317,6 +317,7 @@
   }
 
   var FADE = [
+    '.segments-head', '.segment-tile',
     '.testimonials-head__intro', '.rating-rows', '.story-card',
     '.truth-head__copy', '.truth-visual',
     '.stats-visual', '.stats-copy',

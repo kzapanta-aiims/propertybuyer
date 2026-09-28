@@ -79,12 +79,26 @@ function loadImage(src) {
 
 /* Mount a shader into a host div layered over `stillEl`, then fade the still.
    Resolves with the mount, once the queue has had its idle slot. */
-function mountOver(stillEl, fragment, uniforms, speed, frame) {
+/* ---- Render resolution ---------------------------------------------------
+   Added 28 Sep 2026 after the prestige band was reported laggy on scroll.
+   ShaderMount defaults to a minimum pixel ratio of 2, so even a 1x monitor
+   rendered both shaders at double resolution: about 3.7M pixels a frame
+   for the full-bleed grain and 2M for the liquid mark, every frame at 60fps.
+   The grain is a soft gradient under noise, so it renders at the screen's
+   own ratio and never above about 0.9M pixels. The mark keeps more detail,
+   capped at 1.2M, which is about 1.5x on a retina screen. Together that is
+   roughly 2.1M pixels a frame at most, down from 5.6M. The library already
+   pauses a mount that is off screen or in a hidden tab. */
+const GRAIN_RES = { minPixelRatio: 1, maxPixelCount: 1280 * 720 };
+const MARK_RES = { minPixelRatio: 1, maxPixelCount: 1200000 };
+
+function mountOver(stillEl, fragment, uniforms, speed, frame, res) {
   return queueMount(function () {
     const host = document.createElement('div');
     host.className = 'shader-host';
     stillEl.insertAdjacentElement('afterend', host);
-    const mount = new ShaderMount(host, fragment, uniforms, undefined, reduced ? 0 : speed, frame);
+    const mount = new ShaderMount(host, fragment, uniforms, undefined, reduced ? 0 : speed, frame,
+      res.minPixelRatio, res.maxPixelCount);
     requestAnimationFrame(() => stillEl.classList.add('still-behind-shader'));
     return mount;
   });
@@ -124,7 +138,7 @@ async function prestigeGrain() {
       u_noise: 0.19,
       u_shape: GrainGradientShapes.corners,
       u_noiseTexture: noise,
-    }), undefined, reduced ? 0 : 1, 147046.53);
+    }), undefined, reduced ? 0 : 1, 147046.53, GRAIN_RES.minPixelRatio, GRAIN_RES.maxPixelCount);
   });
 }
 
@@ -153,7 +167,7 @@ async function prestigeLiquid() {
     u_contour: 0.4,
     u_angle: 70,
     u_shape: LiquidMetalShapes.diamond,
-  }), 1, 349839.6);
+  }), 1, 349839.6, MARK_RES);
 }
 
 /* WebGL sanity check before doing any work. */
