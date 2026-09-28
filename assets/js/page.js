@@ -68,6 +68,19 @@
     });
   }
 
+  /* Segment tiles, broad page only, 28 Sep 2026. Each tile is a plain link
+     to the hero form; picking one also checks the matching chip, so the
+     visitor lands on the form with their answer already in it. Inert on
+     any page without [data-pick-segment]. */
+  if (form) {
+    document.querySelectorAll('[data-pick-segment]').forEach(function (tile) {
+      tile.addEventListener('click', function () {
+        var chip = form.querySelector('input[name="segment"][value="' + tile.getAttribute('data-pick-segment') + '"]');
+        if (chip) chip.checked = true;
+      });
+    });
+  }
+
   var auctionCta = document.querySelector('.auction-cta');
   if (auctionCta && form) {
     auctionCta.addEventListener('submit', function (e) {
