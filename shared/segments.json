@@ -86,6 +86,13 @@
       "consequence": "HubSpot needs to read the page from data-page rather than data-segment on this page, and the segment from the chip. Whoever wires the forms should know this page differs from the four segment pages.",
       "date": "2026-09-28"
     },
+    "broadHeaderPhone": {
+      "problem": "No phone number was supplied anywhere in the repo, so every header call action routed to the form instead of dialling.",
+      "decision": "Kenn supplied 1300 655 615 on 28 Sep 2026. The broad page header now shows it as a tel: link beside the tagline on desktop, and the mobile call icon dials it. The .header-phone style lives in landing.css, not base.css, so the four segment pages are unchanged.",
+      "status": "DECIDED",
+      "consequence": "The buyer, commercial, investor and developer headers still route their call icon to #lead-form and show no number. Rolling it out means copying the two links and, once every page has it, promoting .header-phone to base.css beside .header-call.",
+      "date": "2026-09-28"
+    },
     "broadBudgetBands": {
       "problem": "Each segment page carries its own budget scale, and the broad page serves all of them with one select.",
       "decision": "Six bands, every value already live on a segment page: under-800k, 800k-1.5m and 1.5m-3m from home, 3m-6m and 6m-20m from commercial, 20m-plus from commercial and developer. HubSpot receives no value it has not seen before.",
