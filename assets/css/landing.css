@@ -1315,3 +1315,28 @@ body[data-poc="true"] .poc-toggle {
   .segment-tile:hover { transform: none; }
   .segment-tile:hover .segment-tile__media img { scale: none; }
 }
+
+/* ==========================================================================
+   Header phone link, broad page. Added 28 Sep 2026.
+   The number sits between the tagline and the button on desktop and gives
+   way to the .header-call icon below 768px, which dials the same number.
+   Kept here rather than in base.css so the other pages are untouched until
+   they take the number too.
+   ========================================================================== */
+
+.header-phone {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap-min);
+  font-size: var(--type-body);
+  font-weight: var(--weight-medium);
+  color: var(--text-on-brand);
+  text-decoration: none;
+  white-space: nowrap;
+  text-underline-offset: 4px;
+}
+.header-phone:hover { text-decoration: underline 1px; }
+
+@media (max-width: 767px) {
+  .header-phone { display: none; }
+}
