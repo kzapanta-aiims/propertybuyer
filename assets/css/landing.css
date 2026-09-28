@@ -156,8 +156,13 @@
   min-width: 0;
   overflow: hidden;
   /* Vertical room so the badge drop shadows never clip; the mask fades the
-     badges in and out of both edges. */
-  padding-block: 12px;
+     badges in and out of both edges. The larger layer of --shadow-badge sits
+     10px down with a 14px blur, and its tail runs past 30px below a badge.
+     12px of padding cut it off, reported 28 Sep 2026; 40px clears it,
+     measured. The negative margin gives the extra 28px back, so the strip
+     keeps its place in the layout. */
+  padding-block: 40px;
+  margin-block: -28px;
   -webkit-mask-image: var(--mask-marquee);
   mask-image: var(--mask-marquee);
 }
