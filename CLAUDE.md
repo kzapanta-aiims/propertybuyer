@@ -37,6 +37,9 @@ paper/investor-copy.md   copy deck, investor
 paper/developer-copy.md  copy deck, developer
 tools/check.mjs          the acceptance checklist, both families
 locations/PLAN.md        the rules layer, the location family. Read it first
+locations/<city>/index.html  Melbourne, Adelaide, Perth front ends, built 29 Sep 2026
+locations/HANDOVER-LOCATIONS.md  the brief for the HubSpot developer
+tools/import-location-images.mjs  location artwork out of Paper, with portrait crops
 locations/adelaide/COPY.md  what the Adelaide Paper artboard says, and why. 8 Sep 2026
 locations/perth/COPY.md     the Perth variant as designed. BLOCKED.md beside it says what is missing
 locations/_archive/      the 21 Aug 2026 location work, and why it was replaced
@@ -189,6 +192,18 @@ three pages reading correctly and one not is worse than editing approved work
 for grammar. **The award band subhead is furniture shared with the four paid
 segment pages and still reads "most awarded buyer agents" there**, so sweep
 `New Builds/` before the next paid round. See `melbourneLanguagePass`.
+
+**All three location pages were built as a front end on 29 Sep 2026**, from
+the Paper artboards, for handover to the client's HubSpot developer. They
+pass `npm run check` at all four widths. `locations.css` was rewritten for
+them. Perth was built while still content blocked, at Kenn Zapanta's
+direction; it must not publish with its brackets. Three things to know
+before touching them: **Paper has drifted from the 8 Sep 2026 decisions**
+and the HTML follows the decisions (`paperDriftFrom8Sep`), eight of ten FAQ
+answers per page are brackets rather than drafts, and the header, newsletter
+band and footer are stand-ins for HubSpot's global modules. Start with
+`locations/HANDOVER-LOCATIONS.md`. The pages were generated once from a
+scratch script and are now hand-edited HTML; there is no generator.
 
 **The header, the footer and the lead capture component live in base.css**
 since 21 Aug 2026, promoted from landing.css when the location family needed

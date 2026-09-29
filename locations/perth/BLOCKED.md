@@ -1,5 +1,12 @@
 # Perth is blocked, and here is exactly what is missing
 
+**Update 29 Sep 2026.** The front end is now built (`index.html`), at Kenn
+Zapanta's direction, so all three pages can go to the HubSpot developer
+together. That does not unblock publication: every gap below renders as a
+bracket on the page, and the page must not go live until the three items
+under "What unblocks it" are supplied. See `perthFrontEndBuiltWhileBlocked`
+in `shared/locations.json`.
+
 Written 8 September 2026, per `../PLAN.md` phase 6: before building Perth,
 check whether the client has supplied a named person who buys in Perth and at
 least one Perth purchase. Neither is recorded, so the HTML page is not built.

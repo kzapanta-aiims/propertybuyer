@@ -68,6 +68,30 @@
     });
   }
 
+  /* ---- Location pages: segment fork and the other forms ------------------
+     Added 29 Sep 2026 for locations/. Inert on the paid pages, which carry
+     neither attribute.
+
+     A link with data-pick-segment selects that chip in the form its href
+     points into, then the hash jump carries the visitor there. The visitor's
+     click sets it, so no chip is pre-selected in the markup, which is the
+     location capture contract tools/check.mjs enforces.
+
+     Every other form carrying data-location (the closing form and the
+     newsletter band) is stubbed the same way as the hero form: no endpoint
+     exists, and HubSpot forms replace all of them on port. */
+  document.querySelectorAll('[data-pick-segment]').forEach(function (link) {
+    link.addEventListener('click', function () {
+      var scope = document.querySelector(link.getAttribute('href'));
+      var chip = scope && scope.querySelector('input[name="segment"][value="' + link.getAttribute('data-pick-segment') + '"]');
+      if (chip) chip.checked = true;
+    });
+  });
+  document.querySelectorAll('form[data-location]').forEach(function (f) {
+    if (f === form) return;
+    f.addEventListener('submit', function (e) { e.preventDefault(); });
+  });
+
   var auctionCta = document.querySelector('.auction-cta');
   if (auctionCta && form) {
     auctionCta.addEventListener('submit', function (e) {

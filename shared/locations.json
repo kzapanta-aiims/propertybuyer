@@ -38,7 +38,8 @@
     {
       "slug": "melbourne",
       "label": "Melbourne",
-      "status": "planned",
+      "status": "built",
+      "built": "29 Sep 2026, front end only, from the Paper artboard. See openDecisions.locationsFrontEndBuild29Sep. Content brackets remain and are listed in locations/HANDOVER-LOCATIONS.md section 9.",
       "url": "/location/melbourne",
       "page": "locations/melbourne/index.html",
       "copy": "locations/melbourne/COPY.md",
@@ -52,7 +53,8 @@
     {
       "slug": "adelaide",
       "label": "Adelaide",
-      "status": "planned",
+      "status": "built",
+      "built": "29 Sep 2026, front end only, from the Paper artboard. See openDecisions.locationsFrontEndBuild29Sep. The proof pills, credential lines, tracked number, hours, rating and market figures stay bracketed.",
       "url": "/location/adelaide",
       "page": "locations/adelaide/index.html",
       "copy": "locations/adelaide/COPY.md",
@@ -65,7 +67,8 @@
     {
       "slug": "perth",
       "label": "Perth",
-      "status": "blocked",
+      "status": "built, content blocked",
+      "built": "29 Sep 2026, front end only, at Kenn Zapanta's direction, overriding the PLAN.md phase 6 instruction not to build until BLOCKED.md clears. See openDecisions.perthFrontEndBuiltWhileBlocked. The three content blockers are unchanged and the page must not publish with its brackets.",
       "url": "/location/perth",
       "page": "locations/perth/index.html",
       "copy": "locations/perth/COPY.md",
@@ -245,6 +248,24 @@
       "howThisWentWrong": "The section was added by the client lead, found by this session, read as a stray paste and deleted, then re-added. It was deleted because it was a verbatim copy of the Adelaide section, headed 'Your Adelaide buyers' agents' with Jonathon Moore covering 'Adelaide and regional SA', which reads as an accident on a Perth page. The ambiguity was noticed and named, and the delete happened anyway instead of an ask. On this family, a whole section appearing or disappearing is a question for the client lead, never an inference.",
       "stillToDo": "The re-added cards carry Adelaide names and an Adelaide heading. They need the Perth agents, their titles, the areas they cover and their photographs before the page can be reviewed. Naming a Perth agent also answers item 1 of the three blockers in locations/perth/BLOCKED.md.",
       "raised": "8 Sep 2026"
+    },
+    "locationsFrontEndBuild29Sep": {
+      "decision": "All three location pages were built on 29 Sep 2026 as a reference front end for the HubSpot developer, from the Paper artboards rather than from a phase 2 copy deck. The artboards were read with get_jsx and find_nodes, never from screenshots. locations.css was rewritten for this composition; the 21 Aug layer described only the archived page. Header, newsletter band and footer are reproduced as the live site's global chrome and are marked for replacement by HubSpot's global modules. Images are imported by tools/import-location-images.mjs under melbourne-, adelaide-, perth-, agent- and loc- prefixes, so none can overwrite a paid page's image.",
+      "status": "RESOLVED 29 Sep 2026, at Kenn Zapanta's direction",
+      "consequence": "The build ran ahead of phase 2 for Melbourne: there is still no Melbourne COPY.md and no live inventory diff, so the replacementInventory rule is met for Melbourne only as far as the artboard already carried the live suburbs, staff and FAQ questions. Eight of ten FAQ answers per page ship as brackets rather than drafts, because unapproved answers are exactly the copy the rules say not to invent, and only complete answers enter FAQPage. The handover brief is locations/HANDOVER-LOCATIONS.md.",
+      "raised": "29 Sep 2026"
+    },
+    "perthFrontEndBuiltWhileBlocked": {
+      "decision": "The Perth page was built even though PLAN.md phase 6 and BLOCKED.md say not to build it until a named Perth agent, one Perth purchase and the running office are supplied. Kenn Zapanta asked for all three pages so the front end can go to the developer in one piece.",
+      "status": "RESOLVED 29 Sep 2026 for the front end. Content STILL BLOCKED",
+      "consequence": "The page is the PLAN.md section 5 variant: no office block, Service not LocalBusiness, 'Do you have an office in Perth?' answered honestly, and every missing value bracketed. Building the markup does not unblock publication; the three items in locations/perth/BLOCKED.md still gate it."
+    },
+    "paperDriftFrom8Sep": {
+      "problem": "Read on 29 Sep 2026, the Paper file no longer shows several corrections recorded on 8 Sep 2026. Melbourne carries none of the language pass (team H2 'buyer's agents', titles 'Buyers Advocate', Geelong 'Draft only', 'mixed use'). Perth's proof heading reads 'perth purchases' again and a '5.0, 300+ reviews' rating row is back. Adelaide's first agent card reads 'Principal Buyers Advocate, Brisbane, 20+ Years in Queensland' for Jonathon Moore, carried from a Brisbane card. Melbourne's unfilled home buyer card shows Geoff's '$263,800' in its first stat.",
+      "decision": "The HTML follows the recorded decisions, not the drifted artboard, and each departure is commented in the markup and tabulated in HANDOVER-LOCATIONS.md section 8. The unverified figures ('300+ reviews', Amanda Jones's '60% Off-Market Purchases') are Tier 3 and sit in comments only.",
+      "status": "APPLIED 29 Sep 2026. Paper not edited",
+      "consequence": "Paper and the HTML now disagree in those places. Either correct Paper to match, or tell the build which is right. This is the second time a Paper text change has not persisted (see languagePass8Sep.consequence), so read Paper back rather than trusting a past edit.",
+      "raised": "29 Sep 2026"
     },
     "adelaideRatingUnverified": {
       "problem": "The approved Melbourne purchases header carries a Google rating row, 'Melbourne 5.0' with five stars. No Adelaide listing rating has been verified.",

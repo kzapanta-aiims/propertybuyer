@@ -24,9 +24,9 @@ it was dropped. Perth is the only new URL.
 
 | Page | Status | Holding it back |
 |---|---|---|
-| `melbourne/` | planned, the template. Paper artboard client-approved | the 21 Aug build is archived; needs the phase 2 copy deck and the third proof record |
-| `adelaide/` | designed in Paper 8 Sep 2026, `COPY.md` written | client to confirm the framing of three proof records, and the Melbourne HTML template |
-| `perth/` | blocked, `BLOCKED.md` says exactly why. Paper artboard shows the variant | a named agent who buys in Perth, one Perth purchase, and which office runs it |
+| `melbourne/` | front end built 29 Sep 2026 from the client-approved artboard | the third proof record, market figures, credentials, eight FAQ answers; no phase 2 copy deck yet |
+| `adelaide/` | front end built 29 Sep 2026, `COPY.md` written | client to confirm the framing of three proof records, the tracked SA number, market figures |
+| `perth/` | front end built 29 Sep 2026 as the variant; content still blocked, `BLOCKED.md` says why | a named agent who buys in Perth, one Perth purchase, and which office runs it |
 
 Build one at a time. Melbourne teaches what is genuinely template; fold that
 back before Adelaide starts. The Paper designs run ahead of the HTML: all
@@ -37,6 +37,11 @@ artboards say.
 The client's five success-story decks are committed in `../paper/decks/`
 since 8 Sep 2026. The Adelaide proof comes from the two Legacy decks; no deck
 holds a Perth record.
+
+**Handing over to the HubSpot developer: read `HANDOVER-LOCATIONS.md`.** It
+maps sections to modules, lists every asset, the form contract, the
+structured data, where the build departs from Paper, and what is still
+bracketed.
 
 ## Shape
 
