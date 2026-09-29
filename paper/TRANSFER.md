@@ -21,7 +21,7 @@ Target file: `https://app.paper.design/file/01KZW0Y27PGW3NV0QJRPXAJ9DZ/3-0`
 ## State of the repository
 
 This file was written on a branch, before the layout changed. It now lives on
-`main`, in the repository `propertybuyer-landing-pages`, whose root is the
+`main`, in the repository `propertybuyer`, whose root is the
 client folder. Two things moved since it was drafted:
 
 - The four segment pages sit under `New Builds/`. The home buyers page is

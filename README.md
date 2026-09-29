@@ -1,4 +1,4 @@
-# propertybuyer-landing-pages
+# propertybuyer
 
 Propertybuyer landing pages. Two families of page in one repository, because
 they share the tokens, the two self hosted faces, the base components, the
@@ -43,6 +43,15 @@ genuinely template before the next one starts.
 | `prestige` | deferred | chip only, no page |
 | `expat` | deferred | chip only, no page |
 
+**A fifth page, not a fifth segment.** `New Builds/all/index.html` was built
+28 September 2026 for broad-targeting traffic that has not said what it is
+buying, from the Paper artboard "ALL SEGMENTS 1440 v1". It is registered under
+`broadPages` in `shared/segments.json`, so the six segment strings are
+untouched. Its forms carry `data-page="all"` and no `data-segment`, no chip is
+pre-selected, and the segment choice is required. A "Four ways to buy" band
+under the hero lets the visitor pick a segment, which pre-selects the chip in
+the form. Preview route `/all`. See `broadPageCaptureContract`.
+
 The first home buyers page was rejected by the client on 17 August 2026 and
 rebuilt the same day from the Paper.Design artboard "BUYER 1440" (file
 `01KZW0Y27PGW3NV0QJRPXAJ9DZ`). The old build is recoverable from git at
@@ -63,6 +72,7 @@ New Builds/buyer/index.html        the page being rebuilt, and the template
 New Builds/commercial/index.html   built 20 Aug 2026 from that template
 New Builds/investor/index.html     built 21 Aug 2026 from that template
 New Builds/developer/index.html    built 21 Aug 2026 from that template
+New Builds/all/index.html          broad page, built 28 Sep 2026 from that template
 
 locations/PLAN.md                  the location pages, the rules layer
 locations/README.md                the shape they take when they are
@@ -84,6 +94,8 @@ DESIGN.md                the rules layer, corrected against Figma Variables
 HANDOVER.md              read this before touching anything
 tools/check.mjs          the acceptance checklist, automated
 tools/extract-deck-images.mjs  story photographs out of the client decks
+email-signature/PB_Emal-Signature_Generator.html  staff email signature generator, from the Paper "Email Signature" file
+tools/build-signature-assets.mjs  renders its PNG icons and assets.js. Rerun after artwork changes
 paper/buyer-copy.md      copy deck, home
 paper/commercial-copy.md copy deck, commercial
 paper/investor-copy.md   copy deck, investor

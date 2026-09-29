@@ -20,6 +20,7 @@ New Builds/buyer/index.html        the home segment, and the template
 New Builds/commercial/index.html   built 20 Aug 2026 from that template
 New Builds/investor/index.html     built 21 Aug 2026 from that template
 New Builds/developer/index.html    built 21 Aug 2026 from that template
+New Builds/all/index.html          broad-targeting page, 28 Sep 2026, no segment of its own
 
 assets/css/tokens.css    tokens and both faces. Shared, never edited by a build
 assets/css/base.css      reset, base type, buttons, pills. Shared
@@ -46,6 +47,8 @@ locations/_archive/      the 21 Aug 2026 location work, and why it was replaced
 shared/locations.json    the location registry and its decision log
 tools/import-paper-images.mjs  Paper artwork in, with the crop geometry
 tools/extract-deck-images.mjs  story photographs out of the client decks
+email-signature/PB_Emal-Signature_Generator.html  staff email signature generator, from the Paper "Email Signature" file
+tools/build-signature-assets.mjs  renders its PNG icons and assets.js. Rerun after artwork changes
 ```
 
 **All pages share one `assets/img`, and the unprefixed photograph names
@@ -65,6 +68,7 @@ Pages sit two levels down, so every asset reference is `../../` relative.
 | `commercial` | built, client-reviewed, merged | budget bands unconfirmed |
 | `investor` | built, client-reviewed | budget bands unconfirmed |
 | `developer` | built, five client copy rounds applied, checks clean | truth card 5 still repeats auction move 2, and the two copies differ by one word. See `developerHighestBestUse1Sep` |
+| `all` (broad page, not a segment) | built 28 Sep 2026, checks clean, not yet client-reviewed | SMSF claim on the investment tile, budget bands assumed. See `broadPageCaptureContract` |
 | `prestige`, `expat` | no page, deliberately | chip only, see segments.json |
 
 **A third review channel is live, and a whole round came through it.** BugHerd

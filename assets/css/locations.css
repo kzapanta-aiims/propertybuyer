@@ -297,7 +297,11 @@
   flex: 1;
   min-width: 0;
   overflow: hidden;
-  padding-block: var(--gap-sm);
+  /* The badge shadow's tail runs past 30px below a badge, so 12px of padding
+     clipped it. 40px clears it and the negative margin gives the space back.
+     Ported from the landing.css fix of 28 Sep 2026, measured there. */
+  padding-block: 40px;
+  margin-block: -28px;
   -webkit-mask-image: var(--mask-marquee);
   mask-image: var(--mask-marquee);
 }

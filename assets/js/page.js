@@ -68,25 +68,31 @@
     });
   }
 
-  /* ---- Location pages: segment fork and the other forms ------------------
-     Added 29 Sep 2026 for locations/. Inert on the paid pages, which carry
-     neither attribute.
-
-     A link with data-pick-segment selects that chip in the form its href
-     points into, then the hash jump carries the visitor there. The visitor's
-     click sets it, so no chip is pre-selected in the markup, which is the
-     location capture contract tools/check.mjs enforces.
-
-     Every other form carrying data-location (the closing form and the
-     newsletter band) is stubbed the same way as the hero form: no endpoint
-     exists, and HubSpot forms replace all of them on port. */
+  /* ---- Segment picks ------------------------------------------------------
+     Any link carrying data-pick-segment checks the matching chip in the
+     element its href points at, then the hash jump carries the visitor
+     there, so they land on the form with their answer already in it. The
+     broad page's segment tiles (28 Sep 2026) point at #lead-form; the
+     location pages' segment fork (29 Sep 2026) points at the closing
+     section. The two were written on separate branches and merged into this
+     one handler on 29 Sep 2026. A link whose target holds no chip falls back
+     to the hero form. The visitor's click sets the chip, so none is
+     pre-selected in the markup, which is the location capture contract
+     tools/check.mjs enforces. Inert on any page without the attribute. */
   document.querySelectorAll('[data-pick-segment]').forEach(function (link) {
     link.addEventListener('click', function () {
+      var selector = 'input[name="segment"][value="' + link.getAttribute('data-pick-segment') + '"]';
       var scope = document.querySelector(link.getAttribute('href'));
-      var chip = scope && scope.querySelector('input[name="segment"][value="' + link.getAttribute('data-pick-segment') + '"]');
+      var chip = (scope && scope.querySelector(selector)) || (form && form.querySelector(selector));
       if (chip) chip.checked = true;
     });
   });
+
+  /* Location pages only: every other form carrying data-location (the
+     closing form and the newsletter band) is stubbed the same way as the
+     hero form. No endpoint exists; HubSpot forms replace all of them on
+     port. The paid pages carry no data-location, so this binds nothing
+     there. */
   document.querySelectorAll('form[data-location]').forEach(function (f) {
     if (f === form) return;
     f.addEventListener('submit', function (e) { e.preventDefault(); });
@@ -328,6 +334,7 @@
   }
 
   var FADE = [
+    '.segments-head', '.segment-tile',
     '.testimonials-head__intro', '.rating-rows', '.story-card',
     '.truth-head__copy', '.truth-visual',
     '.stats-visual', '.stats-copy',
