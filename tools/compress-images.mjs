@@ -32,6 +32,9 @@ const CAPS = [
      so nothing resizes today. Worth capping properly if they are ever
      re-exported bigger. */
   [/^developer-service/, 746],
+  /* Broad page, its own prefix for the same reason. all-segment-home came from
+     BugHerd project 543721 task 11 on 1 Oct 2026, resized by hand to 800x533. */
+  [/^all-/, 800],
   [/^commercial-auction/, 1146],
   [/^auction-\d/, 1146],
   [/^truth-card/, 722],
