@@ -114,6 +114,13 @@
       "consequence": "The investor record inherits investorDeckOverlap if that is ever resolved against it. The prestige band is kept on this page because it serves home buyers; open to overrule.",
       "date": "2026-09-28"
     },
+    "broadBugherdRound1Oct": {
+      "problem": "The first client review round on the broad page arrived on BugHerd, project 543721, 12 tasks from Michelle (1 to 5) and Rich (6 to 12), raised 29 Sep 2026. All copy edits except 10 and 11, which are one image request.",
+      "decision": "APPLIED 1 Oct 2026, all 12. Four were adjusted rather than pasted. Tasks 3, 4, 6 and 12 wrote 'buyers agent', 'buyers' agent' and 'buyers advocate'; all went in as the singular 'buyer's', the positioning rule, and task 3 ('Our buyers agents knows the asset') was also ungrammatical and became 'Our buyer's agent knows the asset'. Task 7 asked for 'And no marketing spin - just real facts.', which carries a dash, and went in as 'No marketing spin, just real facts.' Task 9 had a stray closing quote, dropped. Task 1, a comma after 'Going direct', was applied as asked even though it separates the subject from its verb. Tasks 10 and 11 were read as one request: the photograph attached to 11 replaces the home tile image as all-segment-home.webp, a new prefixed file, because story-melbourne-upsize.webp is also the buyer page's story photograph.",
+      "status": "DONE, CLIENT SUPPLIED",
+      "consequence": "The development tile now says the agency assists with feasibility, which is the client's own wording and agrees with developerClientSiteAsSource. The truth card 4 rewrite on this page now differs from the same card on the buyer page, which still says 'Selling agents bring us off-market properties before they reach the portals'. Task 1's comma is worth raising with the client before launch. The investment tile still carries the SMSF claim in broadSegmentTiles, now next to the new line. BugHerd tasks were moved to done without comments, at Kenn's request.",
+      "date": "2026-10-01"
+    },
     "awardYear2026": {
       "problem": "The hero pill on the broad page reads 'Best Buyers Agency of the Year 2026', one year on from the four segment pages.",
       "decision": "Confirmed by Kenn on 28 Sep 2026: the agency won again in 2026. The four segment pages still say 2025 and were not touched on this branch.",

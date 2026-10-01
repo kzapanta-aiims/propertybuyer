@@ -62,7 +62,7 @@ Pages sit two levels down, so every asset reference is `../../` relative.
 | `commercial` | built, client-reviewed, merged | budget bands unconfirmed |
 | `investor` | built, client-reviewed | budget bands unconfirmed |
 | `developer` | built, five client copy rounds applied, checks clean | truth card 5 still repeats auction move 2, and the two copies differ by one word. See `developerHighestBestUse1Sep` |
-| `all` (broad page, not a segment) | built 28 Sep 2026, checks clean, not yet client-reviewed | SMSF claim on the investment tile, budget bands assumed. See `broadPageCaptureContract` |
+| `all` (broad page, not a segment) | built 28 Sep 2026, first client round (BugHerd 543721, 12 tasks) applied 1 Oct 2026, checks clean | SMSF claim on the investment tile, budget bands assumed. See `broadPageCaptureContract` |
 | `prestige`, `expat` | no page, deliberately | chip only, see segments.json |
 
 **A third review channel is live, and a whole round came through it.** BugHerd
