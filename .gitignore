@@ -8,9 +8,10 @@ package-lock.json
 # needs keeping.
 .paper-src/
 
-# Client success-story decks, read by tools/extract-deck-images.mjs. They are
-# client working files rather than source, several MB each, and the committed
-# WebP photographs are derived from them.
+# Fallback location for client success-story decks that are not committed.
+# Since 8 Sep 2026 the decks themselves live in paper/decks/, committed at the
+# client lead's direction; tools/extract-deck-images.mjs reads that folder
+# first and this one second.
 .deck-src/
 
 # The repository root is the client folder, so these two sit inside it without

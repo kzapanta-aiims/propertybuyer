@@ -7,7 +7,7 @@ decision log and the checker.
 | Family | Where | Traffic | Indexed | Ships as |
 |---|---|---|---|---|
 | Paid segment pages | `New Builds/` | Google Ads, Performance Max | no, deliberately | static, on Vercel |
-| Location inner pages | `locations/` | organic search | yes, melbourne is built | HubSpot, ported by the client developer |
+| Location inner pages | `locations/` | organic search | yes, all three built as a front end 29 Sep 2026 | HubSpot, ported by the client developer |
 
 The location pages are a reference implementation rather than a deployment
 target. That is the reason the no build step, no framework, no CDN property at
@@ -76,9 +76,11 @@ New Builds/all/index.html          broad page, built 28 Sep 2026 from that templ
 
 locations/PLAN.md                  the location pages, the rules layer
 locations/README.md                the shape they take when they are
+locations/<city>/index.html        Melbourne, Adelaide, Perth, built 29 Sep 2026
+locations/HANDOVER-LOCATIONS.md    the brief for the HubSpot developer
 
 shared/segments.json     the segment list, single source of truth
-shared/locations.json    the location list, same job, still empty
+shared/locations.json    the location list and its decision log
 assets/css/tokens.css    tokens and the two faces. Shared, and never
                          edited by a page build
 assets/css/base.css      reset, base type, buttons, pills. Shared
