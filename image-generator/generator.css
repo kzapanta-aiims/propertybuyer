@@ -251,6 +251,12 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .slider { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 10px; font-size: 13px; color: var(--muted); }
 .slider input { width: 100%; accent-color: var(--teal); }
 
+/* photo size guidance */
+.size-rec { margin: 0; font-size: 12.5px; line-height: 1.45; color: var(--muted); }
+.size-rec strong { font-weight: 600; color: var(--text); }
+.size-info { margin: 0; font-size: 12.5px; line-height: 1.4; color: #2f5f42; }
+.size-info.is-soft { color: #a87c0e; }
+
 /* people control */
 .people { display: grid; gap: 10px; }
 .person {

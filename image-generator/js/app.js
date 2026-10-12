@@ -338,9 +338,52 @@ function imageControl(f, s) {
   slider.append(el('span', '', 'Zoom'), zoom);
   right.append(actions, slider);
   box.append(thumb, right);
-  wrap.append(box);
+  const [fw, fh] = f.frame;
+  const top = Math.max(...t.scales);
+  const rec = el('p', 'size-rec');
+  rec.innerHTML = `Frame ${fw} × ${fh}. <strong>Recommended: ${Math.round(fw * top)} × ${Math.round(fh * top)} px or larger</strong>, sharp at every download size.`;
+  const info = el('p', 'size-info');
+  info.dataset.infoFor = f.key;
+  wrap.append(box, rec, info);
   if (f.hint) wrap.append(el('p', 'hint', f.hint));
   return wrap;
+}
+
+/* --- Photo size guidance ------------------------------------------------- */
+
+const scaleName = (t, i) => (t.scaleLabels && t.scaleLabels[i]) || `${t.scales[i]}x`;
+
+/** sMax is the largest download scale at which the photo still has a pixel for every pixel. */
+function sharpness(t, sMax) {
+  const ok = t.scales.map((k, i) => i).filter((i) => t.scales[i] <= sMax * 1.05);
+  if (ok.length === t.scales.length) return { text: 'sharp at every download size', soft: false };
+  if (!ok.length) return { text: 'may look soft at every download size', soft: true };
+  return { text: `sharp up to ${scaleName(t, ok[ok.length - 1])}, softer above that`, soft: true };
+}
+
+/** Rewrites the "this photo" line under each photo field. Runs after every preview render. */
+function refreshImageInfo() {
+  const t = tpl();
+  const s = st();
+  els.fields.querySelectorAll('[data-info-for]').forEach((p) => {
+    const key = p.dataset.infoFor;
+    const img = s[key];
+    const f = t.fields.find((x) => x.key === key);
+    if (!img || !f) return;
+    const view = s[f.view] || {};
+    const cover = Math.max(f.frame[0] / img.w, f.frame[1] / img.h) * Math.max(1, view.zoom || 1);
+    const r = sharpness(t, 1 / cover);
+    p.textContent = `This photo: ${img.w} × ${img.h} px, ${r.text}.`;
+    p.classList.toggle('is-soft', r.soft);
+  });
+  if (!peopleRoot) return;
+  peopleRoot.querySelectorAll('[data-person-info]').forEach((p) => {
+    const l = s.layers[Number(p.dataset.personInfo)];
+    if (!l || !l.src) { p.textContent = 'No photo yet.'; p.classList.remove('is-soft'); return; }
+    const r = sharpness(t, l.h / l.height);
+    p.textContent = `Photo ${l.w} × ${l.h} px, ${r.text}.`;
+    p.classList.toggle('is-soft', r.soft);
+  });
 }
 
 /* --- People (episode cover) ---------------------------------------------- */
@@ -356,9 +399,13 @@ function peopleControl(s) {
   cb.addEventListener('change', () => { removeBg = cb.checked; });
   opt.append(cb, el('span', '', 'Remove photo backgrounds automatically'));
   const hint = el('p', 'hint', 'Click a person in the preview to select them, drag to move, scroll to resize, arrow keys to nudge. Backgrounds are removed in your browser; nothing is uploaded.');
+  // A person at the default size stands about 1090 px tall on the 2000 canvas,
+  // so 1640 px on the 3000 download.
+  const rec = el('p', 'size-rec');
+  rec.innerHTML = 'Photo area 1902 × 1117 on the card. <strong>Recommended: portrait photos at least 1600 px tall</strong>, sharp at every download size.';
   const list = el('div', 'people');
   list.dataset.list = '';
-  peopleRoot.append(opt, list, hint);
+  peopleRoot.append(opt, rec, list, hint);
   refreshPeople();
   return peopleRoot;
 }
@@ -402,7 +449,9 @@ function refreshPeople() {
     size.addEventListener('input', () => { resizeLayer(i, Number(size.value)); });
     const slider = el('label', 'slider');
     slider.append(el('span', '', 'Size'), size);
-    body.append(title, actions, slider, msg);
+    const info = el('p', 'size-info');
+    info.dataset.personInfo = i;
+    body.append(title, actions, slider, info, msg);
     row.append(thumb, body);
     return row;
   }));
@@ -522,6 +571,7 @@ function renderPreview() {
     Object.assign(s, more);
   }
   markSelection();
+  refreshImageInfo();
 }
 
 const cqw = (px) => `${(px / tpl().W) * 100}cqw`;
