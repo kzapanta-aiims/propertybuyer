@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <!-- Served at /image-generator as well as /image-generator/, so relative paths need a fixed base. -->
+  <base href="/image-generator/">
+  <title>Propertybuyer image templates</title>
+  <link rel="icon" href="img/mark-white.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,500;1,600&amp;family=Geist:wght@300..800&amp;family=Montserrat:wght@500;600;700&amp;display=swap" crossorigin>
+  <link rel="stylesheet" href="generator.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img src="img/logo-horizontal-white.svg" alt="Propertybuyer" width="190" height="15">
+      <span class="brand-title">Image templates</span>
+    </div>
+    <nav class="tabs" role="tablist" aria-label="Templates" id="tabs"></nav>
+  </header>
+
+  <main class="app">
+    <aside class="panel" aria-label="Template content">
+      <div class="panel-scroll">
+        <form id="fields" class="fields" autocomplete="off" novalidate></form>
+      </div>
+      <div class="panel-foot">
+        <button type="button" class="btn btn-quiet" id="reset">Reset this template</button>
+      </div>
+    </aside>
+
+    <section class="stage" aria-label="Preview">
+      <div class="stage-scroll" id="stageScroll">
+        <div class="host" id="host"></div>
+      </div>
+      <p class="status" id="status" role="status" aria-live="polite"></p>
+      <div class="exportbar">
+        <label class="size" title="The pixel size of the PNG or JPG you download. The preview does not change.">
+          <span>Download size</span>
+          <select id="scale"></select>
+          <small class="size-note">Sets the PNG and JPG size only</small>
+        </label>
+        <div class="export-actions">
+          <button type="button" class="btn btn-primary" id="png">Download PNG</button>
+          <button type="button" class="btn" id="jpg">Download JPG</button>
+          <button type="button" class="btn" id="code">Get code</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <dialog class="code-dialog" id="codeDialog" aria-labelledby="codeTitle">
+    <div class="code-head">
+      <h2 id="codeTitle">Code for websites</h2>
+      <div class="seg" role="tablist" aria-label="Code format">
+        <button type="button" role="tab" data-flavour="css" aria-selected="true">HTML + CSS</button>
+        <button type="button" role="tab" data-flavour="tailwind" aria-selected="false">Tailwind</button>
+      </div>
+      <button type="button" class="icon-btn" id="codeClose" aria-label="Close">&times;</button>
+    </div>
+    <p class="code-note" id="codeNote"></p>
+    <div class="code-blocks" id="codeBlocks"></div>
+    <div class="code-foot">
+      <button type="button" class="btn btn-primary" id="zip">Download .zip (code and images)</button>
+    </div>
+  </dialog>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

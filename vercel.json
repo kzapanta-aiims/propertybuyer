@@ -13,7 +13,8 @@
     { "source": "/commercial", "destination": "/New Builds/commercial/index.html" },
     { "source": "/investor", "destination": "/New Builds/investor/index.html" },
     { "source": "/developer", "destination": "/New Builds/developer/index.html" },
-    { "source": "/all", "destination": "/New Builds/all/index.html" }
+    { "source": "/all", "destination": "/New Builds/all/index.html" },
+    { "source": "/image-generator", "destination": "/image-generator/index.html" }
   ],
   "headers": [
     {
