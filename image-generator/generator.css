@@ -247,6 +247,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .file-btn { position: relative; overflow: hidden; }
 .file-btn input { position: absolute; inset: 0; opacity: 0; cursor: pointer; font-size: 0; }
 .file-btn:focus-within { outline: 2px solid var(--focus); outline-offset: 2px; }
+.file-btn.is-disabled { opacity: 0.55; cursor: progress; }
+.file-btn.is-disabled input { cursor: progress; }
 
 .slider { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 10px; font-size: 13px; color: var(--muted); }
 .slider input { width: 100%; accent-color: var(--teal); }
