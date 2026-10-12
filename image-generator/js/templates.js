@@ -6,22 +6,20 @@
    newsletter hero 600, the last one from the Paper frame "Background Image
    (Hero Row)"). render.js turns them into cqw.
 
-   Type: Geist for everything except the headings. The headings keep the face
-   of their reference: a Gotham-style geometric sans on the two podcast
-   pieces (Montserrat, the open-licence match) and a Garamond on the
-   newsletter (Cormorant Garamond). One constant each in FONTS.
+   Type: Geist throughout, headings included on the two podcast pieces
+   (client direction, 12 Oct 2026, replacing Montserrat). The newsletter
+   heading alone keeps the Garamond of its reference, Cormorant Garamond.
    ========================================================================== */
 
 import { h, richText, lines, smartQuotes } from './render.js';
 
 export const FONTS = {
   text: "'Geist', 'Helvetica Neue', Arial, sans-serif",
-  headingSans: "'Montserrat', 'Helvetica Neue', Arial, sans-serif",
   headingSerif: "'Cormorant Garamond', Georgia, serif",
 };
 
 export const FONT_CSS_URL =
-  'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,500;1,600&family=Geist:wght@300..800&family=Montserrat:wght@500;600;700&display=swap';
+  'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,500;1,600&family=Geist:wght@300..800&display=swap';
 
 const COPPER = '#B9795D';
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -137,7 +135,7 @@ const card = {
       h('p', { name: 'duration', style: { ...pill('right'), margin: 0 } }, svg(CLOCK, { width: 16, height: 16 }, 'clock'), s.duration),
       h('div', { name: 'content', style: { position: 'absolute', left: 21, right: 22, bottom: 15, display: 'flex', flexDirection: 'column', pointerEvents: 'none' } },
         h('p', { name: 'date', style: { margin: 0, fontSize: 13, lineHeight: '16px', letterSpacing: '0.01em' } }, longDate(s.date)),
-        h('h2', { name: 'title', style: { margin: '13px 0 0', maxWidth: 272, fontFamily: FONTS.headingSans, fontWeight: 500, fontSize: 20.4 * (s._fit || 1), lineHeight: `${26 * (s._fit || 1)}px` } }, richText(s.heading, { color: COPPER })),
+        h('h2', { name: 'title', style: { margin: '13px 0 0', maxWidth: 262, fontFamily: FONTS.text, fontWeight: 500, fontSize: 21 * (s._fit || 1), lineHeight: `${26 * (s._fit || 1)}px`, letterSpacing: '0.01em' } }, richText(s.heading, { color: COPPER })),
         h('p', { name: 'featuring', style: { margin: '25px 0 0', fontSize: 13, lineHeight: '16px', letterSpacing: '0.01em' } }, 'Featuring'),
         h('div', { name: 'guest', style: { display: 'flex', alignItems: 'center', marginTop: 7, pointerEvents: 'auto' } },
           h('div', { name: 'avatar', attrs: { 'data-ui-drag': 'avatar' }, style: { position: 'relative', width: 60, height: 60, flexShrink: 0, marginRight: 21, overflow: 'hidden', borderRadius: '50%', backgroundColor: '#0B3039' } },
@@ -237,7 +235,7 @@ const cover = {
     return h('div', { name: 'canvas', style: { position: 'relative', width: 2000, height: 2000, overflow: 'hidden', fontFamily: FONTS.text, backgroundImage: 'linear-gradient(180deg, #FFFFFF 29%, #EDD9D2 50%, #D0A994 75%, #C1886E 98%)' } },
       h('img', { name: 'logo', attrs: { src: 'img/logo-stacked.svg', alt: 'Propertybuyer' }, style: { position: 'absolute', left: 782, top: 92, width: 436, height: 120 } }),
       h('div', { name: 'heading', style: { position: 'absolute', left: 110, right: 110, top: 310, height: 280, display: 'flex', alignItems: 'center', justifyContent: 'center' } },
-        h('h1', { name: 'title', style: { margin: 0, textAlign: 'center', color: '#406C72', fontFamily: FONTS.headingSans, fontWeight: 500, fontSize: 80 * (s._titleFit || 1), lineHeight: `${106 * (s._titleFit || 1)}px`, letterSpacing: '0.005em' } }, richText(s.heading, { color: COPPER }))),
+        h('h1', { name: 'title', style: { margin: 0, textAlign: 'center', color: '#406C72', fontFamily: FONTS.text, fontWeight: 500, fontSize: 83 * (s._titleFit || 1), lineHeight: `${106 * (s._titleFit || 1)}px`, letterSpacing: '0.012em' } }, richText(s.heading, { color: COPPER }))),
       h('div', { name: 'card', style: { position: 'absolute', left: CARD.left, top: CARD.top, width: CARD.width, height: CARD.height, overflow: 'hidden', borderRadius: 90, backgroundColor: '#00414B', boxShadow: '0 0 5px rgba(0,35,42,0.45)' } },
         h('div', { name: 'people', attrs: { 'data-ui-stage': 'people' }, style: { position: 'absolute', left: 0, top: 0, width: CARD.width, height: CARD.height } },
           layers.map((l) => l.src

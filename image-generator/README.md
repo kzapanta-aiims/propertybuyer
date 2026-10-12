@@ -62,15 +62,34 @@ pinned versions and the fonts from Google Fonts:
 | `modern-screenshot` | 4.7.0 | MIT | PNG and JPG export |
 | `fflate` | 0.8.2 | MIT | the code .zip |
 | `@tailwindcss/browser` | 4.1.18 | MIT | only inside the Tailwind .zip demo page |
-| Geist, Montserrat, Cormorant Garamond | | OFL | type |
+| Geist, Cormorant Garamond | | OFL | type |
 
 ## Type
 
-Geist for everything except the headings, as briefed. The headings keep the
-face of their reference: a Gotham-style geometric sans on the two podcast
-templates, set in Montserrat as the open-licence match, and a Garamond on the
-newsletter, Cormorant Garamond, which is the face in the reference. Both are
-one constant each in `FONTS` at the top of `js/templates.js`.
+Geist throughout, including the headings on the two podcast templates. The
+first build set those headings in Montserrat to match the Gotham of the
+reference; Kenn moved them to Geist on 12 Oct 2026. Geist sets about 7%
+narrower than Gotham, so the headings were recalibrated: slightly larger,
+lightly tracked, and the card heading's measure narrowed so it still breaks
+after "Investors" like the reference.
+
+The newsletter heading alone keeps the face of its reference, Cormorant
+Garamond. It is one constant, `FONTS.headingSerif` in `js/templates.js`.
+
+## Photo sizes
+
+Every photo field shows the size to upload and what the current photo can do.
+
+| Field | Frame | Recommended upload |
+|---|---|---|
+| Podcast background | 406 × 448 | 1624 × 1792 px, the frame at the 4x download |
+| Podcast avatar | 60 × 60 | 240 × 240 px |
+| Episode cover people | card area 1902 × 1117 | portrait, at least 1600 px tall, for the 3000 download |
+
+Below the recommendation, a live line reports the current photo's pixel size
+and the largest download it stays sharp at, accounting for zoom on the
+podcast photos and for the size each person is drawn at on the cover. It turns
+amber when the photo will soften at the larger download sizes.
 
 Two faces in the Paper file were ruled out for the headings:
 
@@ -86,7 +105,8 @@ template was rendered at its design size and its text rows compared with the
 reference image by pixel scan. The podcast card and the episode cover land
 within two pixels of the reference on every text row. The newsletter heading
 matches its reference to the pixel. Text widths differ by a few percent where
-Geist replaces Gotham, which is narrower; letter spacing takes up most of it.
+Geist replaces Gotham, which is narrower; size and letter spacing take up most
+of it.
 
 ## Assets and where they came from
 
