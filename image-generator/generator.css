@@ -103,7 +103,10 @@ button, input, select, textarea { font: inherit; color: inherit; }
   background-image: radial-gradient(rgba(0, 64, 75, 0.09) 1px, transparent 1px);
   background-size: 18px 18px;
 }
-.stage-scroll { overflow: auto; display: grid; place-items: center; padding: 36px 28px; }
+/* margin: auto centres the preview but, unlike place-items, never pushes an
+   oversized one past the top or left edge, so actual-size previews scroll. */
+.stage-scroll { overflow: auto; display: grid; padding: 36px 28px; }
+.stage-scroll > .host { margin: auto; }
 
 .host {
   container-type: inline-size;
@@ -128,7 +131,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
   border-top: 1px solid var(--border);
 }
 .size { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 500; }
-.size > span { white-space: nowrap; }
+.size > label { white-space: nowrap; }
+.size .btn[hidden] { display: none; }
 .size select { width: auto; min-width: 150px; }
 .size-note { font-size: 12.5px; font-weight: 400; color: var(--muted); white-space: nowrap; }
 .export-actions { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -147,6 +151,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   background: #fff;
   font-size: 14px;
   font-weight: 600;
+  white-space: nowrap;
   cursor: pointer;
   transition: background-color 0.15s, border-color 0.15s, color 0.15s;
 }
@@ -340,7 +345,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   .stage-scroll { padding: 16px; }
   .status { padding: 0 16px 4px; }
   .exportbar { padding: 8px 16px; gap: 8px; }
-  .size span, .size-note { display: none; }
+  .size > label, .size-note { display: none; }
   .size select { min-width: 0; }
   .export-actions .btn { min-height: 36px; padding: 0 12px; }
   .panel { border-right: 0; }

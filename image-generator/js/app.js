@@ -20,7 +20,7 @@ const MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June', 'Ju
 const $ = (id) => document.getElementById(id);
 const els = {
   tabs: $('tabs'), fields: $('fields'), host: $('host'), stageScroll: $('stageScroll'), status: $('status'),
-  scale: $('scale'), png: $('png'), jpg: $('jpg'), code: $('code'), reset: $('reset'),
+  scale: $('scale'), fit: $('fit'), sizeNote: $('sizeNote'), png: $('png'), jpg: $('jpg'), code: $('code'), reset: $('reset'),
   dialog: $('codeDialog'), codeBlocks: $('codeBlocks'), codeNote: $('codeNote'), zip: $('zip'), codeClose: $('codeClose'),
 };
 
@@ -120,6 +120,7 @@ function renderTabs() {
 function activate(id) {
   activeId = id;
   selectedLayer = -1;
+  viewMode = 'fit';
   renderTabs();
   renderFields();
   renderScale();
@@ -486,8 +487,21 @@ async function uploadPerson(i, file, msg) {
 
 /* --- Preview ------------------------------------------------------------- */
 
+/**
+ * 'fit' sizes the preview to the stage. 'actual' shows it at the chosen
+ * download size, one CSS pixel per exported pixel, scrolling if it is larger.
+ * Layout is in cqw, so only the host width changes; nothing re-renders.
+ */
+let viewMode = 'fit';
+
 function sizeHost() {
   const t = tpl();
+  if (viewMode === 'actual') {
+    els.host.style.width = `${Math.round(t.W * (Number(els.scale.value) || 1))}px`;
+    syncView();
+    return;
+  }
+  syncView();
   const area = els.stageScroll.getBoundingClientRect();
   const cs = getComputedStyle(els.stageScroll);
   const padX = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight);
@@ -617,7 +631,22 @@ function renderScale() {
     return `<option value="${k}" ${k === chosen ? 'selected' : ''}>${label}</option>`;
   }).join('');
 }
-els.scale.addEventListener('change', () => { scaleChoice[activeId] = Number(els.scale.value); });
+function syncView() {
+  const actual = viewMode === 'actual';
+  els.fit.hidden = !actual;
+  els.sizeNote.textContent = actual ? 'Preview at actual download size' : 'Pick a size to preview it at full size';
+}
+
+els.scale.addEventListener('change', () => {
+  scaleChoice[activeId] = Number(els.scale.value);
+  viewMode = 'actual';
+  sizeHost();
+  els.stageScroll.scrollTo(0, 0);
+});
+els.fit.addEventListener('click', () => {
+  viewMode = 'fit';
+  sizeHost();
+});
 
 let screenshotLib;
 const screenshot = () => (screenshotLib ||= import(SCREENSHOT));
