@@ -94,6 +94,7 @@ tools/check.mjs          the acceptance checklist, automated
 tools/extract-deck-images.mjs  story photographs out of the client decks
 email-signature/PB_Emal-Signature_Generator.html  staff email signature generator, from the Paper "Email Signature" file
 tools/build-signature-assets.mjs  renders its PNG icons and assets.js. Rerun after artwork changes
+image-generator/         client image templates (podcast card, episode cover, newsletter hero), at /image-generator/. See its README
 paper/buyer-copy.md      copy deck, home
 paper/commercial-copy.md copy deck, commercial
 paper/investor-copy.md   copy deck, investor

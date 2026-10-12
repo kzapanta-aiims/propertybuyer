@@ -43,7 +43,16 @@ tools/import-paper-images.mjs  Paper artwork in, with the crop geometry
 tools/extract-deck-images.mjs  story photographs out of the client decks
 email-signature/PB_Emal-Signature_Generator.html  staff email signature generator, from the Paper "Email Signature" file
 tools/build-signature-assets.mjs  renders its PNG icons and assets.js. Rerun after artwork changes
+image-generator/index.html  client image templates: podcast card, episode cover, newsletter hero. Own README
 ```
+
+**The image generator is a third, separate thing.** `image-generator/`,
+built 12 Oct 2026, served at `/image-generator/`. It loads none of the three
+stylesheets and the checker does not look at it. Unlike the pages it does use
+CDNs (jsDelivr, Google Fonts, Hugging Face for the background-removal model),
+because removal and export run in the client's browser at no cost. Read its
+`README.md` before changing a template: every measurement was calibrated
+against the client's reference artwork.
 
 **All pages share one `assets/img`, and the unprefixed photograph names
 belong to the buyer page.** `truth-card-1.webp`, `auction-1.webp`,

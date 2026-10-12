@@ -41,6 +41,15 @@
         "value": "16px",
         "createdAt": "2026-08-17T15:12:10.069Z",
         "reason": "client-directed 18 Aug 2026 for the fixed mobile CTA sheet corners; outside the two-token radius scale and tracked in HANDOVER.md pending a radius/sheet token in Figma"
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "image-generator/index.html"
+        ],
+        "createdAt": "2026-10-12T02:03:04.383Z",
+        "reason": "Sand #f5f1e9 is the Propertybuyer brand token bg/surface-alt (sand/100) in assets/css/tokens.css, from Figma Variables; not a reflex choice"
       }
     ]
   }
