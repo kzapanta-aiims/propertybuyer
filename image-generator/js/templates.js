@@ -82,7 +82,8 @@ const card = {
   W: 406,
   H: 448,
   prefix: 'pb-podcast-card',
-  scales: [1, 2, 3, 4],
+  // 4x was dropped 12 Oct 2026: nothing needs it, and the biggest files are the ones browsers fumble.
+  scales: [1, 2, 3],
   defaultScale: 2,
   rounded: true,
 
@@ -163,7 +164,7 @@ const card = {
    2. Episode cover, square, guests cut out onto the teal card
    ========================================================================== */
 
-const CARD = { left: 46, top: 696, width: 1902, height: 1117 };
+export const CARD = { left: 46, top: 696, width: 1902, height: 1117 };
 
 const PERSON_DEFAULTS = [
   { src: 'img/episode-guest.webp', w: 729, h: 1088, x: 1163, y: 24, height: 1088, flip: false, z: 3 },
@@ -178,8 +179,9 @@ const cover = {
   W: 2000,
   H: 2000,
   prefix: 'pb-episode-cover',
-  scales: [0.54, 0.7, 1, 1.5],
-  scaleLabels: ['1080 × 1080', '1400 × 1400', '2000 × 2000', '3000 × 3000'],
+  // 3000 x 3000 was dropped 12 Oct 2026: a 20 MB PNG that Safari and Firefox can fail to save.
+  scales: [0.54, 0.7, 1],
+  scaleLabels: ['1080 × 1080', '1400 × 1400', '2000 × 2000'],
   defaultScale: 1,
 
   defaults() {

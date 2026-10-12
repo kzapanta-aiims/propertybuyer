@@ -6,7 +6,7 @@
    Code exports come from the same template tree through render.js.
    ========================================================================== */
 
-import { TEMPLATES, FONT_CSS_URL, frameImage, monthYear } from './templates.js';
+import { TEMPLATES, FONT_CSS_URL, CARD, frameImage, monthYear } from './templates.js';
 import { render } from './render.js';
 import { fileToCanvas, hasTransparency, removeBackground, trim, canvasToBlob } from './cutout.js';
 
@@ -107,8 +107,34 @@ function status(msg, { error = false, sticky = false } = {}) {
   if (msg && !sticky) statusTimer = setTimeout(() => { els.status.textContent = ''; }, error ? 9000 : 4000);
 }
 
+/*
+ * One job at a time. An upload (which may run the background-removal model)
+ * and an export each hold the lock; while it is held every upload input, the
+ * reset controls and the export buttons are disabled. This keeps two photos
+ * from entering the model at once, and keeps Reset from swapping a layer out
+ * from under an upload that is still running.
+ */
+let locked = false;
+
 function busy(on) {
-  for (const b of [els.png, els.jpg, els.code, els.zip]) b.disabled = on;
+  locked = on;
+  for (const b of [els.png, els.jpg, els.code, els.zip, els.reset]) b.disabled = on;
+  document.querySelectorAll('.file-btn input, [data-lockable]').forEach((n) => { n.disabled = on; });
+  document.querySelectorAll('.file-btn').forEach((n) => n.classList.toggle('is-disabled', on));
+}
+
+/** Object URLs hold the whole uploaded image in memory until revoked. */
+function release(src) {
+  if (typeof src === 'string' && src.startsWith('blob:')) {
+    URL.revokeObjectURL(src);
+    blobNames.delete(src);
+  }
+}
+
+function releaseAll(v) {
+  if (Array.isArray(v)) v.forEach(releaseAll);
+  else if (v && typeof v === 'object') Object.values(v).forEach(releaseAll);
+  else release(v);
 }
 
 /* --- Tabs ---------------------------------------------------------------- */
@@ -156,17 +182,30 @@ function button(text, cls, onClick) {
   return b;
 }
 
+/** A control that is disabled while a job holds the lock. */
+function lockable(n) {
+  n.dataset.lockable = '';
+  n.disabled = locked;
+  return n;
+}
+
+/** One photo per pick, and none while another job is running. */
 function fileButton(text, cls, onFile) {
-  const wrap = el('span', `btn file-btn ${cls || ''}`);
+  const wrap = el('span', `btn file-btn ${cls || ''}${locked ? ' is-disabled' : ''}`);
   wrap.append(el('span', '', text));
   const input = el('input');
   input.type = 'file';
-  input.accept = 'image/png,image/jpeg,image/webp,image/avif,image/heic';
+  input.multiple = false;
+  input.accept = 'image/png,image/jpeg,image/webp';
   input.setAttribute('aria-label', text);
+  input.disabled = locked;
   input.addEventListener('change', () => {
-    const f = input.files && input.files[0];
+    const files = input.files ? [...input.files] : [];
     input.value = '';
-    if (f) onFile(f);
+    if (!files.length) return;
+    if (files.length > 1) { status('One photo at a time, please.', { error: true }); return; }
+    if (locked) { status('Wait for the current photo to finish.', { error: true }); return; }
+    onFile(files[0]);
   });
   wrap.append(input);
   return wrap;
@@ -315,9 +354,12 @@ function imageControl(f, s) {
 
   actions.append(
     fileButton('Upload', 'btn-sm', async (file) => {
+      busy(true);
       status('Loading image', { sticky: true });
       try {
-        setPath(s, f.key, await loadFrameImage(file, f.key === 'avatar' ? 800 : 2400));
+        const img = await loadFrameImage(file, f.key === 'avatar' ? 600 : 2000);
+        release(getPath(s, f.key).src);
+        setPath(s, f.key, img);
         setPath(s, f.view, { zoom: 1, x: 0, y: 0 });
         zoom.value = '1';
         paint();
@@ -326,15 +368,18 @@ function imageControl(f, s) {
       } catch (e) {
         console.error(e);
         status('That image could not be read. Try a JPG or PNG.', { error: true });
+      } finally {
+        busy(false);
       }
     }),
-    button('Reset', 'btn btn-sm btn-quiet', () => {
+    lockable(button('Reset', 'btn btn-sm btn-quiet', () => {
+      release(getPath(s, f.key).src);
       setPath(s, f.key, t.defaults()[f.key]);
       setPath(s, f.view, { zoom: 1, x: 0, y: 0 });
       zoom.value = '1';
       paint();
       update();
-    }),
+    })),
   );
   const slider = el('label', 'slider');
   slider.append(el('span', '', 'Zoom'), zoom);
@@ -402,14 +447,26 @@ function peopleControl(s) {
   opt.append(cb, el('span', '', 'Remove photo backgrounds automatically'));
   const hint = el('p', 'hint', 'Click a person in the preview to select them, drag to move, scroll to resize, arrow keys to nudge. Backgrounds are removed in your browser; nothing is uploaded.');
   // A person at the default size stands about 1090 px tall on the 2000 canvas,
-  // so 1640 px on the 3000 download.
+  // which is also the largest download.
   const rec = el('p', 'size-rec');
-  rec.innerHTML = 'Photo area 1902 × 1117 on the card. <strong>Recommended: portrait photos at least 1600 px tall</strong>, sharp at every download size.';
+  rec.innerHTML = 'Photo area 1902 × 1117 on the card. <strong>Recommended: portrait photos at least 1100 px tall</strong>, sharp at every download size.';
   const list = el('div', 'people');
   list.dataset.list = '';
   peopleRoot.append(opt, rec, list, hint);
   refreshPeople();
   return peopleRoot;
+}
+
+/** Person height limits, in design pixels on the 2000 canvas. */
+const LAYER_MIN = 150;
+const LAYER_MAX = 2400;
+/** How much of a person must stay on the card, so one can never be dragged out of reach. */
+const KEEP_ON_CARD = 160;
+
+function clampLayer(l) {
+  const w = l.height * (l.w / l.h);
+  l.x = Math.min(CARD.width - KEEP_ON_CARD, Math.max(KEEP_ON_CARD - w, l.x));
+  l.y = Math.min(CARD.height - KEEP_ON_CARD, Math.max(KEEP_ON_CARD - l.height, l.y));
 }
 
 function refreshPeople() {
@@ -429,22 +486,24 @@ function refreshPeople() {
     title.append(el('strong', '', `${i === 0 ? 'With' : 'And'}`), el('span', '', s.people[i].name));
     const actions = el('div', 'imgctl-actions');
     const msg = el('p', 'person-status');
+    msg.dataset.personStatus = i;
     actions.append(
-      fileButton(layer.src ? 'Replace photo' : 'Add photo', 'btn-sm', (file) => uploadPerson(i, file, msg)),
-      button('Flip', 'btn btn-sm', () => { layer.flip = !layer.flip; selectLayer(i); renderPreview(); save(); }),
+      fileButton(layer.src ? 'Replace photo' : 'Add photo', 'btn-sm', (file) => uploadPerson(i, file)),
+      button('Flip', 'btn btn-sm', () => { s.layers[i].flip = !s.layers[i].flip; selectLayer(i); renderPreview(); save(); }),
       button('Forward', 'btn btn-sm', () => { restack(i, 1); }),
       button('Back', 'btn btn-sm', () => { restack(i, -1); }),
-      button('Reset', 'btn btn-sm btn-quiet', () => {
+      lockable(button('Reset', 'btn btn-sm btn-quiet', () => {
+        release(s.layers[i].src);
         s.layers[i] = { ...t.defaults().layers[i] };
         refreshPeople();
         renderPreview();
         save();
-      }),
+      })),
     );
     const size = el('input');
     size.type = 'range';
-    size.min = '250';
-    size.max = '1800';
+    size.min = String(LAYER_MIN);
+    size.max = String(LAYER_MAX);
     size.step = '1';
     size.value = String(Math.round(layer.height));
     size.dataset.sizeFor = i;
@@ -478,14 +537,22 @@ function markSelection() {
   els.host.querySelectorAll('[data-ui-person]').forEach((n) => n.classList.toggle('is-selected', activeId === 'episode-cover' && Number(n.dataset.uiPerson) === selectedLayer));
 }
 
+/**
+ * Move a person one step forward or back among the visible people. Every
+ * layer is renumbered, hidden ones included, so a hidden third person never
+ * keeps a stale z that ties with another when it is shown again.
+ */
 function restack(i, dir) {
   const s = st();
   const count = s.third ? 3 : 2;
-  const order = s.layers.slice(0, count).map((l, k) => k).sort((a, b) => s.layers[a].z - s.layers[b].z);
+  const order = s.layers.map((l, k) => k).sort((a, b) => s.layers[a].z - s.layers[b].z || a - b);
   const pos = order.indexOf(i);
-  const to = Math.min(order.length - 1, Math.max(0, pos + dir));
-  order.splice(pos, 1);
-  order.splice(to, 0, i);
+  let to = pos + dir;
+  while (to >= 0 && to < order.length && order[to] >= count) to += dir;
+  if (to >= 0 && to < order.length) {
+    order.splice(pos, 1);
+    order.splice(to, 0, i);
+  }
   order.forEach((k, z) => { s.layers[k].z = z + 1; });
   selectLayer(i);
   renderPreview();
@@ -497,17 +564,21 @@ function resizeLayer(i, height) {
   const l = st().layers[i];
   const cx = l.x + (l.height * l.w / l.h) / 2;
   const bottom = l.y + l.height;
-  l.height = Math.max(150, Math.min(2400, height));
+  l.height = Math.max(LAYER_MIN, Math.min(LAYER_MAX, height));
   l.x = cx - (l.height * l.w / l.h) / 2;
   l.y = bottom - l.height;
+  clampLayer(l);
   renderPreview();
   save();
 }
 
-async function uploadPerson(i, file, msg) {
-  const s = st();
-  const layer = s.layers[i];
-  const say = (text) => { msg.textContent = text; status(text, { sticky: true }); };
+async function uploadPerson(i, file) {
+  // Status goes to whichever row is on screen now; the panel can be rebuilt mid-upload.
+  const say = (text) => {
+    const m = peopleRoot && peopleRoot.querySelector(`[data-person-status="${i}"]`);
+    if (m) m.textContent = text;
+    if (text) status(text, { sticky: true });
+  };
   selectLayer(i);
   busy(true);
   try {
@@ -518,15 +589,21 @@ async function uploadPerson(i, file, msg) {
     const blob = await canvasToBlob(canvas, 'image/png');
     const url = URL.createObjectURL(blob);
     blobNames.set(url, `person-${i + 1}.png`);
+    // Look the layer up now rather than before the model ran, so the result
+    // lands on the layer that is actually on the card.
+    const layer = states['episode-cover'].layers[i];
+    release(layer.src);
     const cx = layer.x + (layer.height * layer.w / layer.h) / 2;
     const bottom = layer.y + layer.height;
     Object.assign(layer, { src: url, w: canvas.width, h: canvas.height });
     layer.x = cx - (layer.height * layer.w / layer.h) / 2;
     layer.y = bottom - layer.height;
-    msg.textContent = '';
+    clampLayer(layer);
+    say('');
     status('Photo added. Drag it in the preview to position it.');
     refreshPeople();
     renderPreview();
+    save();
   } catch (e) {
     console.error(e);
     say('');
@@ -585,6 +662,8 @@ els.host.addEventListener('pointerdown', (e) => {
   const person = e.target.closest('[data-ui-person]');
   const frame = !person && e.target.closest('[data-ui-drag]');
   if (!person && !frame) return;
+  // Primary button or a single touch only.
+  if (e.button !== 0 || !e.isPrimary) return;
   e.preventDefault();
   const sx = e.clientX;
   const sy = e.clientY;
@@ -592,6 +671,9 @@ els.host.addEventListener('pointerdown', (e) => {
 
   if (person) {
     const i = Number(person.dataset.uiPerson);
+    // preventDefault above stops the usual focus change; drop focus from the
+    // panel so the arrow keys reach the person just selected.
+    if (document.activeElement instanceof HTMLElement && document.activeElement !== document.body) document.activeElement.blur();
     selectLayer(i);
     const layer = s.layers[i];
     const ox = layer.x;
@@ -599,6 +681,7 @@ els.host.addEventListener('pointerdown', (e) => {
     move = (ev) => {
       layer.x = ox + (ev.clientX - sx) * ratio;
       layer.y = oy + (ev.clientY - sy) * ratio;
+      clampLayer(layer);
       person.style.left = cqw(layer.x);
       person.style.top = cqw(layer.y);
     };
@@ -657,9 +740,17 @@ els.host.addEventListener('wheel', (e) => {
   }
 }, { passive: false });
 
+/*
+ * Arrow keys nudge the selected person, but only when nothing else wants them:
+ * not with the code dialog open, and not from a field, a button or a tab in
+ * the panel. Focus on the page body or inside the preview counts.
+ */
 document.addEventListener('keydown', (e) => {
   if (activeId !== 'episode-cover' || !/^Arrow/.test(e.key)) return;
-  if (e.target.closest('input, textarea, select, [role="tab"]')) return;
+  if (els.dialog.open) return;
+  const target = e.target;
+  if (target !== document.body && !(target instanceof Element && target.closest('#stageScroll'))) return;
+  if (target instanceof Element && target.closest('input, textarea, select, button')) return;
   const l = st().layers[selectedLayer];
   if (!l) return;
   const step = e.shiftKey ? 20 : 4;
@@ -667,6 +758,7 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'ArrowRight') l.x += step;
   if (e.key === 'ArrowUp') l.y -= step;
   if (e.key === 'ArrowDown') l.y += step;
+  clampLayer(l);
   e.preventDefault();
   renderPreview();
   save();
@@ -710,7 +802,13 @@ const blobToDataUrl = (blob) => new Promise((resolve, reject) => {
   r.readAsDataURL(blob);
 });
 
-/** The latin subset of the three faces, inlined, so exported images carry their fonts. */
+/*
+ * The faces, inlined, so exported images carry their fonts. Latin, latin-ext
+ * and vietnamese cover the names a client is likely to type (Łukasz, Nguyễn,
+ * Māori macrons); each block keeps its unicode-range, so only the glyphs a
+ * design uses are drawn from it.
+ */
+const EMBED_SUBSETS = new Set(['latin', 'latin-ext', 'vietnamese']);
 let fontCss;
 function fontEmbedCss() {
   fontCss ||= (async () => {
@@ -718,7 +816,7 @@ function fontEmbedCss() {
     const blocks = [];
     const re = /\/\*\s*([\w-]+)\s*\*\/\s*(@font-face\s*\{[^}]*\})/g;
     let m;
-    while ((m = re.exec(css))) if (m[1] === 'latin') blocks.push(m[2]);
+    while ((m = re.exec(css))) if (EMBED_SUBSETS.has(m[1])) blocks.push(m[2]);
     const out = await Promise.all(blocks.map(async (b) => {
       const url = /url\((['"]?)([^'")]+)\1\)/.exec(b);
       if (!url) return b;
@@ -750,7 +848,7 @@ async function exportImage(kind) {
   status('Preparing your image', { sticky: true });
   const holder = document.createElement('div');
   try {
-    const [{ domToPng, domToJpeg }, cssText] = await Promise.all([screenshot(), fontEmbedCss().catch(() => undefined)]);
+    const [{ domToBlob }, cssText] = await Promise.all([screenshot(), fontEmbedCss().catch(() => undefined)]);
     holder.setAttribute('aria-hidden', 'true');
     holder.style.cssText = `position:fixed;left:-${t.W + 200}px;top:0;width:${t.W}px;container-type:inline-size;pointer-events:none;`;
     holder.innerHTML = render(t.build(s), 'preview', { W: t.W, prefix: t.prefix, skipUi: true }).html;
@@ -766,12 +864,16 @@ async function exportImage(kind) {
       width,
       height,
       scale,
+      type: kind === 'png' ? 'image/png' : 'image/jpeg',
       quality: 0.92,
       backgroundColor: kind === 'jpg' ? '#FFFFFF' : null,
       font: cssText ? { cssText } : undefined,
       timeout: 30000,
     };
-    const url = kind === 'png' ? await domToPng(node, opts) : await domToJpeg(node, opts);
+    // A Blob and an object URL rather than a data: URL, which some browsers
+    // fail to save once the image runs to several megabytes.
+    const blob = await domToBlob(node, opts);
+    const url = URL.createObjectURL(blob);
     const w = Math.round(width * scale);
     const hgt = Math.round(height * scale);
     const a = document.createElement('a');
@@ -780,6 +882,7 @@ async function exportImage(kind) {
     document.body.append(a);
     a.click();
     a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 10000);
     status(`Saved ${kind.toUpperCase()}, ${w} × ${hgt}.`);
   } catch (e) {
     console.error(e);
@@ -919,7 +1022,8 @@ els.zip.addEventListener('click', async () => {
 
 els.reset.addEventListener('click', () => {
   const t = tpl();
-  if (!window.confirm(`Reset the ${t.label.toLowerCase()} to its starting content? Photos you added will be removed.`)) return;
+  if (locked || !window.confirm(`Reset the ${t.label.toLowerCase()} to its starting content? Photos you added will be removed.`)) return;
+  releaseAll(states[t.id]);
   states[t.id] = t.defaults();
   selectedLayer = -1;
   renderFields();

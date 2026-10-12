@@ -14,8 +14,8 @@ Live at `/image-generator/` on the Vercel project, so
 
 | Template | Size | Editable |
 |---|---|---|
-| Podcast card (cityscape) | 406 x 448, exports at 1x to 4x | episode number, duration, date, heading, featured name and position, avatar, background photo. The teal overlay is fixed and always sits over the photo |
-| Episode cover | 2000 x 2000, exports at 1080, 1400, 2000, 3000 | heading, With name and position, And name and position, an optional third person, episode text, two or three cut-out photos placed freely on the card |
+| Podcast card (cityscape) | 406 x 448, exports at 1x to 3x | episode number, duration, date, heading, featured name and position, avatar, background photo. The teal overlay is fixed and always sits over the photo |
+| Episode cover | 2000 x 2000, exports at 1080, 1400, 2000 | heading, With name and position, And name and position, an optional third person, episode text, two or three cut-out photos placed freely on the card |
 | Newsletter hero | 600 wide, height follows the heading | issue month (defaults to the current month and sets the date on the Market Update image), eyebrow, byline (", propertybuyer.com.au" is fixed), heading |
 
 Every template exports as PNG, JPG, HTML and CSS, or Tailwind.
@@ -82,9 +82,9 @@ Every photo field shows the size to upload and what the current photo can do.
 
 | Field | Frame | Recommended upload |
 |---|---|---|
-| Podcast background | 406 × 448 | 1624 × 1792 px, the frame at the 4x download |
-| Podcast avatar | 60 × 60 | 240 × 240 px |
-| Episode cover people | card area 1902 × 1117 | portrait, at least 1600 px tall, for the 3000 download |
+| Podcast background | 406 × 448 | 1218 × 1344 px, the frame at the 3x download |
+| Podcast avatar | 60 × 60 | 180 × 180 px |
+| Episode cover people | card area 1902 × 1117 | portrait, at least 1100 px tall, for the 2000 download |
 
 Below the recommendation, a live line reports the current photo's pixel size
 and the largest download it stays sharp at, accounting for zoom on the
@@ -121,6 +121,23 @@ of it.
   (photo by Lena Sifoo, Unsplash licence), loaded from Unsplash's CDN. The
   reference photo had the card text baked into it, so it could not be reused.
   The client is expected to upload their own each episode.
+
+## Uploads and downloads
+
+- **One photo at a time.** Each upload takes a single file, and while one is
+  being read or cut out every other upload, the Reset buttons and the export
+  buttons are disabled. The model never sees two photos at once, and a Reset
+  cannot pull a layer out from under an upload that is still running.
+- **The largest sizes were dropped** on 12 Oct 2026: 4x on the podcast card
+  and 3000 x 3000 on the episode cover. Nothing needed them, and those were
+  the files browsers were most likely to fumble. Exports save through a Blob
+  rather than a data: URL for the same reason.
+- **People stay on the card.** Dragging, nudging and resizing keep at least
+  160 design pixels of each person on the card, so nobody can be lost off
+  the edge.
+- **Exported text keeps its font beyond basic Latin.** The embedded fonts
+  cover latin, latin-ext and vietnamese, so names such as Łukasz or Nguyễn
+  match the preview.
 
 ## Known limits
 
