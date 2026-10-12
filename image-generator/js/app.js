@@ -175,6 +175,8 @@ function fileButton(text, cls, onFile) {
 function renderFields() {
   const t = tpl();
   const s = st();
+  // The people panel belongs to the episode cover; drop it so other templates never touch it.
+  peopleRoot = null;
   els.fields.replaceChildren(...t.fields.map((f) => field(f, s)));
   syncGroups();
 }
@@ -376,7 +378,7 @@ function refreshImageInfo() {
     p.textContent = `This photo: ${img.w} × ${img.h} px, ${r.text}.`;
     p.classList.toggle('is-soft', r.soft);
   });
-  if (!peopleRoot) return;
+  if (!peopleRoot || !s.layers) return;
   peopleRoot.querySelectorAll('[data-person-info]').forEach((p) => {
     const l = s.layers[Number(p.dataset.personInfo)];
     if (!l || !l.src) { p.textContent = 'No photo yet.'; p.classList.remove('is-soft'); return; }
