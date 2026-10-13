@@ -9,6 +9,7 @@
     "compress": "node tools/compress-images.mjs",
     "bake": "node tools/bake-liquid-metal.mjs",
     "import-images": "node tools/import-paper-images.mjs",
+    "import-location-images": "node tools/import-location-images.mjs",
     "deck-images": "node tools/extract-deck-images.mjs",
     "hints": "node tools/add-image-hints.mjs"
   },

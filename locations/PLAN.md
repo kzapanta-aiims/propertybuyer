@@ -563,7 +563,12 @@ cannot exist honestly.
   office]`, inspected in person, `[named agent who travels]`. If the client
   cannot name a person who has bought in Perth, the page should not be built
   yet.
-- Section 4 (local team) is removed.
+- Section 4 (local team) is removed. **OVERRIDDEN 8 Sep 2026 by the client
+  lead: Propertybuyer has agents for each location, Perth included, so the
+  team section stays on the Perth page. Do not remove it.** This paragraph
+  was written from the client's public team page, which lists nobody in WA.
+  That reading was wrong. See `perthHasATeamSection` in
+  `shared/locations.json`.
 - Section 13 loses the office block. Schema is `Service` with `areaServed`
   Perth, not `LocalBusiness`. `LocalBusiness` on Perth is a false machine
   readable claim.

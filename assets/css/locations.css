@@ -10,456 +10,747 @@
    loaded before this file. Declares no tokens and holds no raw colour
    values. npm run check fails a raw hex anywhere in here.
 
-   FIRST BUILT 21 August 2026, with the Melbourne page now archived at
-   locations/_archive/melbourne-2026-08-21/. This layer was NOT archived with
-   it: the composition it describes is the part under review, but the tokens,
-   the class vocabulary and the shared furniture all carry into the rebuild.
-   Read locations/PLAN.md section 3 before extending it. The
-   family takes its own layout, decided by the design lead: what carries
-   over from the paid pages is the design language, the tokens, the two
-   faces and the shared furniture in base.css, not the page composition.
+   REWRITTEN 29 September 2026 from the Paper file "Location Pages -
+   Adelaide, Perth, Melbourne", artboard "MELBOURNE · 1440", which the client
+   approved. Adelaide and Perth are line-for-line copies of that artboard, so
+   one layer serves all three. The 21 August 2026 layer described the
+   archived Melbourne page and nothing live used it any more; the git
+   history holds it. Every value below was read from get_jsx and
+   get_computed_styles on the artboard, not from a screenshot, and then
+   bound to the nearest token. Where Paper carried a value with no token,
+   the substitution is commented where it is made.
 
-   The composition idea, so the next page reads this layer the way it was
-   meant: a city ledger. Zone A, the first two screens, is dense and
-   instrumented, and carries the promise, the proof, the people and the
-   capture. Zone B is a quiet editorial column on alternating sand grounds,
-   where the search copy lives. Brand teal appears exactly three times, on
-   the hero, the team band and the closing capture, so the three conversion
-   moments are also the three loudest. The rationale and the research are in
-   locations/_archive/STRATEGY.md.
+   HANDOFF NOTE FOR THE HUBSPOT DEVELOPER. Each section below is one module:
+   the comment banner names the section, and its selectors are all prefixed
+   with the section's block name, so a module can be cut out whole. The
+   header, the newsletter band and the footer are the site's global chrome
+   as it appears on propertybuyer.com.au today. In HubSpot they are the
+   existing global modules; the versions here exist so the reference page
+   reads as a whole, and can be dropped on port.
 
    Class vocabulary is loc- prefixed throughout, so this layer can never be
-   confused with landing.css, which is never loaded with it. Pixel values
-   here are editorial layout values, commented where they matter; every
-   colour, face, weight and space is a token.
+   confused with landing.css, which is never loaded with it.
+
+   Breakpoints: designed at 1440, reflowed at 1023 and 767, checked hard at
+   390, the same as the rest of the repository.
    ========================================================================== */
 
-/* --- Shared, this family --------------------------------------------------- */
+/* --- Shared, this family ----------------------------------------------------- */
 
-/* Dark bands set their own ink. Base h2 pins --text-heading, which vanishes
-   on teal, so the on-dark context restates it. */
+/* Dark bands set their own ink. base.css pins h2 to --text-heading, which
+   vanishes on teal, so the on-dark context restates it. */
 .on-dark h1, .on-dark h2 { color: var(--text-on-brand); }
-.on-dark .micro { color: var(--text-on-brand-muted); }
-.on-dark p { color: var(--text-on-brand); }
 
 /* Visibly unfilled content. The repository rule is that a missing value
-   ships in square brackets rather than as plausible copy; this face makes
-   the placeholder read as scaffolding rather than as finished copy. */
-.loc-unfilled { color: var(--text-muted); }
-.loc-tile--unfilled {
-  border: 1px dashed var(--border-muted);
-  border-radius: var(--radius-card);
-  background: none;
-}
-.on-dark .loc-tile--unfilled { border-color: var(--border-on-brand); }
+   ships in square brackets rather than as plausible copy. The brackets carry
+   the signal; this class exists so the port can find every one of them with
+   a single selector. It changes nothing visually, on purpose, so the page
+   reads at its real density in review. */
+.loc-unfilled { font-style: normal; }
 
-/* Section rhythm comes from base .section; these grounds alternate the
-   Zone B column. */
-.loc-sec--tint { background: var(--bg-surface); }
-.loc-sec--alt { background: var(--bg-surface-alt); }
-
-/* The reading column. Zone B is one measured column, not a card wall. */
-.loc-prose { display: flex; flex-direction: column; gap: var(--gap); max-width: var(--measure-intro); }
-.loc-prose p { font-size: var(--type-body); line-height: 1.6; }
-.loc-sec__head { display: flex; flex-direction: column; gap: var(--gap-sm); margin-bottom: var(--gap-lg); }
-.loc-sec__head .micro { letter-spacing: var(--tracking-caps); }
-
-/* --- Hero, Zone A ----------------------------------------------------------- */
-
-.loc-hero { background: var(--bg-brand); color: var(--text-on-brand); }
-.loc-hero .wrap {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 460px; /* copy beside the capture card */
-  gap: var(--gap-xl);
-  align-items: start;
-  padding-block: 72px 80px;
-}
-.loc-hero__copy { display: flex; flex-direction: column; gap: var(--gap); }
-.loc-hero__copy h1 { color: var(--text-on-brand); }
-.hero__subhead {
-  font-size: var(--type-h3-card);
-  font-weight: var(--weight-body);
-  line-height: 1.4;
-  color: var(--text-on-brand);
-}
-.loc-hero__body { max-width: var(--measure-intro); color: var(--text-on-brand-muted); }
-
-/* The dominant proof point. One number, framed, inside the fold. */
-.loc-hero__proof {
-  display: flex;
-  flex-direction: column;
-  gap: var(--gap-xs);
-  padding: var(--space-gutter);
-  border-radius: var(--radius-card);
-  background: var(--bg-frost);
-  border: 1px solid var(--border-on-brand);
-  max-width: 420px;
-}
-.loc-hero__proof-num {
-  font-family: var(--family-display);
-  font-weight: var(--weight-display);
-  font-size: var(--type-display);
-  line-height: 1.1;
-  letter-spacing: var(--tracking-display);
-  color: var(--text-on-brand);
-}
-.loc-hero__proof-line { font-size: var(--type-small); color: var(--text-on-brand-muted); line-height: 1.5; }
-
-.loc-hero__actions { display: flex; flex-wrap: wrap; gap: var(--gap-sm); align-items: center; margin-top: var(--gap-xs); }
-.loc-hero__phone-note { font-size: var(--type-micro); color: var(--text-on-brand-muted); }
-
-/* --- Proof band, Zone A ------------------------------------------------------ */
-
-.loc-proof { background: var(--bg-page); }
-.loc-records { display: flex; flex-direction: column; }
-.loc-record {
-  display: grid;
-  grid-template-columns: 340px minmax(0, 1fr) minmax(190px, auto);
-  gap: var(--gap-lg);
-  align-items: center;
-  padding-block: var(--gap-lg);
-  border-top: 1px solid var(--border-default);
-}
-.loc-record:last-child { border-bottom: 1px solid var(--border-default); }
-.loc-record--nophoto { grid-template-columns: minmax(0, 1fr) minmax(200px, auto); }
-.loc-record__media {
-  width: 340px;
-  aspect-ratio: 4 / 3;
-  border-radius: var(--radius-card);
-  overflow: hidden;
-  background: var(--bg-photo-fallback);
-}
-.loc-record__media img { width: 100%; height: 100%; object-fit: cover; }
-.loc-record__copy { display: flex; flex-direction: column; gap: var(--gap-sm); }
-.loc-record__copy h3 { font-size: var(--type-h3-card); font-weight: var(--weight-semibold); color: var(--text-heading); }
-.loc-record__copy p { font-size: var(--type-body); color: var(--text-body); }
-.loc-record__source { font-size: var(--type-micro); color: var(--text-muted); }
-
-/* Figures as a ledger: label over number, exact and never rounded. */
-.loc-record__figures { display: flex; flex-direction: column; gap: var(--gap-sm); margin: 0; }
-.loc-record__figures div { display: flex; flex-direction: column; gap: 2px; }
-.loc-record__figures dt {
-  font-size: var(--type-micro);
-  font-weight: var(--weight-bold);
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-.loc-record__figures dd {
-  margin: 0;
+/* The .answer paragraph is the first sentence under a Zone B H2: a complete
+   standalone answer of 40 words or fewer, written to be quoted by an answer
+   engine with nothing around it. locations/PLAN.md section 3, AEO rule 2. */
+.loc-head { display: flex; flex-direction: column; gap: 16px; max-width: var(--measure-intro); }
+.answer {
   font-size: var(--type-h3);
-  font-weight: var(--weight-semibold);
-  font-variant-numeric: tabular-nums;
+  font-weight: var(--weight-regular);
+  line-height: 1.5;
+  letter-spacing: var(--tracking-body);
   color: var(--text-heading);
 }
-
-.loc-record--unfilled {
-  border: 1px dashed var(--border-muted);
-  border-radius: var(--radius-card);
-  padding: var(--gap-lg);
-  margin-block: var(--gap-lg);
-  display: block;
-}
-.loc-record--unfilled h3 { color: var(--text-muted); font-size: var(--type-h3-card); font-weight: var(--weight-semibold); }
-.loc-record--unfilled p { color: var(--text-muted); max-width: var(--measure-intro); margin-top: var(--gap-xs); }
-
-/* --- Team band, Zone A ------------------------------------------------------- */
-
-.loc-team { background: var(--bg-brand-deep); color: var(--text-on-brand); }
-.loc-team__grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--gap);
-  margin-top: var(--gap-lg);
-}
-.loc-team__tile { padding: var(--space-gutter); min-height: 132px; display: flex; flex-direction: column; gap: var(--gap-xs); justify-content: end; }
-.loc-team__tile p { color: var(--text-on-brand-muted); font-size: var(--type-small); }
-.loc-team__note { margin-top: var(--gap); color: var(--text-on-brand-muted); font-size: var(--type-small); max-width: var(--measure-intro); }
-
-/* --- Market data, Zone B ------------------------------------------------------ */
-
-.loc-data {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: var(--gap);
-  margin-top: var(--gap-lg);
-}
-.loc-data__tile { padding: var(--space-gutter); display: flex; flex-direction: column; gap: var(--gap-xs); }
-.loc-data__tile .loc-data__num {
-  font-size: var(--type-h3);
-  font-weight: var(--weight-semibold);
-  font-variant-numeric: tabular-nums;
+.loc-lede {
+  font-size: var(--type-body);
+  line-height: 1.625;
   color: var(--text-muted);
 }
-.loc-data__tile p { font-size: var(--type-micro); color: var(--text-muted); }
+.on-dark .loc-lede { color: var(--text-on-brand-muted); }
 
-/* --- Process, Zone B ---------------------------------------------------------- */
+/* Section grounds. Rhythm comes from base .section, 120 desktop, 48 mobile. */
+.loc-band--page { background: var(--bg-page); }
+.loc-band--surface { background: var(--bg-surface); }
+.loc-band--alt { background: var(--bg-surface-alt); }
+.loc-band--brand { background: var(--bg-brand); color: var(--text-on-brand); }
 
-/* A numbered list because the content is genuinely a sequence. */
-.loc-steps { display: flex; flex-direction: column; counter-reset: loc-step; max-width: var(--measure-intro); }
-.loc-steps li {
-  counter-increment: loc-step;
-  display: grid;
-  grid-template-columns: 44px minmax(0, 1fr);
-  gap: var(--gap);
-  padding-block: var(--gap);
-  border-top: 1px solid var(--border-default);
-}
-.loc-steps li::before {
-  content: counter(loc-step, decimal-leading-zero);
-  font-size: var(--type-h3);
-  font-weight: var(--weight-semibold);
-  font-variant-numeric: tabular-nums;
-  color: var(--action-primary);
-  line-height: 1.4;
-}
-.loc-steps h3 { font-size: var(--type-h3-card); font-weight: var(--weight-semibold); color: var(--text-heading); }
-.loc-steps p { margin-top: var(--gap-xs); color: var(--text-body); }
-.loc-fee { margin-top: var(--gap-lg); max-width: var(--measure-intro); }
-
-/* --- Segment fork, Zone B ------------------------------------------------------ */
-
-.loc-fork {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--gap);
-  margin-top: var(--gap-lg);
-}
-.loc-fork__block {
-  padding: var(--space-gutter);
-  border: 1px solid var(--border-default);
-  border-radius: var(--radius-card);
-  background: var(--bg-surface);
-  display: flex;
-  flex-direction: column;
-  gap: var(--gap-sm);
-}
-.loc-fork__block h3 { font-size: var(--type-h3-card); font-weight: var(--weight-semibold); color: var(--text-heading); }
-.loc-fork__block p { font-size: var(--type-body); color: var(--text-body); flex: 1; }
-.loc-fork__block a {
-  font-size: var(--type-small);
-  font-weight: var(--weight-semibold);
-  color: var(--text-link);
-  text-underline-offset: 4px;
-  min-height: var(--tap-min);
-  display: inline-flex;
-  align-items: center;
-}
-
-/* --- Regions, Zone B ------------------------------------------------------------ */
-
-.loc-regions {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--gap);
-  margin-top: var(--gap-lg);
-}
-.loc-regions .loc-tile--unfilled { padding: var(--space-gutter); min-height: 96px; display: flex; align-items: end; }
-.loc-regions p { color: var(--text-muted); font-weight: var(--weight-medium); }
-.loc-regions__note { margin-top: var(--gap); font-size: var(--type-small); color: var(--text-muted); max-width: var(--measure-intro); }
-
-/* --- FAQ, Zone B ----------------------------------------------------------------- */
-
-.loc-faq { max-width: var(--content-max); }
-.loc-faq details { border-top: 1px solid var(--border-default); }
-.loc-faq details:last-child { border-bottom: 1px solid var(--border-default); }
-.loc-faq summary {
-  cursor: pointer;
-  list-style: none;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--gap);
-  min-height: var(--tap-min);
-  padding-block: var(--gap);
-  font-size: var(--type-h3-card);
-  font-weight: var(--weight-medium);
-  color: var(--text-heading);
-}
-.loc-faq summary::-webkit-details-marker { display: none; }
-.loc-faq summary::after {
-  content: "+";
-  font-size: var(--type-h3);
-  font-weight: var(--weight-body);
-  color: var(--action-primary);
-  flex-shrink: 0;
-}
-.loc-faq details[open] summary::after { content: "\2212"; } /* minus sign */
-.loc-faq details > p { padding-bottom: var(--gap); max-width: var(--measure-intro); color: var(--text-body); }
-
-/* --- Closing capture, Zone B ends on brand --------------------------------------- */
-
-.loc-closer { background: var(--bg-brand); color: var(--text-on-brand); }
-.loc-closer .wrap { display: flex; flex-direction: column; gap: var(--gap); align-items: flex-start; }
-.loc-closer__lede { color: var(--text-on-brand-muted); max-width: var(--measure-intro); }
-.loc-closer__form { display: flex; flex-wrap: wrap; gap: var(--gap-sm); align-items: end; width: 100%; max-width: 560px; }
-.loc-closer__form .field { flex: 1; min-width: 220px; display: flex; flex-direction: column; gap: var(--gap-sm); }
-.loc-closer__form .micro { color: var(--text-on-brand-muted); }
-.loc-closer__phone { font-size: var(--type-small); color: var(--text-on-brand-muted); }
-
-/* --- Other locations, Zone B ------------------------------------------------------- */
-
-.loc-siblings { background: var(--bg-surface); }
-.loc-siblings__row { display: flex; flex-wrap: wrap; gap: var(--gap); margin-top: var(--gap-lg); }
-.loc-siblings__row a, .loc-siblings__row span {
-  display: inline-flex;
-  align-items: center;
-  min-height: var(--tap-min);
-  padding: 10px 18px;
-  border-radius: var(--radius-pill);
-  border: 1px solid var(--border-muted);
-  font-size: var(--type-small);
-  color: var(--text-body);
-  text-decoration: none;
-}
-.loc-siblings__row a { border-color: var(--border-brand); color: var(--text-link); font-weight: var(--weight-medium); }
-.loc-siblings__row a:hover { background: var(--bg-info-subtle); }
-.loc-siblings__row span { border-style: dashed; color: var(--text-muted); }
-
-/* --- Responsive --------------------------------------------------------------------
-   Same breakpoints as the rest of the repository: 768 and 1024, designed at
-   1440, checked hard at 390. */
-
-@media (max-width: 1023px) {
-  .loc-hero .wrap { grid-template-columns: minmax(0, 1fr); padding-block: 48px 56px; }
-  .loc-data { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .loc-record { grid-template-columns: 260px minmax(0, 1fr); }
-  .loc-record--nophoto { grid-template-columns: minmax(0, 1fr); }
-  .loc-record__figures { flex-direction: row; flex-wrap: wrap; gap: var(--gap); grid-column: 2; }
-  .loc-record--nophoto .loc-record__figures { grid-column: 1; }
-  .loc-record__media { width: 260px; }
-}
-
-@media (max-width: 767px) {
-  .loc-fork { grid-template-columns: minmax(0, 1fr); }
-  .loc-regions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .loc-team__grid { grid-template-columns: minmax(0, 1fr); }
-  .loc-record { grid-template-columns: minmax(0, 1fr); }
-  .loc-record__media { width: 100%; aspect-ratio: 16 / 9; }
-  .loc-record__figures { grid-column: 1; }
-  .loc-hero__actions .btn { width: 100%; }
-  .loc-closer__form { flex-direction: column; align-items: stretch; }
-}
-
-/* --- Image containers -------------------------------------------------------
-   Added 21 August 2026. The first build shipped with one photograph and read
-   as a text document; these are the slots photography lands in.
-
-   Two of them hold real images: the two Tier 1 records that are filled carry
-   the property photographs from the client's own decks, both 685x419, which
-   is the size tools/extract-deck-images.mjs writes and the size every other
-   story image in this repository already ships at.
-
-   The rest are placeholders, and they are styled to read as a deliberate
-   design slot rather than as a broken image. That is the point: a client
-   reviewing this page should see where photography goes and how much of it
-   is needed, and the brief for each slot is written inside the slot. Every
-   ratio below is fixed, so filling a slot cannot reflow the page.
-
-   The dimensions each slot wants are listed in
-   locations/_archive/melbourne-2026-08-21/COPY.md
-   under "Photography". Ask for them in one request rather than six. */
-
-.loc-figure {
+/* Photographs sit in fixed boxes and cover them, so a replacement image of a
+   different shape cannot reflow the page. */
+.loc-photo {
   position: relative;
   overflow: hidden;
   border-radius: var(--radius-card);
   background: var(--bg-photo-fallback);
 }
-.loc-figure > img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+.loc-photo > img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Secondary call to action, repeated down the page. Terracotta is reserved
+   for actions, and each band carries at most one. */
+.loc-action { display: flex; flex-direction: column; align-items: center; gap: var(--gap-sm); flex-shrink: 0; }
+.loc-action .btn-note { font-weight: var(--weight-medium); }
+
+/* Plain text links in body copy and the segment fork. */
+.loc-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap-min);
+  font-size: var(--type-button);
+  font-weight: var(--weight-medium);
+  line-height: 22px;
+  color: var(--text-link);
+  text-decoration: underline 1px;
+  text-underline-offset: 4px;
 }
+.loc-link:hover { color: var(--action-primary-hover); }
 
-/* Aspect ratios, one per context. 685/419 matches the deck exports exactly. */
-.loc-figure--record { aspect-ratio: 685 / 419; }
-.loc-figure--wide { aspect-ratio: 685 / 419; width: 100%; }
-.loc-figure--portrait { aspect-ratio: 1 / 1; }
-.loc-figure--region { aspect-ratio: 4 / 3; }
+/* A link inside running text still gets the 44px tap target every viewport
+   requires, without changing how it reads in the line. */
+.loc-inline-link { display: inline-flex; align-items: center; min-height: var(--tap-min); vertical-align: middle; color: inherit; text-underline-offset: 4px; }
 
-/* The unfilled state. Dashed, unfilled ground, and it carries its own brief.
-   No background image is referenced, so nothing 404s while it waits. */
-.loc-figure--empty {
-  background: var(--bg-surface-alt);
-  border: 1px dashed var(--border-muted);
+/* ==========================================================================
+   Header. HubSpot global module on port.
+   Paper draws the live site's white header. Gotham is the live site's face
+   and is not licensed into this repository, so the nav is set in Geist at
+   the same size and tracking.
+   ========================================================================== */
+
+.loc-header { background: var(--bg-page); border-bottom: 1px solid var(--border-default); }
+.loc-header__bar {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: var(--gap-xs);
-  padding: var(--space-gutter);
-  text-align: center;
+  align-items: center;
+  gap: 32px;
+  max-width: 1300px;
+  margin-inline: auto;
+  padding: var(--gap-sm) var(--space-gutter);
 }
-.loc-figure--empty .loc-figure__label {
+.loc-header__logo { display: inline-flex; align-items: center; min-height: var(--tap-min); flex-shrink: 0; color: var(--text-heading); }
+.loc-header__logo img { width: 144px; height: auto; }
+.loc-nav { flex: 1; }
+.loc-nav ul { display: flex; justify-content: center; gap: 14px; }
+.loc-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap-min);
+  padding-inline: 4px;
   font-size: var(--type-micro);
-  font-weight: var(--weight-bold);
-  letter-spacing: 0.02em;
+  font-weight: var(--weight-body);
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  text-decoration: none;
+  color: var(--text-body);
 }
-.loc-figure--empty .loc-figure__brief {
+.loc-nav a:hover { color: var(--text-heading); text-decoration: underline 1px; text-underline-offset: 4px; }
+.loc-header__right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.loc-header__phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: var(--tap-min);
+  padding: var(--gap-xs);
+  font-size: var(--type-body);
+  font-weight: var(--weight-bold);
+  line-height: 16px;
+  color: var(--text-heading);
+  text-decoration: none;
+}
+/* Paper fills this with the logo copper, which has no token. The primary
+   action token is the nearest mapped value. */
+.loc-header__contact {
+  min-height: var(--tap-min);
+  padding: 12px 14px;
   font-size: var(--type-micro);
-  line-height: 1.5;
-  color: var(--text-muted);
-}
-.loc-figure--empty .loc-figure__dims {
-  font-size: var(--type-micro);
-  color: var(--text-muted);
-  font-variant-numeric: tabular-nums;
+  font-weight: var(--weight-body);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
-/* On the dark team band the dashed slot has to read against teal. */
-.on-dark .loc-figure--empty {
-  background: var(--bg-frost-subtle);
-  border-color: var(--border-on-brand);
-}
-.on-dark .loc-figure--empty .loc-figure__label,
-.on-dark .loc-figure--empty .loc-figure__brief,
-.on-dark .loc-figure--empty .loc-figure__dims { color: var(--text-on-brand-muted); }
+/* ==========================================================================
+   1 and 2. Hero with capture step one
+   ========================================================================== */
 
-/* Team tiles become portrait plus name, so the band has faces in it. */
-.loc-team__tile { justify-content: start; }
-.loc-team__tile .loc-figure { width: 100%; margin-bottom: var(--gap-sm); }
-
-/* The market section runs image beside prose at desktop width. */
-.loc-market {
+.loc-hero { background: var(--bg-brand); color: var(--text-on-brand); }
+.loc-hero .wrap {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: var(--gap-xl);
-  align-items: start;
+  grid-template-columns: minmax(0, 620px) 460px;
+  justify-content: space-between;
+  align-items: center;
+  gap: 80px;
+  padding-block: 96px 104px;
 }
+.loc-hero__copy { display: flex; flex-direction: column; gap: 32px; padding-top: var(--gap); }
+.loc-hero__titles { display: flex; flex-direction: column; gap: 20px; }
+.loc-hero h1 { color: var(--text-on-brand); max-width: 560px; }
+.hero__subhead {
+  font-size: var(--type-h3-card);
+  font-weight: var(--weight-regular);
+  line-height: 1.42;
+  color: var(--text-on-brand);
+}
+.loc-hero .btn--primary { align-self: flex-start; padding: 14px var(--gap); }
+.loc-hero__thumbs { display: flex; gap: var(--gap-sm); padding-top: 8px; }
+.loc-hero__thumbs .loc-photo {
+  flex: 1;
+  max-width: 180px;
+  aspect-ratio: 180 / 136;
+  padding: var(--gap-xs);
+  background: var(--bg-frost);
+}
+.loc-hero__thumbs img { border-radius: 5px; }
+.loc-hero .lead-card { width: 100%; }
 
-/* Region cards: image over label. */
-.loc-regions .loc-region {
+/* ==========================================================================
+   3. Local proof, three records, and the awards panel
+   ========================================================================== */
+
+.loc-proof .wrap { display: flex; flex-direction: column; gap: 80px; }
+.loc-proof__top { display: flex; flex-direction: column; gap: 44px; }
+.loc-proof__head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--gap-lg); }
+.loc-proof__title { display: flex; flex-direction: column; gap: 10px; max-width: 460px; }
+
+.loc-rating { display: flex; flex-direction: column; gap: var(--gap-sm); width: 338px; max-width: 100%; }
+.loc-rating__row { display: flex; align-items: center; justify-content: space-between; gap: var(--gap); }
+.loc-rating__place { display: flex; align-items: center; gap: var(--gap-sm); color: var(--text-muted); }
+.loc-rating__score { display: flex; align-items: center; gap: var(--gap-sm); }
+.loc-rating__score strong { font-weight: var(--weight-semibold); }
+.loc-stars { display: flex; }
+.loc-stars svg { width: 20px; flex-shrink: 0; }
+.loc-rating p { color: var(--text-muted); line-height: 1.625; }
+
+.loc-records { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.loc-record { display: flex; flex-direction: column; border-radius: var(--radius-card); overflow: hidden; }
+.loc-record__media { position: relative; height: 342px; background: var(--bg-brand); }
+.loc-record__media img { width: 100%; height: 100%; object-fit: cover; }
+.loc-record__media::after { content: ""; position: absolute; inset: 0; background: var(--fade-photo-dark); }
+.loc-record__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+  padding: var(--gap) var(--gap) var(--gap-lg);
+  background: var(--bg-surface);
+}
+.loc-record__copy { display: flex; flex: 1; flex-direction: column; gap: var(--gap-xs); }
+.loc-record h3 { font-size: var(--type-h3-card); line-height: 1.25; }
+.loc-record p { line-height: 1.625; }
+.loc-record__stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--gap-sm);
+  margin: var(--gap-xs) 0 0;
+  padding-top: var(--gap-sm);
+  border-top: 1px solid var(--border-default);
+}
+/* dt comes first for assistive tech, dd shows first visually. flex-end in a
+   reversed column is the top, so figures share a line when a label wraps. */
+.loc-record__stats div { display: flex; flex-direction: column-reverse; justify-content: flex-end; gap: 2px; min-width: 0; }
+.loc-record__stats dd {
+  margin: 0;
+  font-size: var(--type-body);
+  font-weight: var(--weight-semibold);
+  line-height: 19px;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-heading);
+}
+.loc-record__stats dt { font-size: var(--type-micro); line-height: 17px; color: var(--text-muted); }
+
+/* Awards panel. The one raised surface on the page, as drawn. */
+.loc-awards {
   display: flex;
   flex-direction: column;
+  gap: var(--gap-lg);
+  padding: var(--gap-lg) var(--gap-lg) var(--gap);
+  border-radius: var(--radius-card);
+  background: var(--bg-surface-alt);
+  box-shadow: var(--shadow-cta-panel);
+}
+.loc-awards__top { display: flex; align-items: center; gap: var(--gap-xl); }
+.loc-awards__copy { display: flex; flex: 1; flex-direction: column; gap: var(--gap-sm); min-width: 0; }
+.loc-awards__title {
+  max-width: 549px;
+  font-size: var(--type-h2);
+  font-weight: var(--weight-semibold);
+  line-height: 1.12;
+  letter-spacing: var(--tracking-body);
+  color: var(--text-heading);
+}
+.loc-awards__copy p:last-child { color: var(--text-heading); line-height: 1.6; }
+.loc-awards__strip {
+  display: flex;
+  align-items: center;
+  gap: 44px;
+  padding-block: var(--space-gutter);
+  border-top: 1px solid var(--border-default);
+}
+.loc-awards__label {
+  width: 203px;
+  flex-shrink: 0;
+  font-weight: var(--weight-regular);
+  line-height: 1.4;
+}
+.loc-awards__badges { display: flex; align-items: center; flex: 1; min-width: 0; }
+.loc-awards__badges > svg { flex-shrink: 0; }
+.laurel-cap--l { rotate: 180deg; }
+
+/* Marquee. The mechanics are page.js's, shared with the paid pages; this is
+   the same rule landing.css carries, restated because the two design layers
+   never load together. */
+.marquee {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  /* The badge shadow's tail runs past 30px below a badge, so 12px of padding
+     clipped it. 40px clears it and the negative margin gives the space back.
+     Ported from the landing.css fix of 28 Sep 2026, measured there. */
+  padding-block: 40px;
+  margin-block: -28px;
+  -webkit-mask-image: var(--mask-marquee);
+  mask-image: var(--mask-marquee);
+}
+.marquee__track { display: flex; align-items: center; width: max-content; }
+.marquee.is-looping .marquee__track { animation: loc-marquee var(--marquee-duration, 48s) linear infinite; }
+.badge { width: 80px; height: 80px; flex-shrink: 0; filter: var(--shadow-badge); }
+.badge img { width: 100%; height: 100%; object-fit: contain; }
+.badge--reb { display: flex; align-items: center; justify-content: center; }
+.badge--reb img { width: 96%; height: 74%; }
+@keyframes loc-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(var(--marquee-shift, 50%) * -1)); }
+}
+
+/* ==========================================================================
+   4. Your local buyers' agents
+   ========================================================================== */
+
+.loc-team { position: relative; overflow: hidden; background: var(--bg-brand); color: var(--text-on-brand); }
+/* The wall texture Paper lays over the band, multiplied into the teal. */
+.loc-team__texture {
+  position: absolute;
+  inset: 0 0 auto;
+  width: 100%;
+  height: 900px;
+  object-fit: cover;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+.loc-team .wrap { position: relative; display: flex; flex-direction: column; gap: 44px; }
+.loc-team__head { display: flex; align-items: center; justify-content: space-between; gap: var(--gap-lg); }
+.loc-team__head .loc-head { max-width: 640px; gap: 10px; }
+.loc-team__mark { width: 328px; flex-shrink: 0; }
+.loc-team__mark img { width: 365px; max-width: none; margin: 72px 0 0 -43px; }
+
+/* A row wider than the container, as drawn: the last card runs off the edge
+   and the row scrolls sideways. Scrolling is inside the row, so the page
+   itself never scrolls horizontally. */
+.loc-agents {
+  display: flex;
+  gap: 20px;
+  /* Bleeds from the container's left edge to the viewport's right edge. */
+  margin-right: calc(50% - 50vw);
+  padding-right: var(--space-gutter);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  padding-bottom: var(--gap-sm);
+}
+.loc-agent { display: flex; flex: 0 0 300px; flex-direction: column; gap: 16px; scroll-snap-align: start; }
+.loc-agent__photo { position: relative; height: 410px; overflow: hidden; background: var(--bg-brand-deep); }
+.loc-agent__photo img { width: 100%; height: 100%; object-fit: cover; }
+.loc-agent__photo::after { content: ""; position: absolute; inset: auto 0 0; height: 195px; background: var(--fade-photo-dark); }
+.loc-agent__meta { display: flex; flex-direction: column; gap: 6px; padding-top: 16px; border-top: 1px solid var(--border-on-brand); }
+.loc-agent h3 { font-size: var(--type-h3); line-height: 1.3; letter-spacing: var(--tracking-body); color: var(--text-on-brand); }
+/* Gold on the agent title is on the approved artboard. DESIGN.md keeps gold
+   inside prestige components; flagged in HANDOVER-LOCATIONS.md. */
+.loc-agent__role { font-size: var(--type-small); font-weight: var(--weight-regular); line-height: 20px; color: var(--text-prestige); }
+.loc-agent__area { font-size: 15px; line-height: 23px; color: var(--text-on-brand); }
+.loc-agent__note { font-size: var(--type-small); font-weight: var(--weight-regular); line-height: 20px; color: var(--text-on-brand-muted); }
+
+/* ==========================================================================
+   5 and 9. The split sections: argument, and off market
+   ========================================================================== */
+
+.loc-split .wrap { display: flex; gap: var(--gap-xl); }
+.loc-split__aside { flex: 0 0 440px; }
+.loc-split__aside .loc-photo { height: 320px; margin-top: 32px; }
+.loc-split--offmarket .loc-split__aside .loc-photo { height: 300px; }
+.loc-split__main { display: flex; flex: 1; flex-direction: column; gap: 28px; max-width: 640px; min-width: 0; }
+.loc-split--offmarket .loc-split__main { gap: var(--gap); }
+.loc-split__main > p:not(.answer) { line-height: 1.625; }
+.loc-points li { padding-block: 16px; border-top: 1px solid var(--border-default); font-weight: var(--weight-regular); line-height: 1.5; }
+.loc-points li:last-child { border-bottom: 1px solid var(--border-default); }
+.loc-split__main .btn { align-self: flex-start; }
+
+/* ==========================================================================
+   6. The market, a dated table
+   ========================================================================== */
+
+.loc-market .wrap { display: flex; flex-direction: column; gap: var(--gap-lg); }
+.loc-banner { height: 340px; }
+.loc-banner--short { height: 320px; }
+.loc-table { width: 100%; border-collapse: collapse; border-top: 1px solid var(--border-default); }
+.loc-table tr { border-bottom: 1px solid var(--border-default); }
+.loc-table th, .loc-table td { padding-block: 18px; text-align: left; vertical-align: middle; }
+.loc-table th { width: 360px; font-weight: var(--weight-semibold); line-height: 22px; color: var(--text-heading); }
+.loc-table__value { width: 240px; font-size: var(--type-h3); font-weight: var(--weight-regular); line-height: 24px; }
+.loc-table__meta { font-size: var(--type-small); line-height: 20px; color: var(--text-muted); }
+.loc-table__meta:nth-child(3) { width: 240px; }
+.loc-market__foot { display: flex; align-items: center; justify-content: space-between; gap: var(--gap-lg); }
+.loc-reviewed { font-size: var(--type-small); font-weight: var(--weight-regular); line-height: 20px; color: var(--text-muted); }
+
+/* ==========================================================================
+   7. Regions
+   ========================================================================== */
+
+.loc-regions .wrap { display: flex; flex-direction: column; gap: 44px; }
+.loc-region-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+.loc-region {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: var(--gap) 52px var(--gap) var(--gap);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-card);
+  background: var(--bg-page);
+}
+/* Region names are not headings: one of them runs past the 32 character card
+   heading budget, and the section's H2 already carries the query. */
+.loc-region__name {
+  font-size: var(--type-h3);
+  font-weight: var(--weight-semibold);
+  line-height: 26px;
+  letter-spacing: var(--tracking-body);
+  color: var(--text-heading);
+}
+.loc-region__suburbs { font-size: 15px; line-height: 23px; }
+.loc-region svg { position: absolute; top: 13px; right: 14px; }
+
+/* ==========================================================================
+   8. Process and fee
+   ========================================================================== */
+
+.loc-process .wrap { display: flex; flex-direction: column; gap: 56px; }
+.loc-process__body { display: flex; align-items: flex-start; gap: var(--gap-xl); }
+.loc-steps { flex: 1; min-width: 0; counter-reset: loc-step; border-top: 1px solid var(--border-default); }
+.loc-steps li {
+  display: flex;
+  gap: var(--gap);
+  padding-block: var(--gap);
+  border-bottom: 1px solid var(--border-default);
+  counter-increment: loc-step;
+}
+.loc-steps li::before {
+  content: counter(loc-step);
+  flex: 0 0 44px;
+  font-family: var(--family-display);
+  font-size: 28px;
+  line-height: 32px;
+  color: var(--text-heading);
+}
+.loc-steps div { display: flex; flex-direction: column; gap: var(--gap-xs); }
+.loc-steps h3 { font-size: var(--type-h3); line-height: 1.3; letter-spacing: var(--tracking-body); }
+.loc-steps p { line-height: 1.625; }
+
+.loc-fees {
+  display: flex;
+  flex: 0 0 480px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--gap);
+  padding: 32px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-card);
+  background: var(--bg-surface);
+}
+.loc-fees .loc-photo { width: 100%; height: 200px; margin-bottom: var(--gap); border-radius: 6px; }
+.loc-fees h3 { padding-bottom: 20px; line-height: 26px; letter-spacing: var(--tracking-body); }
+.loc-fees dl { width: 100%; margin: 0; }
+.loc-fees dl div { display: flex; flex-direction: column; gap: var(--gap-xs); padding-block: 16px; border-top: 1px solid var(--border-default); }
+.loc-fees dl div:last-child { border-bottom: 1px solid var(--border-default); }
+.loc-fees dt { font-weight: var(--weight-semibold); line-height: 22px; color: var(--text-heading); }
+.loc-fees dd { margin: 0; font-size: 15px; line-height: 23px; }
+
+/* ==========================================================================
+   10. Segment fork
+   ========================================================================== */
+
+.loc-segments .wrap { display: flex; flex-direction: column; gap: 44px; }
+.loc-fork { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gap-lg) var(--gap-xl); }
+.loc-fork article { display: flex; flex-direction: column; align-items: flex-start; gap: var(--gap-sm); }
+.loc-fork h3 { font-size: var(--type-h3-card); line-height: 1.25; }
+.loc-fork p { line-height: 1.625; }
+.loc-fork .loc-fork--prestige h3 { color: var(--text-prestige); }
+
+/* ==========================================================================
+   11. Local testimonials
+   ========================================================================== */
+
+.loc-voices .wrap { display: flex; flex-direction: column; gap: 44px; }
+.loc-voices .loc-head { max-width: 640px; gap: 10px; }
+.loc-quotes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.loc-quote {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--gap);
+  margin: 0;
+  padding: 28px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-card);
+  background: var(--bg-page);
+}
+.loc-quote blockquote { margin: 0; line-height: 1.625; }
+.loc-quote figcaption { display: flex; flex-direction: column; gap: 2px; padding-top: 16px; border-top: 1px solid var(--border-default); }
+.loc-quote__name { font-weight: var(--weight-semibold); line-height: 22px; color: var(--text-heading); }
+.loc-quote__context { font-size: var(--type-small); line-height: 20px; color: var(--text-muted); }
+
+/* ==========================================================================
+   12. FAQ. Every answer is in the DOM whether or not its row is open.
+   ========================================================================== */
+
+.loc-faq .wrap { display: flex; gap: var(--gap-xl); }
+.loc-faq__aside { display: flex; flex: 0 0 440px; flex-direction: column; gap: 16px; }
+.loc-faq__aside p { max-width: 380px; }
+.loc-faq__list { display: flex; flex: 1; flex-direction: column; gap: var(--gap-sm); min-width: 0; }
+.loc-faq details { border: 1px solid var(--border-muted); border-radius: var(--radius-card); background: var(--bg-page); }
+.loc-faq summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap);
+  min-height: var(--tap-min);
+  padding: 18px 20px;
+  list-style: none;
+  cursor: pointer;
+  font-weight: var(--weight-semibold);
+  line-height: 20px;
+  letter-spacing: var(--tracking-button);
+  color: var(--text-heading);
+}
+.loc-faq summary::-webkit-details-marker { display: none; }
+.loc-faq summary svg { flex-shrink: 0; transition: rotate 200ms ease-out; }
+.loc-faq details[open] summary svg { rotate: 45deg; }
+.loc-faq details p { padding: 0 20px 18px; line-height: 1.625; }
+
+/* ==========================================================================
+   13. Closing capture and office
+   ========================================================================== */
+
+.loc-closer { background: var(--bg-brand); color: var(--text-on-brand); }
+.loc-closer .wrap { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--gap-xl); }
+.loc-closer__copy { display: flex; flex: 0 1 520px; flex-direction: column; gap: var(--gap-lg); min-width: 0; }
+.loc-closer__copy .loc-head p { max-width: 440px; }
+.loc-office { display: flex; flex-direction: column; gap: 20px; padding-top: 32px; border-top: 1px solid var(--border-on-brand); }
+.loc-office__map { height: 293px; border-radius: 0; background: var(--bg-brand-deep); }
+.loc-office__map--empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--gap);
+  border: 1px dashed var(--border-on-brand);
+  text-align: center;
+  color: var(--text-on-brand-muted);
+}
+.loc-office__nap { display: flex; gap: var(--gap-lg); font-style: normal; }
+.loc-office__nap > div { display: flex; flex: 1; flex-direction: column; gap: 6px; }
+.loc-office__nap strong { font-weight: var(--weight-semibold); line-height: 22px; }
+.loc-office__nap span { line-height: 24px; }
+.loc-office__nap a { display: inline-flex; align-items: center; min-height: var(--tap-min); color: var(--text-on-brand); text-underline-offset: 4px; }
+.loc-office__muted { color: var(--text-on-brand-muted); }
+.loc-siblings { display: flex; flex-direction: column; gap: 8px; padding-top: 20px; border-top: 1px solid var(--border-on-brand); }
+.loc-siblings > p { font-size: var(--type-micro); font-weight: var(--weight-regular); line-height: 18px; color: var(--text-on-brand-muted); }
+.loc-siblings ul { display: flex; flex-wrap: wrap; column-gap: 8px; }
+.loc-siblings li { display: inline-flex; align-items: center; gap: 8px; font-size: 15px; line-height: 24px; }
+/* The separator trails each item, so a wrapped line never starts on a dot. */
+.loc-siblings li:not(:last-child)::after { content: "\00B7"; color: var(--text-on-brand-muted); }
+.loc-siblings a { display: inline-flex; align-items: center; min-height: var(--tap-min); color: var(--text-on-brand); }
+
+/* The full closing form. The lead card component from base.css, laid out as
+   the artboard draws it: one step, two fields to a row where they fit. */
+.loc-closer .lead-card { flex: 0 0 480px; gap: var(--gap-sm); }
+.loc-closer .lead-card .field { gap: 10px; padding-bottom: 0; }
+.loc-closer fieldset.field { padding-bottom: 8px; }
+.loc-form-row { display: flex; gap: var(--gap-sm); }
+.loc-form-row > .field { flex: 1; min-width: 0; }
+.loc-closer .lead-card .btn--primary { margin-top: 8px; }
+.loc-closer .lead-card__privacy { text-align: center; }
+
+/* ==========================================================================
+   Newsletter band. HubSpot global module on port.
+   Paper borders it in the prestige gold, which is how the live site draws
+   it. DESIGN.md keeps gold inside prestige components; flagged.
+   ========================================================================== */
+
+.loc-newsletter { padding-block: 30px; background: var(--bg-surface-alt); border-bottom: 5px solid var(--action-prestige); }
+.loc-newsletter__bar { display: flex; align-items: center; gap: var(--gap-lg); max-width: 1300px; margin-inline: auto; padding-inline: var(--space-gutter); }
+.loc-newsletter__copy { display: flex; flex: 1; flex-direction: column; gap: var(--gap-sm); }
+.loc-newsletter__title { font-family: var(--family-display); font-size: var(--type-h3-card); line-height: 1.1; color: var(--text-heading); }
+.loc-newsletter__copy p:last-child { font-weight: var(--weight-regular); color: var(--text-heading); }
+.loc-newsletter form { display: flex; flex: 0 1 856px; align-items: flex-end; gap: var(--space-gutter); }
+.loc-newsletter .field { display: flex; flex: 1; flex-direction: column; gap: var(--gap-sm); }
+.loc-newsletter label { font-size: var(--type-small); line-height: 16px; color: var(--text-muted); }
+.loc-newsletter .input { border-radius: var(--radius-avatar) var(--radius-avatar) 0 0; }
+.loc-newsletter .btn { flex: 1; min-height: var(--tap-min); border-radius: var(--radius-avatar); background: var(--bg-brand); color: var(--text-on-brand); font-weight: var(--weight-bold); }
+.loc-newsletter .btn:hover { background: var(--bg-brand-deep); }
+
+/* ==========================================================================
+   Footer. HubSpot global module on port.
+   The live footer draws its column heads in the logo copper and its links in
+   a warm grey, neither of which has a token. The nearest mapped values are
+   used: the primary action for the heads, on-brand muted for the links.
+   ========================================================================== */
+
+.loc-footer { padding-top: 60px; background: var(--bg-brand-deep); border-top: 3px solid var(--action-primary); color: var(--text-on-brand); }
+.loc-footer__inner { width: min(85%, 1440px); margin-inline: auto; }
+.loc-footer__top { display: grid; grid-template-columns: 31.6% repeat(4, minmax(0, 1fr)); gap: 2.5%; }
+.loc-footer__brand img { width: 80%; max-width: 338px; margin-bottom: var(--gap); }
+.loc-footer__social { display: flex; gap: var(--gap-xs); }
+.loc-footer__social a { display: inline-flex; align-items: center; justify-content: center; width: var(--tap-min); height: var(--tap-min); }
+.loc-footer__social img { width: 28px; height: 28px; }
+.loc-footer__head { margin-bottom: var(--gap-xs); font-family: var(--family-display); line-height: 16px; color: var(--action-primary); }
+.loc-footer__col a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap-min);
+  font-size: var(--type-small);
+  line-height: 20px;
+  color: var(--text-on-brand-muted);
+  text-decoration: none;
+}
+.loc-footer__col a:hover { color: var(--text-on-brand); text-decoration: underline 1px; }
+.loc-footer__col span { display: inline-flex; align-items: center; min-height: var(--tap-min); font-size: var(--type-small); line-height: 20px; color: var(--text-on-brand-muted); }
+.loc-footer__offices { margin-top: var(--gap-lg); padding-top: var(--gap-lg); border-top: 1px solid var(--border-on-brand); }
+.loc-footer__offices ul { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--gap) 2.5%; margin-top: var(--gap-sm); }
+.loc-footer__offices address {
+  display: flex;
+  flex-direction: column;
+  font-size: var(--type-micro);
+  font-style: normal;
+  line-height: 18px;
+  color: var(--text-on-brand-muted);
+}
+.loc-footer__offices strong { margin-bottom: var(--gap-xs); font-size: var(--type-small); font-weight: var(--weight-semibold); color: var(--text-on-brand); }
+.loc-footer__legal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
   gap: var(--gap-sm);
+  max-width: 1300px;
+  margin: var(--gap-lg) auto 0;
+  padding: 12px var(--space-gutter);
+  border-top: 1px solid var(--border-on-brand);
+  font-size: var(--type-small);
+  color: var(--text-on-brand-muted);
 }
-.loc-regions .loc-region p { color: var(--text-muted); font-weight: var(--weight-medium); }
+.loc-footer__legal a { display: inline-flex; align-items: center; min-height: var(--tap-min); color: var(--text-on-brand-muted); }
 
-/* Testimonial block: image beside the quote once both exist. */
-.loc-voices {
-  display: grid;
-  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-  gap: var(--gap-xl);
-  align-items: start;
-}
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
 
 @media (max-width: 1023px) {
-  .loc-market, .loc-voices { grid-template-columns: minmax(0, 1fr); gap: var(--gap-lg); }
-}
-@media (max-width: 767px) {
-  .loc-figure--portrait { aspect-ratio: 4 / 3; }
+  .loc-nav { display: none; }
+  .loc-header__bar { justify-content: space-between; }
+
+  .loc-hero .wrap { grid-template-columns: minmax(0, 1fr); gap: var(--gap-lg); padding-block: 56px 64px; }
+  .loc-hero .lead-card { max-width: 560px; }
+
+  .loc-records { grid-template-columns: minmax(0, 1fr); }
+  .loc-record { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); }
+  .loc-record__media { height: auto; min-height: 280px; }
+
+  .loc-awards__top { flex-direction: column; align-items: flex-start; gap: var(--gap); }
+  .loc-awards__strip { flex-direction: column; align-items: stretch; gap: var(--gap-sm); }
+  .loc-awards__label { width: auto; }
+
+  .loc-team__mark { display: none; }
+
+  .loc-split .wrap, .loc-faq .wrap, .loc-closer .wrap { flex-direction: column; gap: var(--gap-lg); }
+  .loc-split__aside, .loc-faq__aside { flex-basis: auto; }
+  .loc-split__aside .loc-photo { margin-top: var(--gap); }
+  .loc-split__main { max-width: none; }
+
+  .loc-region-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+  .loc-process__body { flex-direction: column; gap: var(--gap-lg); }
+  .loc-fees { flex-basis: auto; width: 100%; max-width: 560px; }
+
+  .loc-quotes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+  .loc-closer__copy { flex-basis: auto; }
+  .loc-closer .lead-card { flex-basis: auto; width: 100%; max-width: 560px; }
+
+  .loc-newsletter__bar { flex-direction: column; align-items: stretch; }
+  .loc-newsletter form { flex-basis: auto; }
+
+  .loc-footer__top { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gap-lg) var(--gap); }
+  .loc-footer__brand { grid-column: 1 / -1; }
+  .loc-footer__offices ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
-/* The unfilled record is a block, not the record grid, so its photo slot
-   would stretch the full container and dwarf the two filled records beside
-   it. Hold it to the same width as a real record photograph. */
-.loc-record--unfilled .loc-figure { width: 340px; max-width: 100%; }
-@media (max-width: 1023px) {
-  .loc-record--unfilled .loc-figure { width: 260px; }
-}
 @media (max-width: 767px) {
-  .loc-record--unfilled .loc-figure { width: 100%; }
+  .loc-header__logo img { width: 128px; }
+  .loc-header__phone span { display: none; }
+
+  .loc-hero .wrap { padding-block: 40px 48px; }
+  .loc-hero .btn--primary { align-self: stretch; }
+  .loc-hero__thumbs { gap: 8px; }
+
+  .loc-proof .wrap { gap: 48px; }
+  .loc-rating { width: 100%; }
+  .loc-record { display: flex; }
+  .loc-record__media { height: 240px; min-height: 0; }
+  .loc-record__body { padding: 20px 20px 28px; }
+
+  .loc-awards { padding: 28px 20px 16px; }
+  .loc-awards__title { font-size: var(--type-h3-card); line-height: 1.25; }
+  .loc-awards .loc-action { align-self: stretch; }
+  .loc-awards .btn { width: 100%; }
+
+  .loc-team__head { flex-direction: column; align-items: flex-start; }
+  .loc-agent { flex-basis: 260px; }
+  .loc-agent__photo { height: 356px; }
+
+  .loc-split__aside .loc-photo, .loc-split--offmarket .loc-split__aside .loc-photo { height: 240px; }
+  .loc-split__main .btn { align-self: stretch; }
+
+  .loc-banner, .loc-banner--short { height: 200px; }
+
+  /* The table reads as stacked rows at phone width: label, then the value,
+     then the date and source on one line. */
+  .loc-table, .loc-table tbody, .loc-table tr { display: block; }
+  .loc-table tr { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--gap-xs) var(--gap-sm); padding-block: 16px; }
+  .loc-table th, .loc-table td { display: block; width: auto; padding: 0; }
+  .loc-table th { grid-column: 1 / -1; }
+  .loc-table__value { grid-column: 1 / -1; }
+  .loc-table__meta:nth-child(3) { width: auto; }
+  .loc-market__foot { flex-direction: column; align-items: flex-start; }
+  .loc-market__foot .loc-action, .loc-market__foot .btn { align-self: stretch; width: 100%; }
+
+  .loc-region-grid { grid-template-columns: minmax(0, 1fr); gap: var(--gap-sm); }
+
+  .loc-steps li { gap: var(--gap-sm); }
+  .loc-fees { padding: var(--gap) 20px; }
+  .loc-fees .btn { align-self: stretch; }
+
+  .loc-fork { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+
+  .loc-quotes { grid-template-columns: minmax(0, 1fr); gap: var(--gap-sm); }
+  .loc-quote { padding: var(--gap) 20px; }
+
+  .loc-office__map { height: 200px; }
+  .loc-office__nap { flex-direction: column; gap: var(--gap); }
+  .loc-closer .lead-card { padding: var(--gap) 20px; }
+  .loc-form-row { flex-direction: column; }
+
+  .loc-newsletter form { flex-direction: column; align-items: stretch; gap: var(--gap-sm); }
+
+  .loc-footer__inner { width: auto; padding-inline: var(--space-gutter); }
+  .loc-footer__top, .loc-footer__offices ul { grid-template-columns: minmax(0, 1fr); gap: var(--gap); }
+  .loc-footer__legal { flex-direction: column; align-items: flex-start; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .marquee__track, .marquee.is-looping .marquee__track { animation: none; }
+  .loc-faq summary svg { transition: none; }
 }
